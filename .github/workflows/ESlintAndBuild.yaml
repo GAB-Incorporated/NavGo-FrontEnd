@@ -1,0 +1,35 @@
+name: Build and Check Project
+
+on: [push, pull_request]
+
+jobs:
+  Build:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2 
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+  ESlintAndSnyk:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Build
+      uses: actions/checkout@v3
+
+    - name: Install modules
+      run: npm install
+    
+    - name: Run ESLint
+      run: npm run lint
+
+    - name: Check for vulnerabilities
+      uses: snyk/actions/node@master
+      with:
+        command: test
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
