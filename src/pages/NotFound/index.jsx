@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "./notFound.module.css"
 
-export const Home = (props) => {
+export const Home = () => {
     return (
        <div className={styles.homeContainer}>
             Página não encontrada!!
