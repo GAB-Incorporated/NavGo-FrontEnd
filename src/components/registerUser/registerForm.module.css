@@ -8,50 +8,63 @@ body {
 }
 
 form {
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
     padding: 20px;
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; 
+}
+
+h1 {
+    color: #E9C568;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+    margin: 0;
 }
 
 #title {
     color: #E9C568;
     font-size: 24px;
-    margin-bottom: 10px;
-    font-weight: bold; 
+    font-weight: bold;
+    text-align: center; 
 }
 
 #description {
     color: #333;
     font-size: 16px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 fieldset {
     border: none;
     margin-bottom: 20px;
+    padding: 0; 
 }
 
 legend {
     font-size: 18px;
     color: #E9C568;
     margin-bottom: 10px;
-    font-weight: bold; 
+    font-weight: bold;
+    text-align: left; 
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
     display: block;
-    width: 100%;
+    width: 100%; 
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #B4D2E7;
     font-size: 16px;
+    box-sizing: border-box; 
 }
 
 input[type="radio"] {
@@ -73,6 +86,8 @@ button[type="submit"] {
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 button[type="submit"]:hover {

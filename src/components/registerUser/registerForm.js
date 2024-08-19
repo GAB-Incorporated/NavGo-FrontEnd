@@ -9,18 +9,20 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRe, setPasswordRe] = useState('');
+  const [userType, setUserType] = useState('ESTUDANTE');
 
-  const [userType, setUserType] = useState('USER');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await api.post('/user/register', {
+        //O cadastro é realizado sem foto
         first_name: firstName,
         last_name: lastName,
-        email,
-        password,
+        nick_name: nickName,
+        email: email,
+        password_hash: password,
         user_type: userType
       });
 
@@ -36,7 +38,7 @@ function Register() {
   return (
     <form onSubmit={handleSubmit}>
       <h1 id="title">Cadastre-se</h1>
-      <p id="description">Responda o formulário para se cadastrar na NavGo</p>
+      <p id="description">Responda o formulário para se cadastrar na <b>NavGo</b></p>
       <fieldset>
       <legend>Nome</legend>
       <input
@@ -92,7 +94,8 @@ function Register() {
             type="radio"
             name="role"
             value="STUDENT"
-            checked
+            onChange={(e) => setUserType(e.target.value)}
+            defaultChecked
           />
           Estudante
       </label>
@@ -101,6 +104,7 @@ function Register() {
           type="radio"
           name="role"
           value="ADMINISTRATOR"
+          onChange={(e) => setUserType(e.target.value)}
         />
         Coordenador
       </label>
@@ -109,6 +113,7 @@ function Register() {
           type="radio"
           name="role"
           value="TEACHER"
+          onChange={(e) => setUserType(e.target.value)}
         />
         Professor
       </label>
