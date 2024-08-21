@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import api from '../../api';
-import styles from '../registerUser/registerForm.module.css'
+import styles from './registerForm.module.css';
 
 function Register() {
   const [firstName, setFirstName] = useState('');
@@ -10,7 +10,6 @@ function Register() {
   const [password, setPassword] = useState('');
   const [passwordRe, setPasswordRe] = useState('');
   const [userType, setUserType] = useState('ESTUDANTE');
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,90 +35,101 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1 id="title">Cadastre-se</h1>
-      <p id="description">Responda o formulário para se cadastrar na <b>NavGo</b></p>
-      <fieldset>
-      <legend>Nome</legend>
-      <input
-        type="text"
-        placeholder="Primeiro nome real"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Sobrenome real"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Nome de usuário"
-        value={nickName}
-        onChange={(e) => setNickName(e.target.value)}
-        required
-      />
-      </fieldset>
-      <fieldset>
-      <legend>Dados</legend>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Sua senha"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Digite sua senha novamente"
-        value={passwordRe}
-        onChange={(e) => setPasswordRe(e.target.value)}
-        required
-      />
-      </fieldset>
-      <fieldset>
-      <legend>Cargo</legend>
-      <label>
+    <div className={styles.body}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h1 className={styles.title}>Cadastre-se</h1>
+        <p className={styles.description}>Responda o formulário para se cadastrar na <b>NavGo</b></p>
+        <fieldset className={styles.fieldset}>
+          <legend className={styles.legend}>Nome</legend>
           <input
-            type="radio"
-            name="role"
-            value="STUDENT"
-            onChange={(e) => setUserType(e.target.value)}
-            defaultChecked
+            type="text"
+            placeholder="Primeiro nome real"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+            className={styles.input}
           />
-          Estudante
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="role"
-          value="ADMINISTRATOR"
-          onChange={(e) => setUserType(e.target.value)}
-        />
-        Coordenador
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="role"
-          value="TEACHER"
-          onChange={(e) => setUserType(e.target.value)}
-        />
-        Professor
-      </label>
-      </fieldset>
-      <button type="submit">Registrar</button>
-    </form>
+          <input
+            type="text"
+            placeholder="Sobrenome real"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+            className={styles.input}
+          />
+          <input
+            type="text"
+            placeholder="Nome de usuário"
+            value={nickName}
+            onChange={(e) => setNickName(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </fieldset>
+        <fieldset className={styles.fieldset}>
+          <legend className={styles.legend}>Dados</legend>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className={styles.input}
+          />
+          <input
+            type="password"
+            placeholder="Sua senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className={styles.input}
+          />
+          <input
+            type="password"
+            placeholder="Digite sua senha novamente"
+            value={passwordRe}
+            onChange={(e) => setPasswordRe(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </fieldset>
+        <fieldset className={styles.fieldset}>
+          <legend className={styles.legend}>Cargo</legend>
+          <label className={styles.label}>
+            <input
+              type="radio"
+              name="role"
+              value="STUDENT"
+              onChange={(e) => setUserType(e.target.value)}
+              defaultChecked
+              className={styles.radio}
+            />
+            Estudante
+          </label>
+          <label className={styles.label}>
+            <input
+              type="radio"
+              name="role"
+              value="ADMINISTRATOR"
+              onChange={(e) => setUserType(e.target.value)}
+              className={styles.radio}
+            />
+            Coordenador
+          </label>
+          <label className={styles.label}>
+            <input
+              type="radio"
+              name="role"
+              value="TEACHER"
+              onChange={(e) => setUserType(e.target.value)}
+              className={styles.radio}
+            />
+            Professor
+          </label>
+        </fieldset>
+        <button type="submit" className={styles.button}>Registrar</button>
+      </form>
+    </div>
   );
 }
 

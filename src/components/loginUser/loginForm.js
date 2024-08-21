@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import api from '../../api';
+import styles from './loginForm.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -28,6 +29,8 @@ function Login() {
 
   return (
     <form onSubmit={handleLogin}>
+      <h1 id="title">Entrar</h1>
+      <p id="description">Entre em sua conta <b>NavGo</b></p>
       <input
         type="email"
         placeholder="Email"

@@ -1,4 +1,5 @@
-body {
+/* registerForm.module.css */
+.body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +8,7 @@ body {
     background-color: #f0f0f0;
 }
 
-form {
+.form {
     max-width: 700px;
     width: 100%;
     padding: 20px;
@@ -17,7 +18,7 @@ form {
     box-sizing: border-box; 
 }
 
-h1 {
+.title {
     color: #E9C568;
     font-weight: bold;
     font-size: 50px;
@@ -25,27 +26,20 @@ h1 {
     margin: 0;
 }
 
-#title {
-    color: #E9C568;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center; 
-}
-
-#description {
+.description {
     color: #333;
     font-size: 16px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-fieldset {
+.fieldset {
     border: none;
     margin-bottom: 20px;
     padding: 0; 
 }
 
-legend {
+.legend {
     font-size: 18px;
     color: #E9C568;
     margin-bottom: 10px;
@@ -53,9 +47,7 @@ legend {
     text-align: left; 
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.input {
     display: block;
     width: 100%; 
     padding: 10px;
@@ -67,18 +59,18 @@ input[type="password"] {
     box-sizing: border-box; 
 }
 
-input[type="radio"] {
+.radio {
     margin-right: 5px;
 }
 
-label {
+.label {
     display: block;
     font-size: 16px;
     margin-bottom: 10px;
     color: #333;
 }
 
-button[type="submit"] {
+.button {
     background-color: #E9C568;
     border: none;
     color: white;
@@ -90,6 +82,6 @@ button[type="submit"] {
     box-sizing: border-box; 
 }
 
-button[type="submit"]:hover {
+.button:hover {
     background-color: #d8b95c;
 }
