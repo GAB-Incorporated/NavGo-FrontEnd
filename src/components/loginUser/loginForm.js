@@ -21,32 +21,34 @@ function Login() {
       }
     } catch (error) {
       console.error('Erro ao realizar login', error.response ? error.response.data : error.message);
-      console.log('Erro ao realizar login', error.response ? error.response.data : error.message);
-
-      alert('Erro ao realizar login.', error.message);
+      alert('Erro ao realizar login.');
     }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h1 id="title">Entrar</h1>
-      <p id="description">Entre em sua conta <b>NavGo</b></p>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div className={styles.body}>
+      <form className={styles.form} onSubmit={handleLogin}>
+        <h1 className={styles.title}>Entrar</h1>
+        <p className={styles.description}>Entre em sua conta <b>NavGo</b></p>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className={styles.input}
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          className={styles.input}
+        />
+        <button type="submit" className={styles.button}>Login</button>
+      </form>
+    </div>
   );
 }
 

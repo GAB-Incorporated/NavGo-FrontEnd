@@ -29,8 +29,7 @@ function Register() {
         alert('Usuário registrado com sucesso!');
       }
     } catch (error) {
-      console.error('Erro ao registrar o usuário', error);
-      alert('Erro ao registrar o usuário.');
+      alert('Erro ao registrar o usuário.', error);
     }
   };
 
