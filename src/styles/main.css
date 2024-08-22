@@ -4,7 +4,10 @@
 }
 
 
-/* COLORS */
 :root {
-    --c-blue: #0000ff;
+    --c-orange: #ff735c;
+    --c-yellow: #e9c568;
+    --c-blue: #2274ac;
+    --c-darkBlue: #2e1f27;
+    --c-lightBlue: #b4d2e7;
 }
