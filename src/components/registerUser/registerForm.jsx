@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import {Box, Button, FormControl, FormLabel, Heading, Input, Radio, RadioGroup, Stack, Text, useToast} from '@chakra-ui/react';
+import { Box, Button, FormControl, useRadioGroup,FormLabel, Heading, Input, Radio, RadioGroup, HStack,Stack, Text, useToast } from '@chakra-ui/react';
 import api from '../../api';
+import styles from './registerForm.module.css';
+import CustomRadio from '../CustomRadio/customRadio';
 
 function Register() {
   const [firstName, setFirstName] = useState('');
@@ -9,8 +11,18 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRe, setPasswordRe] = useState('');
-  const [userType, setUserType] = useState('ESTUDANTE');
+  const [userType, setUserType] = useState('STUDENT');
   const toast = useToast();
+
+  const options = ['react', 'vue', 'svelte']
+
+  const { getRootProps, getRadioProps } = useRadioGroup({
+    name: 'framework',
+    defaultValue: 'react',
+    onChange: console.log,
+  })
+
+  const group = getRootProps()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +39,7 @@ function Register() {
 
       if (response.status === 201) {
         toast({
-          title: 'Usuário registrado com sucesso!',
+          title: 'Registrado com Sucesso',
           status: 'success',
           duration: 5000,
           isClosable: true,
@@ -35,7 +47,7 @@ function Register() {
       }
     } catch (error) {
       toast({
-        title: 'Erro ao registrar o usuário.',
+        title: 'Falha no Registro',
         description: error.message,
         status: 'error',
         duration: 5000,
@@ -45,93 +57,87 @@ function Register() {
   };
 
   return (
-    <Box
-      maxW="md"
-      mx="auto"
-      mt={8}
-      p={6}
-      borderWidth={1}
-      borderRadius="lg"
-      boxShadow="lg"
-    >
-      <form onSubmit={handleSubmit}>
-        <Heading as="h1" size="lg" mb={6}>
+    <Box className={styles.body}>
+      <Box as="form" onSubmit={handleSubmit} className={styles.form}>
+        <Heading as="h1" className={styles.title}>
           Cadastre-se
         </Heading>
-        <Text fontSize="md" mb={4}>
-          Responda o formulário para se cadastrar na <b>NavGo</b>
-        </Text>
-        <FormControl id="firstName" mb={4} isRequired>
-          <FormLabel>Primeiro nome real</FormLabel>
+        <FormControl id="firstName" isRequired>
+          <FormLabel className={styles.label}>Primeiro nome real</FormLabel>
           <Input
             type="text"
-            placeholder="Primeiro nome real"
+            placeholder="Primeiro nome"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            className={styles.input}
           />
         </FormControl>
-        <FormControl id="lastName" mb={4} isRequired>
-          <FormLabel>Sobrenome real</FormLabel>
+        <FormControl id="lastName" isRequired>
+          <FormLabel className={styles.label}>Sobrenome real</FormLabel>
           <Input
             type="text"
-            placeholder="Sobrenome real"
+            placeholder="Sobrenomes"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
+            className={styles.input}
           />
         </FormControl>
-        <FormControl id="nickName" mb={4} isRequired>
-          <FormLabel>Nome de usuário</FormLabel>
+        <FormControl id="nickName" isRequired>
+          <FormLabel className={styles.label}>Nome de usuário</FormLabel>
           <Input
             type="text"
             placeholder="Nome de usuário"
             value={nickName}
             onChange={(e) => setNickName(e.target.value)}
+            className={styles.input}
           />
         </FormControl>
-        <FormControl id="email" mb={4} isRequired>
-          <FormLabel>Email</FormLabel>
+        <FormControl id="email" isRequired>
+          <FormLabel className={styles.label}>Email</FormLabel>
           <Input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
           />
         </FormControl>
-        <FormControl id="password" mb={4} isRequired>
-          <FormLabel>Sua senha</FormLabel>
+        <FormControl id="password" isRequired>
+          <FormLabel className={styles.label}>Sua senha</FormLabel>
           <Input
             type="password"
             placeholder="Sua senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
           />
         </FormControl>
-        <FormControl id="passwordRe" mb={4} isRequired>
-          <FormLabel>Digite sua senha novamente</FormLabel>
+        <FormControl id="passwordRe" isRequired>
+          <FormLabel className={styles.label}>Digite sua senha novamente</FormLabel>
           <Input
             type="password"
             placeholder="Digite sua senha novamente"
             value={passwordRe}
             onChange={(e) => setPasswordRe(e.target.value)}
+            className={styles.input}
           />
         </FormControl>
-        <FormControl as="fieldset" mb={6} isRequired>
-          <FormLabel as="legend">Cargo</FormLabel>
-          <RadioGroup
-            onChange={setUserType}
-            value={userType}
-          >
-            <Stack direction="row">
-              <Radio value="ESTUDANTE">Estudante</Radio>
-              <Radio value="ADMINISTRATOR">Coordenador</Radio>
-              <Radio value="TEACHER">Professor</Radio>
-            </Stack>
-          </RadioGroup>
-        </FormControl>
-        <Button type="submit" colorScheme="blue" width="full">
+    
+    <HStack {...group}>
+      {options.map((value) => {
+        const radio = getRadioProps({ value })
+        return (
+          <CustomRadio key={value} {...radio}>
+            {value}
+          </CustomRadio>
+        )
+      })}
+    </HStack>
+
+        <Button type="submit" className={styles.button}>
           Registrar
         </Button>
-      </form>
+      </Box>
     </Box>
   );
 }
