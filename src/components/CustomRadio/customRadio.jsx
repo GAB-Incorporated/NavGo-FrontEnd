@@ -1,4 +1,5 @@
 import { Box, useRadio } from "@chakra-ui/react"
+import styles from "./customRadio.module.css"
 
 function CustomRadio(props) {
   const { getInputProps, getRadioProps } = useRadio(props)
@@ -7,24 +8,20 @@ function CustomRadio(props) {
   const checkbox = getRadioProps()
 
   return (
-    <Box as='label'>
-      <input {...input} />
+    <Box as='label' className={styles.customBox} bg={props.bg}>
+      <input {...input}/>
       <Box
         {...checkbox}
-        cursor='pointer'
-        borderWidth='1px'
-        borderRadius='md'
-        boxShadow='md'
+        {...props}
+        padding='inherit'  
         _checked={{
-          bg: 'teal.600',
-          color: 'white',
+          bg: 'yellow.400',
+          color: 'black',
           borderColor: 'teal.600',
         }}
         _focus={{
-          boxShadow: 'outline',
+          borderColor: 'black',
         }}
-        px={5}
-        py={3}
       >
         {props.children}
       </Box>

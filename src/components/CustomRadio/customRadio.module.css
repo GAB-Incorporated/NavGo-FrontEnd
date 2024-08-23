@@ -1,84 +1,22 @@
-.wrapper {
-    display: inline-flex;
-    background: #fff;
-    height: 100px;
-    width: 400px;
-    align-items: center;
-    justify-content: space-evenly;
-    border-radius: 5px;
-    padding: 20px 15px;
-    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+.customBox {
+  cursor: pointer;
+  border-width: 1px;
+  border-radius: 0.375rem; 
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); 
+  padding: 0.5em 1em !important;
+  background: linear-gradient(0deg, #B4D2E7 1%, #d9dfe2 100%);
+  transition: background-color 0.3s ease;
+  border: 1px solid lightgrey;
+  margin: 0 !important;
+}
+
+@media (max-width: 600) {
+  .customBox {
+    border-width: 1px;
+    padding: 0.5em;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); 
+    background: linear-gradient(0deg, #B4D2E7 1%, #d9dfe2 100%);
+    transition: background-color 0.3s ease;
+    border: 1px solid lightgrey;
   }
-  
-  .option {
-    background: #fff;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    margin: 0 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 0 10px;
-    border: 2px solid lightgrey;
-    transition: all 0.3s ease;
-  }
-  
-  .option .dot {
-    height: 20px;
-    width: 20px;
-    background: #d9d9d9;
-    border-radius: 50%;
-    position: relative;
-  }
-  
-  .option .dot::before {
-    position: absolute;
-    content: "";
-    top: 4px;
-    left: 4px;
-    width: 12px;
-    height: 12px;
-    background: #0069d9;
-    border-radius: 50%;
-    opacity: 0;
-    transform: scale(1.5);
-    transition: all 0.3s ease;
-  }
-  
-  input[type="radio"] {
-    display: none;
-  }
-  
-  #option-1:checked ~ .option-1,
-  #option-2:checked ~ .option-2,
-  #option-3:checked ~ .option-3 {
-    border-color: #0069d9;
-    background: #0069d9;
-  }
-  
-  #option-1:checked ~ .option-1 .dot,
-  #option-2:checked ~ .option-2 .dot,
-  #option-3:checked ~ .option-3 .dot {
-    background: #fff;
-  }
-  
-  #option-1:checked ~ .option-1 .dot::before,
-  #option-2:checked ~ .option-2 .dot::before,
-  #option-3:checked ~ .option-3 .dot::before {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  .option span {
-    font-size: 20px;
-    color: #808080;
-  }
-  
-  #option-1:checked ~ .option-1 span,
-  #option-2:checked ~ .option-2 span,
-  #option-3:checked ~ .option-3 span {
-    color: #fff;
-  }
-  
+}

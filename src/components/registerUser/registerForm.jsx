@@ -14,15 +14,14 @@ function Register() {
   const [userType, setUserType] = useState('STUDENT');
   const toast = useToast();
 
-  const options = ['react', 'vue', 'svelte']
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'framework',
     defaultValue: 'react',
-    onChange: console.log,
   })
-
   const group = getRootProps()
+  const options = ['Estudante', 'Professor', 'Coordenador']
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -122,18 +121,30 @@ function Register() {
             className={styles.input}
           />
         </FormControl>
-    
-    <HStack {...group}>
-      {options.map((value) => {
-        const radio = getRadioProps({ value })
-        return (
-          <CustomRadio key={value} {...radio}>
-            {value}
-          </CustomRadio>
-        )
-      })}
-    </HStack>
-
+        {/* Explicação do uso do componente: ESTILIZE ELE COM AS PROPS, NÃO
+        ALTERE DIRETAMENTE O COMPONENTE, assim podemos reutilizar isso para
+        todos os radios da aplicação, se precisar de mais um tipo de estilo?
+        vai no componente e adicionar outra props, aproveitamento máximo das funções
+        do react*/}
+        <FormControl isRequired>
+        <FormLabel className={styles.label}>Qual sua posição?</FormLabel>
+          <HStack {...group} className={styles.userType}>
+          {options.map((value) => {
+            const radio = getRadioProps({ value });
+            return (
+              <CustomRadio className={styles.userType} 
+                key={value} 
+                {...radio} 
+                borderRadius="md" 
+                bg="blue.200"
+                onChange={(e) => setUserType(e.target.value)}
+                isChecked={userType === value}>
+                {value}
+              </CustomRadio>
+            );
+          })}
+          </HStack>
+        </FormControl>
         <Button type="submit" className={styles.button}>
           Registrar
         </Button>

@@ -44,6 +44,15 @@
     box-sizing: border-box; 
 }
 
+.userType{
+    display: flex;
+    justify-content: center !important; 
+    align-items: center !important;     
+    gap: 20px;               
+    width: 100%;
+    padding: 200px;           
+}
+
 .button {
     background-color: #E9C568;
     border: none;
