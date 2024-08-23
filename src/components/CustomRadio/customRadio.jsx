@@ -1,5 +1,6 @@
 import { Box, useRadio } from "@chakra-ui/react"
 import styles from "./customRadio.module.css"
+import PropTypes from "prop-types";
 
 function CustomRadio(props) {
   const { getInputProps, getRadioProps } = useRadio(props)
@@ -28,5 +29,10 @@ function CustomRadio(props) {
     </Box>
   )
 }
+
+CustomRadio.propTypes = {
+  bg: PropTypes.string,       
+  children: PropTypes.node,   
+};
 
 export default CustomRadio;
