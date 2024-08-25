@@ -1,3 +1,4 @@
+import { Box, FormControl, FormLabel, Input, Button, Heading, Text } from "@chakra-ui/react";
 import { useState } from 'react';
 import api from '../../api';
 import styles from './loginForm.module.css';
@@ -26,29 +27,37 @@ function Login() {
   };
 
   return (
-    <div className={styles.body}>
-      <form className={styles.form} onSubmit={handleLogin}>
-        <h1 className={styles.title}>Entrar</h1>
-        <p className={styles.description}>Entre em sua conta <b>NavGo</b></p>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className={styles.input}
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className={styles.input}
-        />
-        <button type="submit" className={styles.button}>Login</button>
-      </form>
-    </div>
+    <Box className={styles.body}>
+      <Box as="form" className={styles.form} onSubmit={handleLogin}>
+        <Heading as="h1" className={styles.title}>Entrar</Heading>
+        <Text className={styles.description}>
+          Entre em sua conta <b>NavGo</b>
+        </Text>
+        <FormControl isRequired as='fieldset'>
+          <FormLabel className={styles.label}>Email</FormLabel>
+          <Input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
+          />
+        </FormControl>
+        <FormControl isRequired as='fieldset'>
+          <FormLabel className={styles.label}>Senha</FormLabel>
+          <Input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+          />
+        </FormControl>
+        <Button type="submit" className={styles.button}>
+          Login
+        </Button>
+      </Box>
+    </Box>
   );
 }
 
