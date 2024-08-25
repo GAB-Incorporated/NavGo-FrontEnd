@@ -122,22 +122,32 @@ function Register() {
             className={styles.input}
           />
         </FormControl>
-        {/* Explicação do uso do componente: ESTILIZE ELE COM AS PROPS, NÃO
-        ALTERE DIRETAMENTE O COMPONENTE, assim podemos reutilizar isso para
-        todos os radios da aplicação, se precisar de mais um tipo de estilo?
-        vai no componente e adicionar outra props, aproveitamento máximo das funções
-        do react*/}
         <FormControl isRequired>
-        <FormLabel className={styles.label}>Qual sua posição?</FormLabel>
+        <FormLabel className={styles.userTypeLabel}>Qual sua posição?</FormLabel>
           <HStack {...group} className={styles.userType}>
           {options.map((value) => {
             const radio = getRadioProps({ value });
             return (
               <CustomRadio className={styles.userType} 
                 key={value} 
-                {...radio} 
-                borderRadius="md" 
+                {...radio}
+                borderRadius="md"
                 bg="blue.200"
+                padding="1.2em"
+                transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                fontWeight='semibold'
+                _hover={{
+                  bg: 'yellow.100',
+                  cursor: 'pointer'
+                }}
+                _checked={{
+                  bg: 'yellow.400',
+                  color: 'black',
+                  borderColor: 'teal.600',
+                }}
+                _focus={{
+                  borderColor: 'black',
+                }}
                 onChange={(e) => setUserType(e.target.value)}
                 isChecked={userType === value}>
                 {value}

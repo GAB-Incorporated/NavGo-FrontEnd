@@ -55,7 +55,14 @@
     margin-bottom: 10px;
     color: #E9C568;
     font-weight: 650 !important;
-
+}
+.userTypeLabel {
+    text-align: center !important;
+    display: block;
+    font-size: 16px !important;
+    margin-bottom: 1em !important;
+    color: #E9C568;
+    font-weight: 650 !important;
 }
 
 .input {
@@ -73,7 +80,7 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    
+    max-height: 20px;
 }
 
 .radio {
@@ -144,7 +151,7 @@ input[type="radio"]:checked + .customRadio::after {
         background: #2e1f2733;
 
     }
-    .label {
+    .userTypeLabel, .label {
         color:#0c0c0c;
     }
     
