@@ -1,14 +1,15 @@
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react"
+import PropTypes from "prop-types"
 
-export default function ModalStructure(
+const ModalStructure =(
     {
         size = "xl",
         title = "Modal",
-        isOpen, onClose,
+        isOpen, 
+        onClose,
         contentBody,
         contentFooter = null
-    }
-    ) {
+    }) => {
 
     return(
         <Modal
@@ -40,3 +41,14 @@ export default function ModalStructure(
         </Modal>
     )
 }
+
+ModalStructure.propTypes = {
+    size: PropTypes.string,
+    title: PropTypes.string,
+    isOpen: PropTypes.bool.isRequired, 
+    onClose: PropTypes.bool.isRequired,
+    contentBody: PropTypes.node.isRequired,
+    contentFooter: PropTypes.node,
+}
+
+export default ModalStructure
