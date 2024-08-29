@@ -1,11 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound"
+import ModalTest from "../pages/ModalTest";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Home/>
+    },
+    {
+        path: "/test",
+        element: <ModalTest/>
     },
     {
         path: "*",
