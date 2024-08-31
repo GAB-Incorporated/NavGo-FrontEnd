@@ -3,7 +3,7 @@ import { useState } from 'react';
 import api from '../../api';
 import styles from './loginForm.module.css';
 
-function Login() {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -61,4 +61,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginForm;

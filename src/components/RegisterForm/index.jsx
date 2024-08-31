@@ -5,7 +5,7 @@ import styles from './registerForm.module.css';
 import CustomRadio from '../CustomRadio/customRadio';
 
 
-function Register() {
+function RegisterForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [nickName, setNickName] = useState('');
@@ -164,4 +164,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterForm;
