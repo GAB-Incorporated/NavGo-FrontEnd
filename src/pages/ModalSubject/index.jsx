@@ -25,11 +25,11 @@ function ModalSubject() {
                 onClick={onCreateOpen}
                 mb={4} 
             >
-                Inserir nova Matéria
+                Inserir Matéria
             </Button>
 
             <ModalStructure
-                title="Inserir Nova Matéria"
+                title="INSERIR MATÉRIA"
                 isOpen={isCreateOpen}
                 onClose={onCreateClose}
                 contentBody={<CreateSubjectBody />}
@@ -43,7 +43,7 @@ function ModalSubject() {
             </Button>
 
             <ModalStructure
-                title="Atualizar Matéria"
+                title="ATUALIZAR MATÉRIA"
                 isOpen={isUpdateOpen}
                 onClose={onUpdateClose}
                 contentBody={
