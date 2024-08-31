@@ -48,7 +48,7 @@ function RegisterForm() {
     } catch (error) {
       toast({
         title: 'Falha no Registro',
-        description: error.message,
+        description: error,
         status: 'error',
         duration: 5000,
         isClosable: true,
