@@ -2,9 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     background: linear-gradient(0deg, #B4D2E7 0%, #2274A5 100%);
+    padding: 6em 0;
 }
 
 .form {
