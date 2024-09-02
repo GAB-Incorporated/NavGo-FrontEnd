@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Box, Button, FormControl, useRadioGroup,FormLabel, Heading, Input, HStack, useToast } from '@chakra-ui/react';
 import api from '../../api';
 import styles from './registerForm.module.css';
-import CustomRadio from '../CustomRadio/customRadio';
+import CustomRadio from '../CustomRadio';
 
 
-function RegisterForm() {
+const RegisterForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [nickName, setNickName] = useState('');
