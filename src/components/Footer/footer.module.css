@@ -5,7 +5,7 @@
     flex-direction: column !important;
     max-height: 15vh;
     width: 100% !important;
-    margin-top: auto;
+    margin-top: 0;
 }
 
 .footerBody p{

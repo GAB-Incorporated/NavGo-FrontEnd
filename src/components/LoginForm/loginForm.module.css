@@ -5,7 +5,7 @@
     height: 100%;
     margin: 0;
     background: linear-gradient(0deg, var(--c-lightBlue) 0%, var(--c-blue) 100%);
-    padding: 6em 0;
+    padding: 14em 0;
 }
 
 .form {

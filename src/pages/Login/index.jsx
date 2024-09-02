@@ -6,10 +6,14 @@ import Footer from "../../components/Footer";
 
 const Login = () => {
     return (
-        <Box className={styles.noflow}>
-            <Header />
-            <LoginForm />
-            <Footer />
+        <Box className={styles.content}>
+            <Box className={styles.wrapper}>
+                <Header />
+                <Box flexGrow={1}> 
+                    <LoginForm />
+                </Box>
+                <Footer />
+            </Box>
         </Box>
     );
 }
