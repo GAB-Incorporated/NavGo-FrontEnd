@@ -1,7 +1,7 @@
 import { Box, useRadio } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
-function CustomRadio({ children, ...rest }) {
+const CustomRadio = ({ children, ...rest }) => {
   const { getInputProps, getRadioProps } = useRadio(rest);
 
   const input = getInputProps();

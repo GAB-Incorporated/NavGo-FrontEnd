@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound"
 import ModalTest from "../pages/ModalTest";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
 
 const router = createBrowserRouter([
     {
@@ -15,6 +17,14 @@ const router = createBrowserRouter([
     {
         path: "*",
         element: <NotFound />
+    },
+    {
+        path: "/register",
+        element: <Register/>
+    },
+    {
+        path: "/login",
+        element: <Login/>
     }
 ]) 
 
