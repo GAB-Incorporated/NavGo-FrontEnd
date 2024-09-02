@@ -1,11 +1,12 @@
-import { Box, FormControl, FormLabel, Input, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, Input, Button, Heading, Text, useToast } from "@chakra-ui/react";
 import { useState } from 'react';
 import api from '../../api';
 import styles from './loginForm.module.css';
 
-function Login() {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const toast = useToast();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,11 +19,21 @@ function Login() {
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
-        alert('Login realizado com sucesso!');
+        toast({
+          title: 'Login Efetuado com Sucesso',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
       }
     } catch (error) {
-      console.error('Erro ao realizar login', error.response ? error.response.data : error.message);
-      alert('Erro ao realizar login.');
+      toast({
+        title: 'Falha no Login',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
@@ -61,4 +72,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginForm;

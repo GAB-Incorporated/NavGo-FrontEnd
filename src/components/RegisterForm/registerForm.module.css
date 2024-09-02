@@ -2,9 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 0;
-    background: linear-gradient(0deg, #B4D2E7 0%, #2274A5 100%);
+    background: linear-gradient(0deg, var(--c-lightBlue) 0%, var(--c-blue) 100%);
+    padding: 6em 0;
 }
 
 .form {
@@ -18,7 +19,7 @@
 }
 
 .title {
-    color: #E9C568;
+    color: var(--c-yellow);
     font-weight: bold;
     font-size: 50px !important; 
     text-align: center;
@@ -53,7 +54,7 @@
     display: block;
     font-size: 16px;
     margin-bottom: 10px;
-    color: #E9C568;
+    color: var(--c-yellow);
     font-weight: 650 !important;
 }
 .userTypeLabel {
@@ -61,7 +62,7 @@
     display: block;
     font-size: 16px !important;
     margin-bottom: 1em !important;
-    color: #E9C568;
+    color: var(--c-yellow);
     font-weight: 650 !important;
 }
 
@@ -88,7 +89,7 @@
 }
 
 .button {
-    background-color: #E9C568;
+    background-color: var(--c-yellow);
     border: none;
     color: white;
     padding: 10px 20px;
@@ -121,8 +122,8 @@ button::after{
 }
 
 input[type="radio"]:checked + .customRadio {
-    background-color: #d8b95c; 
-    border: 2px solid #d8b95c !important; 
+    background-color: var(--c-yellow); 
+    border: 2px solid var(--c-yellow) !important; 
 }
 
 input[type="radio"]:checked + .customRadio::after {
@@ -147,7 +148,7 @@ input[type="radio"]:checked + .customRadio::after {
         background-color: #f0f0f0;
     }
     .form {
-        background: linear-gradient(0deg, #B4D2E7 0%, #2274A5 100%);
+        background: linear-gradient(0deg, var(--c-lightBlue) 0%, var(--c-blue) 100%);
         background: #2e1f2733;
 
     }

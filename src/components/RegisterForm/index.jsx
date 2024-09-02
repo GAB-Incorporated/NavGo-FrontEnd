@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Box, Button, FormControl, useRadioGroup,FormLabel, Heading, Input, HStack, useToast } from '@chakra-ui/react';
 import api from '../../api';
 import styles from './registerForm.module.css';
-import CustomRadio from '../CustomRadio/customRadio';
+import CustomRadio from '../CustomRadio';
 
 
-function Register() {
+const RegisterForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [nickName, setNickName] = useState('');
@@ -48,7 +48,7 @@ function Register() {
     } catch (error) {
       toast({
         title: 'Falha no Registro',
-        description: error.message,
+        description: error,
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -164,4 +164,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterForm;
