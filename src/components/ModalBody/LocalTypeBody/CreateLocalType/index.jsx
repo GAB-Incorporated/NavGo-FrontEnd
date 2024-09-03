@@ -1,6 +1,6 @@
 import api from "../../../../api";
 import { useState } from "react";
-import { Text, Box, Input, Button, FormControl, FormLabel, useToast } from "@chakra-ui/react";
+import { Text, Box, Input, Button, FormControl, FormLabel, useToast, Tooltip } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
 const LocalTypeBody = () => {
@@ -41,19 +41,19 @@ const LocalTypeBody = () => {
                 <Input
                     value={typeName}
                     onChange={(e) => setTypeName(e.target.value)}
-                    placeholder="Sala de aula"
+                    placeholder="Nome do tipo de local"
                     mb={4}
                 />
                 <FormLabel display="flex" alignItems="center">
                     Descrição do local 
-                    <Tooltip label="Descreva a função e as características deste local." fontSize="sm">
+                    <Tooltip label="Descreva a função e as características deste tipo de local, como por exemplo as atividades mais realizadas neste local por alunos ou docentes">
                         <InfoOutlineIcon ml={2} />
                     </Tooltip>
                 </FormLabel>
                 <Input
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Sala utilizada para aulas teóricas, com projetor e televisão para..."
+                    placeholder="Descrição do tipo de local"
                     mb={8}
                 />
                 <Box textAlign={'center'}>
