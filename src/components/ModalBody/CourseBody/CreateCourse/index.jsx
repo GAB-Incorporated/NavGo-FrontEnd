@@ -18,9 +18,9 @@ const CreateCourse = () => {
             toast({
                 title: "Erro!",
                 description: error,
-                status: "success",
+                status: "error",
                 duration: 3000,
-                isClosable: true,
+                isClosable: false,
                 position: "top",
             });
         }
