@@ -14,7 +14,6 @@ const LocationBodyCreate = () => {
     const [locationTypes, setLocationTypes] = useState([]);
 
     const toast = useToast();
-    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         let mounted = true;
@@ -102,9 +101,6 @@ const LocationBodyCreate = () => {
             });
         }
     }
-
-    const handleOpen = () => setIsOpen(true);
-    const handleClose = () => setIsOpen(false);
 
     return (
         <Box padding="2em">
