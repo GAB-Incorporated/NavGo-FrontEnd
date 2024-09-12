@@ -1,5 +1,4 @@
 import { Box, Flex, Text, Input, Select, Button, FormControl, useToast } from "@chakra-ui/react"
-import styles from "./createCourse.module.css"
 import { useEffect, useState } from "react"
 import api from "../../../../api.js";
 
