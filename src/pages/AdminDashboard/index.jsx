@@ -7,6 +7,7 @@ import ModalStructure from "../../components/ModalStructure";
 import CreateSubjectBody from '../../components/ModalBody/SubjectBody/CreateSubject'
 import CourseBody from "../../components/ModalBody/CourseBody";
 import CreateLocationBody from '../../components/ModalBody/LocationBody/CreateLocation'
+import UpdateSubject from '../../components/ModalBody/SubjectBody/UpdateSubject'
 
   const AdminDashboard = () => {
       const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,7 +55,7 @@ import CreateLocationBody from '../../components/ModalBody/LocationBody/CreateLo
                   <Box p={5} shadow="md" borderWidth="1px">
                       <Text fontSize="xl">Prédios</Text>
                       <Button
-                          onClick={() => openModal(<CreateLocationBody/>)}  // Implementação semelhante para Alunos
+                          onClick={() => openModal(<UpdateSubject/>)}  // Implementação semelhante para Alunos
                           mt={4}
                           bg={'main.200'}
                       >

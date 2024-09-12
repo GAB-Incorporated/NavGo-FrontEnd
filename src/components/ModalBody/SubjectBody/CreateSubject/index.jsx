@@ -42,18 +42,20 @@ const CreateSubjectBody = () => {
                     placeholder="Digite o nome da matéria"
                     mb={8}
                 />
-                <Button
-                    onClick={handleSubmit}
-                    color={'#fff'} 
-                    mb={3} 
-                    bg={'#2274A5'}
-                    _hover={{
-                        bg: '#1A5981',
-                        cursor: 'pointer'
-                    }}
-                >
-                    Cadastrar Matéria
-                </Button>
+                <Box textAlign={'center'}>
+                    <Button
+                        onClick={handleSubmit}
+                        color={'#fff'} 
+                        mb={3} 
+                        bg={'main.100'}
+                        _hover={{
+                            bg: '#1A5981',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Cadastrar Matéria
+                    </Button>
+                </Box>
             </FormControl>
         </Box>
     );
