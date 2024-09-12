@@ -4,6 +4,7 @@ import NotFound from "../pages/NotFound"
 import ModalTest from "../pages/ModalTest";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import AdminDashboard from "../pages/AdminDashboard";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login/>
+    },
+    {
+        path: "/admDashboard",
+        element: <AdminDashboard/>
     }
 ]) 
 
