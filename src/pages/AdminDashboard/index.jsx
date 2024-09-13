@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Box, Button, SimpleGrid, Text, Divider, AbsoluteCenter,useDisclosure } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import api from "../../api";
+import { Box, Button, SimpleGrid, Text, Divider, AbsoluteCenter,useDisclosure, useToast } from "@chakra-ui/react";
 import styles from "./adminDashboard.module.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -9,19 +10,56 @@ import CourseBody from "../../components/ModalBody/CourseBody";
 import CreateLocationBody from '../../components/ModalBody/LocationBody/CreateLocation'
 import UpdateSubject from '../../components/ModalBody/SubjectBody/UpdateSubject'
 import { DeleteIcon } from "@chakra-ui/icons";
+import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLocation";
 
-  const AdminDashboard = () => {
-      const { isOpen, onOpen, onClose } = useDisclosure();
-      const [modalContent, setModalContent] = useState(null);
-  
-      const openModal = (content) => {
-          setModalContent(content);
-          onOpen();
-      };
+    const AdminDashboard = () => {
+        const toast = useToast();
+        const { isOpen, onOpen, onClose } = useDisclosure();
+        const [modalContent, setModalContent] = useState(null);
+        const [subjects, setSubjects] = useState([]);
+        const [courses, setCourses] = useState([]);
+        const [buildings, setBuildings] = useState([]);
+        const [locations, setLocations] = useState([]);
+        const [localTypes, setLocalTypes] = useState([]);
+
+        const fetchAll = async () => {
+            try {
+                //Realiza simultaneamente as requisições, mais rápido e menos verboso
+                const [subjectsResponse, coursesResponse, buildingsResponse, localTypeResponse] = await Promise.all([
+                    api.get('/subjects'),
+                    api.get('/courses'),
+                    api.get('/buildings'),
+                    //api.get('/locations'),
+                    api.get('/local-type')
+                ]);
+                setSubjects(subjectsResponse.data);
+                setCourses(coursesResponse.data.message);
+                setBuildings(buildingsResponse.data);
+                //setLocations(locationsResponse.data);
+                setLocalTypes(localTypeResponse.data);
+            } catch (error) {
+                toast({
+                    title: 'Falha ao carregar os dados',
+                    description: error.message,
+                    status: 'error',
+                    duration: 10000,
+                    isClosable: true,
+                  });
+            }
+          };
+    
+        useEffect(() => {
+            fetchAll();
+        }, []);
+
+        const openModal = (content) => {
+            setModalContent(content);
+            onOpen();
+        };
       
-      return (
-          <Box className={styles.content}>
-              <Header />
+        return (
+            <Box className={styles.content}>
+                <Header />
 
               <ModalStructure
                   isOpen={isOpen}
@@ -37,145 +75,153 @@ import { DeleteIcon } from "@chakra-ui/icons";
                     </AbsoluteCenter>
                 </Box>
                 <SimpleGrid columns={[1, 2, 3]} spacing={8} mt={8} mb={20} ml={5} mr={5}>
-                  <Box p={5} shadow="md" borderWidth="1px">
-                      <Text fontSize="xl" as="h3">Matérias</Text>
-                      
-                      {/* TESTE DE LISTAGEM  */}
-                      <Box as="article">
-                        <Box as="section">
-                            <Text as="p">Enginnering 101 <DeleteIcon _hover={{color: 'black', cursor: 'pointer'}} mb={1}/></Text>
+                    <Box p={5} shadow="md" borderWidth="1px">
+                        <Text fontSize="xl" as="h3">Matérias</Text>
+                        
+                        {subjects.map((row) => (
+                        <Box key={row.subject_id} as="section">
+                            <Text as="p">
+                            {row.subject_name}
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            </Text>
                         </Box>
-                        <Box as="section">
-                            <Text as="p">Biochemistry 101 <DeleteIcon _hover={{color: 'black', cursor: 'pointer'}} mb={1}/></Text>
-                        </Box>
-                        <Box as="section">
-                            <Text as="p">Capoeira Avançada <DeleteIcon _hover={{color: 'black', cursor: 'pointer'}} mb={1}/></Text>
-                        </Box>
-                      </Box>
-                      <Box as="article">
-                        <Box as="section">
-                            <Text as="p">Enginnering 101 <DeleteIcon _hover={{color: 'black', cursor: 'pointer'}} mb={1}/></Text>
-                        </Box>
-                        <Box as="section">
-                            <Text as="p">Biochemistry 202 <DeleteIcon _hover={{color: 'black', cursor: 'pointer'}} mb={1}/></Text>
-                        </Box>
-                        <Box as="section">
-                            <Text as="p">Capoeira Avançada <DeleteIcon _hover={{color: 'black', cursor: 'pointer'}} mb={1}/></Text>
-                        </Box>
-                      </Box>
-                      <Box as="article">
-                        <Box as="section">
-                            <Text as="p">Enginnering 101 <DeleteIcon _hover={{color: 'black', cursor: 'pointer'}} mb={1}/></Text>
-                        </Box>
-                        <Box as="section">
-                            <Text as="p">Biochemistry 203 <DeleteIcon _hover={{color: 'black', cursor: 'pointer'}} mb={1}/></Text>
-                        </Box>
-                        <Box as="section">
-                            <Text as="p">Capoeira Avançada <DeleteIcon _hover={{color: 'black', cursor: 'pointer'}} mb={1}/></Text>
-                        </Box>
-                      </Box>
+                        ))}
 
-                      <Button
-                          onClick={() => openModal(<CreateSubjectBody />)}
-                          mt={10}
-                          display={'block'}
-                          bg={'main.200'}
-                          border={'1px solid #000'}
-                      >
-                          Adicionar Matéria
-                      </Button>
-                  </Box>
+                        <Button onClick={() => openModal(<CreateSubjectBody />)}>
+                            Adicionar Matéria
+                        </Button>
+                    </Box>
   
-                  <Box p={5} shadow="md" borderWidth="1px">
-                      <Text fontSize="xl" as="h3">Locais</Text>
-                      <Button
-                          onClick={() => openModal(<CreateLocationBody />)} 
-                          mt={4}
-                          bg={'main.200'}
-                          border={'1px solid #000'}
-                      >
-                          Adicionar Local
-                      </Button>
-                  </Box>
-  
-                  <Box p={5} shadow="md" borderWidth="1px">
-                      <Text fontSize="xl" as="h3">Prédios</Text>
-                      <Button
-                          onClick={() => openModal(<UpdateSubject/>)}  
-                          mt={4}
-                          bg={'main.200'}
-                          border={'1px solid #000'}
-                      >
-                          Adicionar Prédio
-                      </Button>
-                  </Box>
+                    <Box p={5} shadow="md" borderWidth="1px">
+                        <Text fontSize="xl" as="h3">Cursos</Text>
 
-                  <Box p={5} shadow="md" borderWidth="1px">
-                      <Text fontSize="xl" as="h3">Cursos</Text>
-                      <Button
-                          onClick={() => openModal(<CourseBody />)}  
-                          mt={4}
-                          bg={'main.200'}
-                          border={'1px solid #000'}
-                      >
-                          Adicionar Curso
-                      </Button>
-                  </Box>
-                  <Box p={5} shadow="md" borderWidth="1px">
-                      <Text fontSize="xl" as="h3">Cursos</Text>
-                      <Button
-                          onClick={() => openModal(<CourseBody />)}  
-                          mt={4}
-                          bg={'main.200'}
-                          border={'1px solid #000'}
-                      >
-                          Adicionar Curso
-                      </Button>
-                  </Box>
-                  <Box p={5} shadow="md" borderWidth="1px">
-                      <Text fontSize="xl" as="h3">Cursos</Text>
-                      <Button
-                          onClick={() => openModal(<CourseBody />)}  
-                          mt={4}
-                          bg={'main.200'}
-                          border={'1px solid #000'}
-                      >
-                          Adicionar Curso
-                      </Button>
-                  </Box>
-                  <Box p={5} shadow="md" borderWidth="1px">
-                      <Text fontSize="xl" as="h3">Cursos</Text>
-                      <Button
-                          onClick={() => openModal(<CourseBody />)}  
-                          mt={4}
-                          bg={'main.200'}
-                          border={'1px solid #000'}
-                      >
-                          Adicionar Curso
-                      </Button>
-                  </Box>
-                  <Box p={5} shadow="md" borderWidth="1px">
-                      <Text fontSize="xl" as="h3">Cursos</Text>
-                      <Button
-                          onClick={() => openModal(<CourseBody />)}  
-                          mt={4}
-                          bg={'main.200'}
-                          border={'1px solid #000'}
-                      >
-                          Adicionar Curso
-                      </Button>
-                  </Box>
-                  <Box p={5} shadow="md" borderWidth="1px">
-                      <Text fontSize="xl" as="h3">Cursos</Text>
-                      <Button
-                          onClick={() => openModal(<CourseBody />)}  
-                          mt={4}
-                          bg={'main.200'}
-                          border={'1px solid #000'}
-                      >
-                          Adicionar Curso
-                      </Button>
-                  </Box>
+                        {courses?.length > 0 ? courses.map((row) => (
+                        <Box key={row.course_id} as="section">
+                            <Text as="p">{row.course_name}
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            </Text>
+                        </Box>
+                        )) : <Text>Nenhum curso disponível</Text>}
+
+
+                        <Button mt={'auto'} onClick={() => openModal(<LocationBodyCreate />)}>
+                            Adicionar Curso
+                        </Button>
+                    </Box>
+    
+                    <Box p={5} shadow="md" borderWidth="1px">
+                        <Text fontSize="xl" as="h3">Prédios</Text>
+
+                        {buildings.map((row) => (
+                        <Box key={row.building_id} as="section">
+                            <Text as="p">
+                            {row.building_name}
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            </Text>
+                        </Box>
+                        ))}
+
+                        <Button onClick={() => openModal(<UpdateSubject/>)}>
+                            Adicionar Prédio
+                        </Button>
+                    </Box>
+
+                    <Box p={5} shadow="md" borderWidth="1px" >
+                        <Text fontSize="xl" as="h3">Locais</Text>
+
+                        {locations.map((row) => (
+                        <Box key={row.location_id} as="section">
+                            <Text as="p">
+                            {row.location_name}
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            </Text>
+                        </Box>
+                        ))}
+
+                        <Button onClick={() => openModal(<CourseBody />)}>
+                            Adicionar Locais
+                        </Button>
+                    </Box>
+                    <Box p={5} shadow="md" borderWidth="1px">
+                        <Text fontSize="xl" as="h3">Tipos de locais</Text>
+                        
+                        {localTypes.map((row) => (
+                        <Box key={row.type_id} as="section">
+                            <Text as="p">
+                            {row.type_name}
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            </Text>
+                        </Box>
+                        ))}
+
+                        <Button onClick={() => openModal(<CourseBody />)}>
+                            Adicionar Tipos de Locais
+                        </Button>
+                    </Box>
+                    <Box p={5} shadow="md" borderWidth="1px">
+                        <Text fontSize="xl" as="h3">PLACEHOLDER</Text>
+
+                        {subjects.map((row) => (
+                        <Box key={row.subject_id} as="section">
+                            <Text as="p">
+                            {row.subject_name}
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            </Text>
+                        </Box>
+                        ))}
+
+                        <Button onClick={() => openModal(<CourseBody />)}>
+                        PLACEHOLDER 
+                        </Button>
+                    </Box>
+                    <Box p={5} shadow="md" borderWidth="1px">
+                        <Text fontSize="xl" as="h3">PLACEHOLDER</Text>
+
+                        {subjects.map((row) => (
+                        <Box key={row.subject_id} as="section">
+                            <Text as="p">
+                            {row.subject_name}
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            </Text>
+                        </Box>
+                        ))}
+
+                        <Button onClick={() => openModal(<CourseBody />)}>
+                        PLACEHOLDER
+                        </Button>
+                    </Box>
+                    <Box p={5} shadow="md" borderWidth="1px">
+                        <Text fontSize="xl" as="h3">PLACEHOLDER</Text>
+
+                        {subjects.map((row) => (
+                        <Box key={row.subject_id} as="section">
+                            <Text as="p">
+                            {row.subject_name}
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            </Text>
+                        </Box>
+                        ))}
+
+                        <Button onClick={() => openModal(<CourseBody />)}>
+                        PLACEHOLDER
+                        </Button>
+                    </Box>
+                    <Box p={5} shadow="md" borderWidth="1px">
+                        <Text fontSize="xl" as="h3">PLACEHOLDER</Text>
+
+                        {subjects.map((row) => (
+                        <Box key={row.subject_id} as="section">
+                            <Text as="p">
+                            {row.subject_name}
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            </Text>
+                        </Box>
+                        ))}
+                        
+                        <Button onClick={() => openModal(<CourseBody />)}>
+                        PLACEHOLDER
+                        </Button>
+                    </Box>
                 </SimpleGrid>
                 <Footer />
           </Box>
