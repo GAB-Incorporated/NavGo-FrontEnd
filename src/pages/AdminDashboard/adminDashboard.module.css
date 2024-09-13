@@ -8,3 +8,37 @@
     min-height: 100vh;
     overflow-x: hidden;
 }
+
+.content h2{
+    margin: auto auto;
+    text-align: center;
+    padding-top: 0.5em;
+    font-size: 3em;
+    font-family: 'Roboto', sans-serif;
+}
+
+.content section {
+    border: 1px solid #000;
+    border-radius: 0.4em;
+    display: inline-block;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+    background-color: var(--c-orange);
+}
+
+.content h3{
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.content p {
+    color: #fff;
+}
+
+.content article{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap !important;
+}
