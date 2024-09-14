@@ -115,7 +115,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                     </AbsoluteCenter>
                 </Box>
                 <SimpleGrid columns={[1, 2, 3]} spacing={8} mt={8} mb={20} ml={5} mr={5}>
-                    <Box p={5} shadow="md" borderWidth="1px">
+                    <Box p={5} shadow="md" borderWidth="1px" className={styles.contentBox}>
                         <Text fontSize="xl" as="h3">Matérias</Text>
                         
                         {subjects.map((row) => (
@@ -132,7 +132,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Button>
                     </Box>
   
-                    <Box p={5} shadow="md" borderWidth="1px">
+                    <Box p={5} shadow="md" borderWidth="1px" className={styles.contentBox}>
                         <Text fontSize="xl" as="h3">Cursos</Text>
                         
                             {courses?.length > 0 ? courses.map((row) => (
@@ -149,7 +149,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Button>
                     </Box>
     
-                    <Box p={5} shadow="md" borderWidth="1px">
+                    <Box p={5} shadow="md" borderWidth="1px" className={styles.contentBox}>
                         <Text fontSize="xl" as="h3">Prédios</Text>
 
                         {buildings.map((row) => (
@@ -166,7 +166,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Button>
                     </Box>
 
-                    <Box p={5} shadow="md" borderWidth="1px" >
+                    <Box p={5} shadow="md" borderWidth="1px" className={styles.contentBox}>
                         <Text fontSize="xl" as="h3">Locais</Text>
 
                         {locations.map((row) => (
@@ -178,11 +178,11 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
 
-                        <Button onClick={() => openModal(<CreateLocationBody />)}>
+                        <Button onClick={() => openModal(<CreateLocationBody />)} >
                             Adicionar Locais
                         </Button>
                     </Box>
-                    <Box p={5} shadow="md" borderWidth="1px">
+                    <Box p={5} shadow="md" borderWidth="1px" className={styles.contentBox}>
                         <Text fontSize="xl" as="h3">Tipos de locais</Text>
                         
                         {localTypes.map((row) => (
@@ -194,11 +194,11 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
 
-                        <Button onClick={() => openModal(<CourseBody />)}>
+                        <Button onClick={() => openModal(<CourseBody />)}> 
                             Adicionar Tipos de Locais
                         </Button>
                     </Box>
-                    <Box p={5} shadow="md" borderWidth="1px">
+                    <Box p={5} shadow="md" borderWidth="1px" className={styles.contentBox}>
                         <Text fontSize="xl" as="h3">PLACEHOLDER</Text>
 
                         {subjects.map((row) => (
@@ -210,11 +210,11 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
 
-                        <Button onClick={() => openModal(<CourseBody />)}>
+                        <Button onClick={() => openModal(<CourseBody />)} >
                             PLACEHOLDER 
                         </Button>
                     </Box>
-                    <Box p={5} shadow="md" borderWidth="1px">
+                    <Box p={5} shadow="md" borderWidth="1px" className={styles.contentBox}>
                         <Text fontSize="xl" as="h3">PLACEHOLDER</Text>
 
                         {subjects.map((row) => (
@@ -230,7 +230,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                             PLACEHOLDER
                         </Button>
                     </Box>
-                    <Box p={5} shadow="md" borderWidth="1px">
+                    <Box p={5} shadow="md" borderWidth="1px" className={styles.contentBox}>
                         <Text fontSize="xl" as="h3">PLACEHOLDER</Text>
 
                         {subjects.map((row) => (
@@ -246,7 +246,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                             PLACEHOLDER
                         </Button>
                     </Box>
-                    <Box p={5} shadow="md" borderWidth="1px">
+                    <Box p={5} shadow="md" borderWidth="1px" className={styles.contentBox}>
                         <Text fontSize="xl" as="h3">PLACEHOLDER</Text>
 
                         {subjects.map((row) => (

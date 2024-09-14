@@ -9,6 +9,10 @@
     overflow-x: hidden;
 }
 
+.contentBox{
+    background-color: #d7eeff;
+}
+
 .content h2{
     margin: auto auto;
     text-align: center;
@@ -49,6 +53,7 @@
 
 .content p {
     color: #fff;
+    font-size: 1.1em;
     font-weight: 600;
 }
 
