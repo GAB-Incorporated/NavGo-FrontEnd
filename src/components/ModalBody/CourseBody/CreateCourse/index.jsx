@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Input, Select, Button, FormControl, useToast } from "@chakra-ui/react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import api from "../../../../api.js";
 
 
@@ -9,7 +9,7 @@ const CreateCourse = () => {
     const [coordinators, setCoordinators] = useState([])
     const toast = useToast()
     
-    const getCoordinators = async () => {
+    const getCoordinators = useCallback(async () => {
         try {
             const coordinatorsData = await api.get("/user/coordinators")
             setCoordinators(coordinatorsData.data);
@@ -23,7 +23,7 @@ const CreateCourse = () => {
                 position: "top",
             });
         }
-    }
+    }, [])
     
     const handleSubmit = async () => {
         const data = {courseName, coordinatorId}
@@ -51,7 +51,7 @@ const CreateCourse = () => {
 
     useEffect(() => {
         getCoordinators()
-    }, [])
+    }, [getCoordinators])
 
     return (
         <Box
@@ -62,11 +62,11 @@ const CreateCourse = () => {
                 flexDirection={"column"}
                 gap={"2vw"}
             >
-                <Text w={"100%"} textAlign={"center"}>
+                <Text w={"100%"} textAlign={"center"} fontSize="1.5vw">
                     Cadastre os cursos de sua instituição:
                 </Text>
                 <Box>
-                    <Text className={styles.labelCourseName}>
+                    <Text>
                         Nome do Curso:
                     </Text>
                     <Input 
@@ -100,11 +100,10 @@ const CreateCourse = () => {
                         onClick={handleSubmit}
                         color={'#fff'} 
                         mb={3} 
-                        bg={'#2274A5'}
+                        bg={'main.100'}
                         _hover={{
-                            bg: '#1A5981',
                             cursor: 'pointer'
-                        }}
+                        }}  
                     >
                         Cadastrar Curso
                     </Button>

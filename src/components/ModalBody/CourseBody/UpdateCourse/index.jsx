@@ -1,6 +1,6 @@
 import { Box, Flex, Text, Input, Select, Button, FormControl, useToast } from "@chakra-ui/react"
 import styles from "./updateCourse.module.css"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import api from "../../../../api.js";
 
 
@@ -12,7 +12,7 @@ const UpdateCourse = () => {
     const [coordinatorId, setCoordinatorId] = useState(0)
     const toast = useToast()
     
-    const getCourses = async () => {
+    const getCourses = useCallback(async () => {
         try {
             const coursesData = await api.get("/courses")
             setCourses(coursesData.data.message)
@@ -26,9 +26,9 @@ const UpdateCourse = () => {
                 position: "top",
             });
         }
-    }
+    }, [toast])
 
-    const getCoordinators = async () => {
+    const getCoordinators = useCallback(async () => {
         try {
             const coordinatorsData = await api.get("/user/coordinators")
             setCoordinators(coordinatorsData.data);
@@ -42,7 +42,7 @@ const UpdateCourse = () => {
                 position: "top",
             });
         }
-    }
+    }, [toast])
     
     const handleSubmit = async () => {
         const data = {courseId, courseName, coordinatorId}
@@ -71,7 +71,7 @@ const UpdateCourse = () => {
     useEffect(() => {
         getCourses()
         getCoordinators()
-    }, [])
+    }, [getCoordinators, getCourses])
 
     return (
         <Box
