@@ -24,7 +24,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
 
         const fetchAll = async () => {
             try {
-                //Realiza simultaneamente as requisições, mais rápido e menos verboso
+                //Realiza simultaneamente todas as requisições, mais rápido pois são muitas e menos verboso
                 const [subjectsResponse, coursesResponse, buildingsResponse, localTypeResponse] = await Promise.all([
                     api.get('/subjects'),
                     api.get('/courses'),
@@ -37,6 +37,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                 setBuildings(buildingsResponse.data);
                 //setLocations(locationsResponse.data);
                 setLocalTypes(localTypeResponse.data);
+
             } catch (error) {
                 toast({
                     title: 'Falha ao carregar os dados',
@@ -46,11 +47,38 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                     isClosable: true,
                   });
             }
-          };
+        };
     
         useEffect(() => {
             fetchAll();
         }, []);
+
+        const deleteItem = async (id, table) => {
+            try {
+                // Chamada à API para deletar o item
+                await api.delete(`/${table}/${id}`);
+                
+                fetchAll();
+                
+                // Notificação de sucesso
+                toast({
+                    title: 'Item deletado',
+                    description: 'O item foi removido com sucesso.',
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                });
+            } catch (error) {
+                // Notificação de erro
+                toast({
+                    title: 'Erro ao deletar',
+                    description: error.message,
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                });
+            }
+        };
 
         const openModal = (content) => {
             setModalContent(content);
@@ -82,7 +110,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         <Box key={row.subject_id} as="section">
                             <Text as="p">
                             {row.subject_name}
-                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} onClick={() => deleteItem(row.subject_id, 'subjects')}/>
                             </Text>
                         </Box>
                         ))}
@@ -94,14 +122,14 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
   
                     <Box p={5} shadow="md" borderWidth="1px">
                         <Text fontSize="xl" as="h3">Cursos</Text>
-
-                        {courses?.length > 0 ? courses.map((row) => (
-                        <Box key={row.course_id} as="section">
-                            <Text as="p">{row.course_name}
-                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
-                            </Text>
-                        </Box>
-                        )) : <Text>Nenhum curso disponível</Text>}
+                        
+                            {courses?.length > 0 ? courses.map((row) => (
+                            <Box key={row.course_id} as="section">
+                                <Text as="p">{row.course_name}
+                                <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1}/>
+                                </Text>
+                            </Box>
+                            )) : <Text>Nenhum curso disponível</Text>}
 
 
                         <Button mt={'auto'} onClick={() => openModal(<LocationBodyCreate />)}>
@@ -116,7 +144,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         <Box key={row.building_id} as="section">
                             <Text as="p">
                             {row.building_name}
-                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} onClick={() => deleteItem(row.building_id, 'buildings')}/>
                             </Text>
                         </Box>
                         ))}
@@ -133,7 +161,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         <Box key={row.location_id} as="section">
                             <Text as="p">
                             {row.location_name}
-                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} onClick={() => deleteItem(row.location_id, 'locations')}/>
                             </Text>
                         </Box>
                         ))}
@@ -149,7 +177,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         <Box key={row.type_id} as="section">
                             <Text as="p">
                             {row.type_name}
-                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} onClick={() => deleteItem(row.type_id, 'local-type')}/>
                             </Text>
                         </Box>
                         ))}
@@ -165,7 +193,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         <Box key={row.subject_id} as="section">
                             <Text as="p">
                             {row.subject_name}
-                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} onClick={() =>deleteItem(row.subject_id, 'subjects')}/>
                             </Text>
                         </Box>
                         ))}
@@ -181,7 +209,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         <Box key={row.subject_id} as="section">
                             <Text as="p">
                             {row.subject_name}
-                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} onClick={() => deleteItem(row.subject_id, 'subjects')}/>
                             </Text>
                         </Box>
                         ))}
@@ -197,7 +225,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         <Box key={row.subject_id} as="section">
                             <Text as="p">
                             {row.subject_name}
-                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} onClick={() => deleteItem(row.subject_id, 'subjects')}/>
                             </Text>
                         </Box>
                         ))}
@@ -213,7 +241,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         <Box key={row.subject_id} as="section">
                             <Text as="p">
                             {row.subject_name}
-                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} />
+                            <DeleteIcon _hover={{ color: 'black', cursor: 'pointer' }} ml={1} mb={1} onClick={() => deleteItem(row.subject_id, 'subjects')}/>
                             </Text>
                         </Box>
                         ))}
