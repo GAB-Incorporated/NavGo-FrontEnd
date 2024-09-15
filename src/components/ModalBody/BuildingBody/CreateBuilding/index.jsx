@@ -1,15 +1,16 @@
-import { Box, Flex, Button, FormControl, Text, Input, Textarea } from "@chakra-ui/react"
+import { Box, Flex, Button, FormControl, Text, Input, Textarea, useToast } from "@chakra-ui/react"
 import { useState } from "react"
 import api from "../../../../api"
 
 const CreateBuilding = () => {
     const [buildingName, setBuildingName] = useState("")
     const [buildingDescription, setBuildingDescription] = useState("")
+    const toast = useToast()
 
     const handleSubmit = async () => {
         const data = {buildingName, buildingDescription}
         try {
-            await api.post("/periods")
+            await api.post("/periods", data)
             toast({
                 title: "Construção cadastrada com sucesso!",
                 status: "success",
