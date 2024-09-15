@@ -6,9 +6,28 @@ const CreateBuilding = () => {
     const [buildingName, setBuildingName] = useState("")
     const [buildingDescription, setBuildingDescription] = useState("")
 
-    const handleSubmit = () => {
-        console.log(buildingName)
-        console.log(buildingDescription)
+    const handleSubmit = async () => {
+        const data = {buildingName, buildingDescription}
+        try {
+            await api.post("/periods")
+            toast({
+                title: "Construção cadastrada com sucesso!",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+                position: "top",
+            });
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Erro ao cadastrar construção.";
+            toast({
+                title: "Erro ao cadastrar construção.",
+                description: errorMessage,
+                status: "error",
+                duration: 3000,
+                isClosable: false,
+                position: "top",
+            });
+        }
     }
 
     return(

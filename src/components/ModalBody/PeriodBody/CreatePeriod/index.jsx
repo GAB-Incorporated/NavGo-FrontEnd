@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Input, Select, Button, FormControl, useToast } from "@chakra-ui/react"
+import { Box, Flex, Text, Input, Button, FormControl, useToast } from "@chakra-ui/react"
 import { useState } from "react"
 import api from "../../../../api"
 

@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Input, Select, Button, FormControl, useToast } from "@chakra-ui/react"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import api from "../../../../api"
 
 const UpdatePeriod = () => {
@@ -49,6 +49,10 @@ const UpdatePeriod = () => {
             });
         }
     }
+
+    useEffect(() => {
+        getPeriods()
+    }, [getPeriods])
 
     return(
         <Box
