@@ -1,6 +1,6 @@
 import { Button, useDisclosure } from "@chakra-ui/react";
 import ModalStructure from "../../components/ModalStructure";
-import UpdateBuilding from "../../components/ModalBody/BuildingBody/UpdateBuilding" 
+import CreatePeriod from "../../components/ModalBody/PeriodBody/CreatePeriod" 
 
 export default function ModalTest() {
     const {isOpen, onOpen, onClose } = useDisclosure()
@@ -17,7 +17,7 @@ export default function ModalTest() {
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}
-                contentBody={<UpdateBuilding/>}
+                contentBody={<CreatePeriod/>}
             />
         </>
     )
