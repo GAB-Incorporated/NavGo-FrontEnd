@@ -6,6 +6,8 @@ const UpdateSubjectBody = () => {
     const [subjects, setSubjects] = useState([]);
     const [subjectId, setSubjectId] = useState(""); 
     const [subjectName, setSubjectName] = useState(""); 
+    const [courses, setCourses] = useState([]); 
+    const [courseId, setCourseId] = useState(""); 
     const toast = useToast();
 
     useEffect(() => {
@@ -17,7 +19,7 @@ const UpdateSubjectBody = () => {
                 toast({
                     title: "Erro ao carregar matérias.",
                     description: "Não foi possível carregar as matérias.",
-                    status: error,
+                    status: "error",
                     duration: 3000,
                     isClosable: true,
                     position: "top",
@@ -27,11 +29,32 @@ const UpdateSubjectBody = () => {
         fetchSubjects();
     }, [toast]);
 
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await api.get("/courses"); 
+                setCourses(response.data.message);
+            } catch (error) {
+                toast({
+                    title: "Erro ao carregar cursos.",
+                    description: "Não foi possível carregar os cursos.",
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                    position: "top",
+                });
+            }
+        };        
+        fetchCourses();
+    }, [toast]);
+
     const handleSubmit = async () => {
         try {
-                await api.put(`/subjects/${subjectId}`, { 
+            await api.put(`/subjects/${subjectId}`, { 
                 subject_name: subjectName,
+                course_id: courseId 
             });
+
             toast({
                 title: "Matéria atualizada com sucesso!",
                 status: "success",
@@ -71,6 +94,7 @@ const UpdateSubjectBody = () => {
                         </option>
                     ))}
                 </Select>
+
                 <FormLabel>Novo nome da matéria</FormLabel>
                 <Input
                     value={subjectName}
@@ -78,18 +102,35 @@ const UpdateSubjectBody = () => {
                     placeholder="Digite o novo nome da matéria"
                     mb={8}
                 />
-                <Button
-                    onClick={handleSubmit}
-                    color={'#fff'} 
-                    mb={3} 
-                    bg={'#2274A5'}
-                    _hover={{
-                        bg: '#1A5981',
-                        cursor: 'pointer'
-                    }}
+
+                <FormLabel>Escolha o curso</FormLabel>
+                <Select
+                    placeholder="Selecione o curso"
+                    value={courseId}
+                    onChange={(e) => setCourseId(e.target.value)}
+                    mb={4}
                 >
-                    Atualizar Matéria
-                </Button>
+                    {courses.map(course => (
+                        <option key={course.course_id} value={course.course_id}>
+                            {course.course_name} 
+                        </option>
+                    ))}
+                </Select>
+
+                <Box textAlign={'center'}>
+                    <Button
+                        onClick={handleSubmit}
+                        color={'#fff'} 
+                        mb={3} 
+                        bg={'main.100'}
+                        _hover={{
+                            bg: '#main.100',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Cadastrar Matéria
+                    </Button>
+                </Box>
             </FormControl>
         </Box>
     );
