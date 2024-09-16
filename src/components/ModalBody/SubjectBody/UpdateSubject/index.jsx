@@ -18,7 +18,7 @@ const UpdateSubjectBody = () => {
             } catch (error) {
                 toast({
                     title: "Erro ao carregar matérias.",
-                    description: "Não foi possível carregar as matérias.",
+                    description: error.message,
                     status: "error",
                     duration: 3000,
                     isClosable: true,
@@ -37,7 +37,7 @@ const UpdateSubjectBody = () => {
             } catch (error) {
                 toast({
                     title: "Erro ao carregar cursos.",
-                    description: "Não foi possível carregar os cursos.",
+                    description: error.message,
                     status: "error",
                     duration: 3000,
                     isClosable: true,

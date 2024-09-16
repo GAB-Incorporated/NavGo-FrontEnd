@@ -16,7 +16,7 @@ const CreateSubjectBody = () => {
             } catch (error) {
                 toast({
                     title: "Erro ao carregar cursos.",
-                    description: "Não foi possível carregar os cursos.",
+                    description: error.message,
                     status: "error",
                     duration: 3000,
                     isClosable: true,
