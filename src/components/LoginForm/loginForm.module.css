@@ -70,6 +70,14 @@
     background-color: #d8b95c !important;
 }
 
+.formQuestion {
+    text-align: center;
+}
+
+.formLink {
+    color: var(--c-lightBlue);
+}
+
 @media (max-width: 480px) {
 
     .body {

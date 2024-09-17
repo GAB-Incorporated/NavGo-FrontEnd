@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Box, Button, FormControl, useRadioGroup,FormLabel, Heading, Input, HStack, useToast } from '@chakra-ui/react';
+import { Box, Button, FormControl, useRadioGroup,FormLabel, Heading, Text, Input, HStack, useToast } from '@chakra-ui/react';
 import api from '../../api';
 import styles from './registerForm.module.css';
 import CustomRadio from '../CustomRadio';
-
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -45,6 +45,7 @@ const RegisterForm = () => {
           isClosable: true,
         });
       }
+      <Link to={"/subhome"}/>
     } catch (error) {
       toast({
         title: 'Falha no Registro',
@@ -156,6 +157,13 @@ const RegisterForm = () => {
           })}
           </HStack>
         </FormControl>
+        <Text className={styles.formQuestion}>Já é cadastrado?
+          <Link to={"/login"}>
+          <Text className={styles.formLink}>
+            Se Logue Aqui!
+          </Text>
+          </Link>
+        </Text>
         <Button type="submit" className={styles.button}>
           Registrar
         </Button>
