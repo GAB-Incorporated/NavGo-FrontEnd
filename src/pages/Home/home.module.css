@@ -59,14 +59,14 @@
 }
 
 .description {
-    font-size: 1.3vw;
-    width: 70ch;
+    font-size: 1.4rem;
+    width: 50vw;
     text-align: left;
 }
 
 .invertedDescription {
-    font-size: 1.3vw;
-    width: 70ch;
+    font-size: 1.4rem;
+    width: 50vw;
     text-align: right;
 }
 
@@ -100,4 +100,112 @@
     font-size: 1.5vw !important;
     border: 4px solid #a7801e;
     background-color: var(--c-orange);
+}
+
+@media all and (max-width: 1450px) {
+    .mapButton .transButton {
+        height: 3.5vw !important;
+        width: 15vw;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .mapBody, .transBody {
+        background: none;
+    }
+    .transBody {
+        background: linear-gradient(0deg, rgba(233,197,104,0.7) 0%, rgba(255,255,255,0) 100%); 
+    }
+    .mapBody {
+        background: linear-gradient(0deg, rgba(255,115,92,0.7) 0%, rgba(255,255,255,0) 100%); 
+    }
+    .buttonWrapper, .invertedButtonWrapper {
+        height: auto;
+        margin: 3vh 0;
+    }
+    .mapButton, .transButton {
+        font-size: 3vw !important;
+        height: 5vw !important;
+    }
+    .title {
+        text-align: center;
+        font-size: 5vw;
+    }
+    .description, .invertedDescription {
+        text-align: center;
+        width: 80% !important;
+        font-size: 2.5vw;
+    }
+    .contentWrapper, .invertedContentWrapper {
+        align-items: center !important;
+    }
+}
+
+@media all and (max-width: 700px) {
+    .contentWrapper, .invertedContentWrapper {
+        height: min-content !important;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .buttonWrapper, .invertedButtonWrapper {
+        margin: 3vh 0;
+    }
+    .description, .invertedDescription {
+        text-justify: auto;
+        text-align: center;
+        width: 60% !important;
+        font-size: 2.5vw;
+    }
+    .container {
+        height: fit-content;
+    }
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .title {
+        font-size: 8vw;
+        margin: 2vh;
+    }
+    .description, .invertedDescription {
+        width: 80% !important;
+        font-size: 2.8vw;
+    }
+    .container {
+        height: 50vh;
+    }
+}
+
+@media all and (max-width: 400px) {
+    .title {
+        font-size: 8vw;
+        margin: 2vh;
+    }
+    .description, .invertedDescription {
+        width: 80% !important;
+        font-size: 3.7vw;
+    }
+    .mapButton, .transButton {
+        font-size: 5vw !important;
+        height: 8vw !important;
+    }
+    .container {
+        height: 50vh;
+    }
+}
+
+@media all and (max-width: 250px) {
+    .description, .invertedDescription {
+        width: 80% !important;
+        font-size: 5vw;
+    }
+    .mapButton, .transButton {
+        font-size: 7vw !important;
+        height: 12vw !important;
+    }
 }

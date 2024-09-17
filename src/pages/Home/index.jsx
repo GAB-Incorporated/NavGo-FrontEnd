@@ -1,5 +1,6 @@
 import { Box, Flex, Button, Text } from "@chakra-ui/react";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer"
 import styles from "./home.module.css"
 
 export const Home = () => {
@@ -44,7 +45,7 @@ export const Home = () => {
                     </Box>
                 </Box>  
             </Box>
-            {/* <Footer/> */}
+            <Footer/>
        </Flex>
     );
 }
