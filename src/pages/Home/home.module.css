@@ -60,13 +60,13 @@
 
 .description {
     font-size: 1.4rem;
-    width: 50vw;
+    width: 70vw;
     text-align: left;
 }
 
 .invertedDescription {
     font-size: 1.4rem;
-    width: 50vw;
+    width: 70vw;
     text-align: right;
 }
 
@@ -133,8 +133,8 @@
     }
     .description, .invertedDescription {
         text-align: center;
-        width: 80% !important;
-        font-size: 2.5vw;
+        width: 90% !important;
+        font-size: 2vw;
     }
     .contentWrapper, .invertedContentWrapper {
         align-items: center !important;
@@ -174,7 +174,7 @@
     }
     .description, .invertedDescription {
         width: 80% !important;
-        font-size: 2.8vw;
+        font-size: 2vw;
     }
     .container {
         height: 50vh;
@@ -187,8 +187,8 @@
         margin: 2vh;
     }
     .description, .invertedDescription {
-        width: 80% !important;
-        font-size: 3.7vw;
+        width: 90% !important;
+        font-size: 3.2vw;
     }
     .mapButton, .transButton {
         font-size: 5vw !important;
@@ -201,8 +201,8 @@
 
 @media all and (max-width: 250px) {
     .description, .invertedDescription {
-        width: 80% !important;
-        font-size: 5vw;
+        width: 90% !important;
+        font-size: 4vw;
     }
     .mapButton, .transButton {
         font-size: 7vw !important;
