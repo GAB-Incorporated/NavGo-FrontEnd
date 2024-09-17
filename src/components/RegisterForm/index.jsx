@@ -67,6 +67,7 @@ const RegisterForm = () => {
         });
         navigate('/login')
       }
+      <Link to={"/subhome"}/>
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Erro no cadastro de usuário.";
       toast({
