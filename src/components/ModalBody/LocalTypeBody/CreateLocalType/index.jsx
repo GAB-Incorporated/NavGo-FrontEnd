@@ -1,6 +1,6 @@
 import api from "../../../../api";
 import { useState } from "react";
-import { Text, Box, Input, Button, FormControl, FormLabel, useToast, Tooltip } from "@chakra-ui/react";
+import { Text, Box, Input, Button, FormControl, FormLabel, useToast, Tooltip, Textarea } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
 const LocalTypeBody = () => {
@@ -32,8 +32,8 @@ const LocalTypeBody = () => {
     };
 
     return (
-        <Box>
-            <Text as="header" w={"100%"} textAlign={"center"} mb={4}>
+        <Box margin={"2vw"}>
+            <Text as="header" w={"100%"} fontSize={"1.5vw"} textAlign={"center"} mb={4}>
                 Cadastre novos tipos de locais:
             </Text>
             <FormControl>
@@ -50,7 +50,7 @@ const LocalTypeBody = () => {
                         <InfoOutlineIcon ml={2} />
                     </Tooltip>
                 </FormLabel>
-                <Input
+                <Textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Descrição do tipo de local"
@@ -60,7 +60,6 @@ const LocalTypeBody = () => {
                     <Button
                         onClick={handleSubmit}
                         color={'#fff'} 
-                        mb={3} 
                         bg={'main.100'}
                         _hover={{
                             bg: 'main.200',

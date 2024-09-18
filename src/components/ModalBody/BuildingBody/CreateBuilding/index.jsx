@@ -8,9 +8,9 @@ const CreateBuilding = () => {
     const toast = useToast()
 
     const handleSubmit = async () => {
-        const data = {buildingName, buildingDescription}
+        const data = {building_name: buildingName, description: buildingDescription}
         try {
-            await api.post("/periods", data)
+            await api.post("/buildings", data)
             toast({
                 title: "Construção cadastrada com sucesso!",
                 status: "success",
@@ -69,7 +69,6 @@ const CreateBuilding = () => {
                     <Button
                         onClick={handleSubmit}
                         color="#fff"
-                        mb={3}
                         bg={"main.100"}
                         _hover={{
                             cursor: "pointer"
