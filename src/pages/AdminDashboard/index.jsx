@@ -31,17 +31,17 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
         const fetchAll = async () => {
             try {
                 //Realiza simultaneamente todas as requisições, mais rápido pois são muitas e menos verboso
-                const [subjectsResponse, coursesResponse, buildingsResponse, localTypeResponse] = await Promise.all([
+                const [subjectsResponse, coursesResponse, buildingsResponse, locationsResponse, localTypeResponse] = await Promise.all([
                     api.get('/subjects'),
                     api.get('/courses'),
                     api.get('/buildings'),
-                    //api.get('/locations'),
+                    api.get('/locations'),
                     api.get('/local-type')
                 ]);
                 setSubjects(subjectsResponse.data);
                 setCourses(coursesResponse.data.message);
                 setBuildings(buildingsResponse.data);
-                //setLocations(locationsResponse.data);
+                setLocations(locationsResponse.data);
                 setLocalTypes(localTypeResponse.data);
 
             } catch (error) {

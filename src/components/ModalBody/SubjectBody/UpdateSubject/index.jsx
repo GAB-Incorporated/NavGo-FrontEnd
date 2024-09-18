@@ -6,6 +6,8 @@ const UpdateSubjectBody = () => {
     const [subjects, setSubjects] = useState([]);
     const [subjectId, setSubjectId] = useState(""); 
     const [subjectName, setSubjectName] = useState(""); 
+    const [courses, setCourses] = useState([]); 
+    const [courseId, setCourseId] = useState(""); 
     const toast = useToast();
 
     useEffect(() => {
@@ -16,8 +18,8 @@ const UpdateSubjectBody = () => {
             } catch (error) {
                 toast({
                     title: "Erro ao carregar matérias.",
-                    description: "Não foi possível carregar as matérias.",
-                    status: error,
+                    description: error.message,
+                    status: "error",
                     duration: 3000,
                     isClosable: true,
                     position: "top",
@@ -27,11 +29,32 @@ const UpdateSubjectBody = () => {
         fetchSubjects();
     }, [toast]);
 
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await api.get("/courses"); 
+                setCourses(response.data.message);
+            } catch (error) {
+                toast({
+                    title: "Erro ao carregar cursos.",
+                    description: error.message,
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                    position: "top",
+                });
+            }
+        };        
+        fetchCourses();
+    }, [toast]);
+
     const handleSubmit = async () => {
         try {
-                await api.put(`/subjects/${subjectId}`, { 
+            await api.put(`/subjects/${subjectId}`, { 
                 subject_name: subjectName,
+                course_id: courseId 
             });
+
             toast({
                 title: "Matéria atualizada com sucesso!",
                 status: "success",
@@ -71,6 +94,7 @@ const UpdateSubjectBody = () => {
                         </option>
                     ))}
                 </Select>
+
                 <FormLabel>Novo nome da matéria</FormLabel>
                 <Input
                     value={subjectName}

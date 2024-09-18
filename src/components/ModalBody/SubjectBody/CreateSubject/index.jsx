@@ -1,14 +1,35 @@
-import { useState } from "react";
-import { Text, Box, Input, Button, FormControl, FormLabel, useToast } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { Text, Box, Input, Button, FormControl, FormLabel, Select, useToast } from "@chakra-ui/react";
 import api from "../../../../api.js";
 
 const CreateSubjectBody = () => {
     const [subjectName, setSubjectName] = useState("");
+    const [courseId, setCourseId] = useState("");
+    const [courses, setCourses] = useState([]); 
     const toast = useToast();
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await api.get("/courses"); 
+                setCourses(response.data.message); 
+            } catch (error) {
+                toast({
+                    title: "Erro ao carregar cursos.",
+                    description: error.message,
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                    position: "top",
+                });
+            }
+        };        
+        fetchCourses();
+    }, [toast]);
 
     const handleSubmit = async () => {
         try {
-            await api.post("/subjects", { subject_name: subjectName });
+            await api.post("/subjects", { "subject_name": subjectName, "course_id": courseId });
             toast({
                 title: "Matéria cadastrada com sucesso!",
                 status: "success",

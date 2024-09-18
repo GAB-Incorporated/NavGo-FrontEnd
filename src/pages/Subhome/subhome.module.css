@@ -1,0 +1,57 @@
+.pageWrapper {
+    width: 100%;
+    height: 85vh;
+    background-color: #2e1f27;
+}
+
+.sidebar {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--c-lightBlue);
+    border-top: 5px solid var(--c-orange);
+    border-right: 5px solid var(--c-orange);
+    border-bottom: 5px solid var(--c-orange);
+}
+
+.logoWrapper {
+    margin-top: 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.navLogo {
+    width: 60%;
+}
+
+.navText {
+    font-size: 1.5vw;
+    font-family: "Keania One", sans-serif;
+    color: black;
+}
+
+.body {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 2vw;
+    gap: 3vh;
+}
+
+.infoText {
+    font-size: 2vw;
+    color: white;
+}
+
+.signature {
+    display: flex;
+    color: white;
+    margin-left: 50vw;
+    font-size: 1.5vw;
+}
