@@ -31,6 +31,8 @@ const router = createBrowserRouter([
     {
         path: "/admDashboard",
         element: <AdminDashboard/>
+    },
+    {
         path: "/subhome",
         element: <Subhome/>
     }
