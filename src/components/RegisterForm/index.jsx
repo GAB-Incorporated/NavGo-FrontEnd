@@ -13,6 +13,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [passwordRe, setPasswordRe] = useState('');
   const [userType, setUserType] = useState('STUDENT');
+  const [verificationCode, setVerificationCode] = useState('')
   const toast = useToast();
 
 
@@ -27,15 +28,34 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (password !== passwordRe) {
+      toast({
+        title: 'Erro',
+        description: 'As senhas não coincidem.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+
     try {
-      const response = await api.post('/user/register', {
+      const requestData = {
         first_name: firstName,
         last_name: lastName,
         nick_name: nickName,
         email: email,
         password_hash: password,
         user_type: userType,
-      });
+        verification_code: verificationCode,
+      };
+
+      
+      if(userType === 'Coordenador' || userType === 'Professor'){
+        requestData.verification_code = verificationCode;
+      }
+
+      const response = await api.post('/user/register', requestData)
 
       if (response.status === 201) {
         toast({
@@ -46,9 +66,10 @@ const RegisterForm = () => {
         });
       }
     } catch (error) {
+      const errorMessage = error.response?.data?.message || "Erro no cadastro de usuário.";
       toast({
         title: 'Falha no Registro',
-        description: error,
+        description: errorMessage,
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -156,6 +177,19 @@ const RegisterForm = () => {
           })}
           </HStack>
         </FormControl>
+        
+        {(userType === 'Coordenador' || userType === 'Professor') && (
+          <FormControl id="verificationCode" isRequired className={styles.verificationCode}>
+            <FormLabel className={styles.label}>Código de Verificação</FormLabel>
+            <Input
+              type="text"
+              placeholder="Insira o código de verificação"
+              value={verificationCode}
+              onChange={(e) => setVerificationCode(e.target.value)}
+              className={styles.input}
+            />
+          </FormControl>
+        )};
         <Button type="submit" className={styles.button}>
           Registrar
         </Button>
@@ -165,3 +199,4 @@ const RegisterForm = () => {
 }
 
 export default RegisterForm;
+
