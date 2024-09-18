@@ -2,6 +2,7 @@ import { Box, FormControl, FormLabel, Input, Button, Heading, Text, useToast } f
 import { useState } from 'react';
 import api from '../../api';
 import styles from './loginForm.module.css';
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -26,6 +27,7 @@ const LoginForm = () => {
           isClosable: true,
         });
       }
+      <Link to={"/subhome"}/>
     } catch (error) {
       toast({
         title: 'Falha no Login',
@@ -63,6 +65,13 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
             className={styles.input}
           />
+          <Text className={styles.formQuestion}>Não possui login?
+            <Link to={"/register"}>
+            <Text className={styles.formLink}>
+              Se Cadastre Aqui!
+            </Text>
+            </Link>
+          </Text>
         </FormControl>
         <Button type="submit" className={styles.button}>
           Login
