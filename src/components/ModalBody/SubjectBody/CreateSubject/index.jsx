@@ -75,8 +75,7 @@ const CreateSubjectBody = () => {
                         </option>
                     ))}
                 </Select>
-                
-                <Box textAlign="center" mt="2em">
+                <Box textAlign={'center'}>
                     <Button
                         onClick={handleSubmit}
                         color={'#fff'} 
@@ -89,7 +88,6 @@ const CreateSubjectBody = () => {
                         Cadastrar Matéria
                     </Button>
                 </Box>
-
             </FormControl>
         </Box>
     );

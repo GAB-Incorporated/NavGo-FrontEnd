@@ -2,6 +2,7 @@ import { Box, Flex, Text, Image } from "@chakra-ui/react"
 import Footer from "../../components/Footer";
 import styles from "./subhome.module.css"
 import logo from "../../assets/navgo-logo.png"
+import { Link } from "react-router-dom";
 
 const Subhome = () => {
     return(
@@ -14,6 +15,9 @@ const Subhome = () => {
                     </Box>
                     <Image className={styles.toolIcon}/>
                     <Image className={styles.toolIcon}/>
+                    <Link to={'/admDashboard'}>
+                        <Text>Painel administrativo</Text>
+                    </Link>
                 </Box>
                 <Box className={styles.body}>
                     <Text className={styles.infoText}>
