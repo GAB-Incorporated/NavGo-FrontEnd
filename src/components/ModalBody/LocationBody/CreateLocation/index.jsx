@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, useToast, Select } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, useToast, Select, Text, Textarea } from '@chakra-ui/react';
 import api from '../../../../api'
 import styles from '../CreateLocation/locationBody.module.css';
 
@@ -103,9 +103,11 @@ const LocationBodyCreate = () => {
     }
 
     return (
-        <Box padding="2em">
-            <form onSubmit={handleSubmit}>
+        <Box margin={"2vw"}>
                 <FormControl mb="1em" isRequired>
+                    <Text w={"100%"} textAlign={"center"} fontSize="1.5vw" mb={5}>
+                        Cadastre os locais de sua instituição:
+                    </Text>
                     <FormLabel color="main.500" mb="0.5em" fontWeight="500">Nome do Local</FormLabel>
                     <Input
                         type="text"
@@ -118,7 +120,7 @@ const LocationBodyCreate = () => {
                 </FormControl>
                 <FormControl mb="1em" isRequired>
                     <FormLabel color="main.500" mb="0.5em" fontWeight="500">Descrição</FormLabel>
-                    <Input
+                    <Textarea
                         type="text"
                         placeholder="ex.: Biblioteca de estudos e pesquisas com computadores"
                         value={description}
@@ -179,9 +181,8 @@ const LocationBodyCreate = () => {
                         ))}
                     </Select>
                 </FormControl>
-            </form>
                 <Box textAlign="center" mt="2em">
-                    <Button colorScheme="orange" bg="main.100" mr={3} onClick={handleSubmit}>
+                    <Button colorScheme="orange" bg="main.100" onClick={handleSubmit}>
                         Adicionar Localização
                     </Button>
                 </Box>

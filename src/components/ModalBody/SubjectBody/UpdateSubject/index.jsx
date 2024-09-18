@@ -102,7 +102,6 @@ const UpdateSubjectBody = () => {
                     placeholder="Digite o novo nome da matéria"
                     mb={8}
                 />
-
                 <FormLabel>Escolha o curso</FormLabel>
                 <Select
                     placeholder="Selecione o curso"
@@ -116,7 +115,6 @@ const UpdateSubjectBody = () => {
                         </option>
                     ))}
                 </Select>
-
                 <Box textAlign={'center'}>
                     <Button
                         onClick={handleSubmit}
@@ -124,11 +122,11 @@ const UpdateSubjectBody = () => {
                         mb={3} 
                         bg={'main.100'}
                         _hover={{
-                            bg: '#main.100',
+                            bg: '#1A5981',
                             cursor: 'pointer'
                         }}
                     >
-                        Cadastrar Matéria
+                        Atualizar Matéria
                     </Button>
                 </Box>
             </FormControl>

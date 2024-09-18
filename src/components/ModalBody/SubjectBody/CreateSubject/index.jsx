@@ -51,8 +51,8 @@ const CreateSubjectBody = () => {
     };
 
     return (
-        <Box>
-            <Text w={"100%"} textAlign={"center"} mb={4}>
+        <Box margin={"2vw"}>
+            <Text w={"100%"} textAlign={"center"} fontSize="1.5vw" mb={5}>
                 Cadastre as matérias de sua instituição:
             </Text>
             <FormControl>
@@ -75,12 +75,10 @@ const CreateSubjectBody = () => {
                         </option>
                     ))}
                 </Select>
-                
                 <Box textAlign={'center'}>
                     <Button
                         onClick={handleSubmit}
                         color={'#fff'} 
-                        mb={3} 
                         bg={'main.100'}
                         _hover={{
                             bg: '#main.100',
@@ -90,7 +88,6 @@ const CreateSubjectBody = () => {
                         Cadastrar Matéria
                     </Button>
                 </Box>
-
             </FormControl>
         </Box>
     );
