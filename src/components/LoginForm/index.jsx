@@ -2,11 +2,13 @@ import { Box, FormControl, FormLabel, Input, Button, Heading, Text, useToast } f
 import { useState } from 'react';
 import api from '../../api';
 import styles from './loginForm.module.css';
+import { useNavigate, Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const toast = useToast();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,10 +28,12 @@ const LoginForm = () => {
           isClosable: true,
         });
       }
+      navigate('/subhome');
     } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Erro desconhecido. Tente novamente mais tarde.';
       toast({
         title: 'Falha no Login',
-        description: error.message,
+        description: errorMessage,
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -63,6 +67,13 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
             className={styles.input}
           />
+          <Text className={styles.formQuestion}>Não possui login?
+            <Link to={"/register"}>
+            <Text className={styles.formLink}>
+              Se Cadastre Aqui!
+            </Text>
+            </Link>
+          </Text>
         </FormControl>
         <Button type="submit" className={styles.button}>
           Login
