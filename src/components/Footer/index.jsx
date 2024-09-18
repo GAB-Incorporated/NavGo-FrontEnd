@@ -10,7 +10,7 @@ const Footer = () => {
             display={"flex"}
             justifyContent={"center"}
             alignItems={"center"}
-            py={10}
+            py={4   }
         >
             <Box 
                 display="flex" 
@@ -18,8 +18,8 @@ const Footer = () => {
                 flexWrap="wrap"
                 width="100%" 
                 maxWidth="500px"
-                mt={3}
-                mb={2}
+                // mt={3}
+                // mb={2}
             >
                 <Image 
                     src="https://img.icons8.com/ios-glyphs/60/e9c568/instagram-circle.png" 
