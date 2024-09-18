@@ -1,6 +1,6 @@
 import { Button, useDisclosure } from "@chakra-ui/react";
 import ModalStructure from "../../components/ModalStructure";
-import CreateCourse from "../../components/ModalBody/CourseBody/CreateCourse" 
+import CreatePeriod from "../../components/ModalBody/PeriodBody/CreatePeriod" 
 
 export default function ModalTest() {
     const {isOpen, onOpen, onClose } = useDisclosure()

@@ -121,6 +121,15 @@ button::after{
     margin-right: 0px;
 }
 
+.formQuestion {
+    margin-top: 8vw;
+    text-align: center;
+}
+
+.formLink {
+    color: var(--c-lightBlue);
+}
+
 input[type="radio"]:checked + .customRadio {
     background-color: var(--c-yellow); 
     border: 2px solid var(--c-yellow) !important; 
@@ -156,4 +165,8 @@ input[type="radio"]:checked + .customRadio::after {
         color:#0c0c0c;
     }
     
+}
+
+.verificationCode {
+    margin-top: 20px;
 }

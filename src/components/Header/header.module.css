@@ -41,3 +41,48 @@
     font-size: 1.5vw;
     align-self: center;
 }
+
+@media all and (max-width: 1450px) {
+    .headerDivider {
+        height: 2.5vh;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .headerBody {
+        height: auto;
+        padding: 1vw 0;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .textWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .headerDivider {
+        display: none;
+    }
+    .slogan {
+        margin-top: 0;
+    }
+}
+
+@media all and (max-width: 650px) {
+    .title {
+        font-size: 4vw !important;
+    }
+    .slogan {
+        font-size: 3vw;
+    }
+}
+
+@media all and (max-width: 300px) {
+    .title {
+        font-size: 5vw !important;
+    }
+    .slogan {
+        font-size: 4vw;
+    }
+}
