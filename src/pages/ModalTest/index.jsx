@@ -13,7 +13,7 @@ export default function ModalTest() {
                 Abre o Modal
             </Button>
             <ModalStructure
-                title="Modal de Construções" 
+                title="Modal de Cursos" 
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}

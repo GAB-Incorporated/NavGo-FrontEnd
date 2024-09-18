@@ -23,7 +23,7 @@ const CreateCourse = () => {
                 position: "top",
             });
         }
-    }, [toast])
+    }, [])
     
     const handleSubmit = async () => {
         const data = {courseName, coordinatorId}
