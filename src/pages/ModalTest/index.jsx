@@ -17,7 +17,7 @@ export default function ModalTest() {
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}
-                contentBody={<CreateCourse/>}
+                contentBody={<CreatePeriod/>}
             />
         </>
     )
