@@ -63,6 +63,19 @@ const CreateSubjectBody = () => {
                     placeholder="Digite o nome da matéria"
                     mb={8}
                 />
+                <Select
+                    placeholder="Selecione o curso da matéria"
+                    value={courseId}
+                    onChange={(e) => setCourseId(e.target.value)}
+                    mb={4}
+                >
+                    {courses.map((course) => (
+                        <option key={course.course_id} value={course.course_id}>
+                            {course.course_name} 
+                        </option>
+                    ))}
+                </Select>
+                
                 <Box textAlign={'center'}>
                     <Button
                         onClick={handleSubmit}
@@ -70,13 +83,14 @@ const CreateSubjectBody = () => {
                         mb={3} 
                         bg={'main.100'}
                         _hover={{
-                            bg: '#1A5981',
+                            bg: '#main.100',
                             cursor: 'pointer'
                         }}
                     >
                         Cadastrar Matéria
                     </Button>
                 </Box>
+
             </FormControl>
         </Box>
     );

@@ -7,15 +7,14 @@ import Footer from "../../components/Footer";
 import useConfirmDialog from "../../components/Alert";
 import ModalStructure from "../../components/ModalStructure";
 import CreateSubjectBody from '../../components/ModalBody/SubjectBody/CreateSubject'
-import CourseBody from "../../components/ModalBody/CourseBody";
+import CreateCourseBody from "../../components/ModalBody/CourseBody/CreateCourse";
 import CreateLocationBody from '../../components/ModalBody/LocationBody/CreateLocation'
-import UpdateSubject from '../../components/ModalBody/SubjectBody/UpdateSubject'
+import CreateBuilding from "../../components/ModalBody/BuildingBody/CreateBuilding";
+import CreateLocalTypeBody from "../../components/ModalBody/LocalTypeBody/CreateLocalType";
 import { DeleteIcon } from "@chakra-ui/icons";
-import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLocation";
 
     const AdminDashboard = () => {
         const toast = useToast();
-        const [itemToDelete, setItemToDelete] = useState(null);
         const { isOpen, onOpen, onClose } = useDisclosure();
         const [modalContent, setModalContent] = useState(null);
 
@@ -66,7 +65,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
             try {
                 const confirmed = await openConfirmDialog();
                 if (!confirmed) {
-                    setIsDeleting(false); // Habilita novamente o botão se a deleção for cancelada
+                    setIsDeleting(false); 
                     return;
                 }
                 await api.delete(`/${table}/${id}`);
@@ -88,7 +87,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         isClosable: true,
                     });
                 }   finally {
-                setIsDeleting(false); // Habilita o botão novamente ao termino
+                setIsDeleting(false); 
                 }
         };
           
@@ -144,7 +143,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                             )) : <Text>Nenhum curso disponível</Text>}
 
 
-                        <Button mt={'auto'} onClick={() => openModal(<LocationBodyCreate />)}>
+                        <Button mt={'auto'} onClick={() => openModal(<CreateCourseBody/>)}>
                             Adicionar Curso
                         </Button>
                     </Box>
@@ -161,7 +160,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
 
-                        <Button onClick={() => openModal(<UpdateSubject/>)}>
+                        <Button onClick={() => openModal(<CreateBuilding/>)}>
                             Adicionar Prédio
                         </Button>
                     </Box>
@@ -178,7 +177,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
 
-                        <Button onClick={() => openModal(<CreateLocationBody />)} >
+                        <Button onClick={() => openModal(<CreateLocationBody/>)} >
                             Adicionar Locais
                         </Button>
                     </Box>
@@ -194,7 +193,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
 
-                        <Button onClick={() => openModal(<CourseBody />)}> 
+                        <Button onClick={() => openModal(<CreateLocalTypeBody/>)}> 
                             Adicionar Tipos de Locais
                         </Button>
                     </Box>
@@ -210,7 +209,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
 
-                        <Button onClick={() => openModal(<CourseBody />)} >
+                        <Button onClick={() => openModal(<CreateCourseBody />)} >
                             PLACEHOLDER 
                         </Button>
                     </Box>
@@ -226,7 +225,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
 
-                        <Button onClick={() => openModal(<CourseBody />)}>
+                        <Button onClick={() => openModal(<CreateCourseBody />)}>
                             PLACEHOLDER
                         </Button>
                     </Box>
@@ -242,7 +241,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
 
-                        <Button onClick={() => openModal(<CourseBody />)}>
+                        <Button onClick={() => openModal(<CreateCourseBody />)}>
                             PLACEHOLDER
                         </Button>
                     </Box>
@@ -258,7 +257,7 @@ import LocationBodyCreate from "../../components/ModalBody/LocationBody/CreateLo
                         </Box>
                         ))}
                         
-                        <Button onClick={() => openModal(<CourseBody />)}>
+                        <Button onClick={() => openModal(<CreateCourseBody />)}>
                         PLACEHOLDER
                         </Button>
                     </Box>

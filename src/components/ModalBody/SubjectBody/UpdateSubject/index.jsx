@@ -102,6 +102,21 @@ const UpdateSubjectBody = () => {
                     placeholder="Digite o novo nome da matéria"
                     mb={8}
                 />
+
+                <FormLabel>Escolha o curso</FormLabel>
+                <Select
+                    placeholder="Selecione o curso"
+                    value={courseId}
+                    onChange={(e) => setCourseId(e.target.value)}
+                    mb={4}
+                >
+                    {courses.map(course => (
+                        <option key={course.course_id} value={course.course_id}>
+                            {course.course_name} 
+                        </option>
+                    ))}
+                </Select>
+
                 <Box textAlign={'center'}>
                     <Button
                         onClick={handleSubmit}
@@ -109,11 +124,11 @@ const UpdateSubjectBody = () => {
                         mb={3} 
                         bg={'main.100'}
                         _hover={{
-                            bg: '#1A5981',
+                            bg: '#main.100',
                             cursor: 'pointer'
                         }}
                     >
-                        Atualizar Matéria
+                        Cadastrar Matéria
                     </Button>
                 </Box>
             </FormControl>
