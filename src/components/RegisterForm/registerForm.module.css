@@ -1,0 +1,172 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(0deg, var(--c-lightBlue) 0%, var(--c-blue) 100%);
+    padding: 6em 0;
+}
+
+.form {
+    max-width: 700px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #2e1f2794;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; 
+}
+
+.title {
+    color: var(--c-yellow);
+    font-weight: bold;
+    font-size: 50px !important; 
+    text-align: center;
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+.description {
+    color: #0c0c0c;
+    font-weight: 600 !important;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.fieldset {
+    border: none;
+    margin-bottom: 20px;
+    padding: 0; 
+}
+
+.legend {
+    font-size: 18px;
+    color: #0c0c0c !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left; 
+}
+
+.label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--c-yellow);
+    font-weight: 650 !important;
+}
+.userTypeLabel {
+    text-align: center !important;
+    display: block;
+    font-size: 16px !important;
+    margin-bottom: 1em !important;
+    color: var(--c-yellow);
+    font-weight: 650 !important;
+}
+
+.input {
+    display: block;
+    width: 100%; 
+    padding: 10px !important;
+    margin-bottom: 2em !important;
+    border: 1px solid #000000 !important;
+    background-color: #e0f1fd !important;
+    font-size: 16px;
+    box-sizing: border-box; 
+}
+
+.userType {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    max-height: 20px;
+}
+
+.radio {
+    margin-right: 10px;
+}
+
+.button {
+    background-color: var(--c-yellow);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; 
+    box-sizing: border-box;
+    margin-top: 2.5em;
+}
+
+.button:hover {
+    background-color: #d8b95c !important;
+}
+
+button::after{
+    background-color: #333 !important;
+}
+
+.customRadio {
+    display: inline-block;
+    width: 20px !important;
+    height: 20px !important;
+    border: 2px solid #007bff !important; 
+    border-radius: 3px !important; 
+    background-color: #f9f9f9; 
+    cursor: pointer;
+    position: relative;
+    margin-right: 0px;
+}
+
+.formQuestion {
+    margin-top: 8vw;
+    text-align: center;
+}
+
+.formLink {
+    color: var(--c-lightBlue);
+}
+
+input[type="radio"]:checked + .customRadio {
+    background-color: var(--c-yellow); 
+    border: 2px solid var(--c-yellow) !important; 
+}
+
+input[type="radio"]:checked + .customRadio::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: #fff; 
+    border-radius: 50% !important; 
+}
+
+@media (max-width: 600px) {
+    .body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+    .form {
+        background: linear-gradient(0deg, var(--c-lightBlue) 0%, var(--c-blue) 100%);
+        background: #2e1f2733;
+
+    }
+    .userTypeLabel, .label {
+        color:#0c0c0c;
+    }
+    
+}
+
+.verificationCode {
+    margin-top: 20px;
+}
