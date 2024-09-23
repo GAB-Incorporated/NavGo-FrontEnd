@@ -19,11 +19,10 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
 
-  const { getRootProps, getRadioProps } = useRadioGroup({
+  const { getRadioProps } = useRadioGroup({
     name: 'framework',
     defaultValue: 'react',
   })
-  const group = getRootProps()
   const options = ['Estudante', 'Professor', 'Coordenador']
 
 
