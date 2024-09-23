@@ -14,27 +14,27 @@ const Footer = () => {
                 maxWidth="500px"
             >
                 <Image 
-                    src="https://img.icons8.com/ios-glyphs/60/e9c568/instagram-circle.png" 
+                    src="https://img.icons8.com/ios-glyphs/60/ffffff/instagram-circle.png" 
                     alt="Logo do Instagram" 
                 />
                 <Image 
-                    src="https://img.icons8.com/ios-filled/100/e9c568/github.png" 
+                    src="https://img.icons8.com/ios-filled/100/ffffff/github.png" 
                     alt="Logo do Github" 
                 />
-                <Image src="https://img.icons8.com/ios-filled/100/e9c568/linkedin.png" 
+                <Image src="https://img.icons8.com/ios-filled/100/ffffff/linkedin.png" 
                     alt="Logo do Linkedin" 
                 />
             </Box>
 
             <Box>
                 <Text className={styles.footerLinks}>
-                    <Link as="a" href="/https://github.com/orgs/GAB-Incorporated/people" color="main.200" >
+                    <Link as="a" href="/https://github.com/orgs/GAB-Incorporated/people">
                         A equipe
                     </Link>
-                    <Link as="a" href="/" color="main.200" ml="1.5vw">
+                    <Link as="a" href="/" ml="1.5vw">
                         Privacidade
                     </Link>
-                    <Link as="a" href="https://github.com/GAB-Incorporated" color="main.200" ml="1.5vw">
+                    <Link as="a" href="https://github.com/GAB-Incorporated" ml="1.5vw">
                         Repositório
                     </Link>
                 </Text>

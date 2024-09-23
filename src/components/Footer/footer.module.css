@@ -36,8 +36,9 @@
 }
 
 .footerLinks {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+    margin-top: 0.7vw !important;
+    margin-bottom: 0.7vw !important;
+    color: #fff !important;
     border: 0 !important;
 }
 
@@ -49,9 +50,10 @@
     }
 
     .footerLinks {
-        font-size: 3vw !important;
+        font-size: 3.5vw !important;
+        margin-top: 0 !important;
         margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
+        color: #fff !important;
     }
     .footerBody p {
         padding-top: 2vw !important;
