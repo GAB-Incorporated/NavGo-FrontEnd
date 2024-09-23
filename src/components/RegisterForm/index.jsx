@@ -178,14 +178,6 @@ const RegisterForm = () => {
           })}
           </HStack>
         </FormControl>
-        <Text className={styles.formQuestion}>Já é cadastrado?
-          <Link to={"/login"}>
-          <Text className={styles.formLink}>
-            Se Logue Aqui!
-          </Text>
-          </Link>
-        </Text>
-        
         {(userType === 'Coordenador' || userType === 'Professor') && (
           <FormControl id="verificationCode" isRequired className={styles.verificationCode}>
             <FormLabel className={styles.label}>Código de Verificação</FormLabel>
@@ -197,7 +189,15 @@ const RegisterForm = () => {
               className={styles.input}
             />
           </FormControl>
-        )};
+        )}
+        <Text className={styles.formQuestion}>Já é cadastrado?
+          <Link to={"/login"}>
+          <Text className={styles.formLink}>
+            Se Logue Aqui!
+          </Text>
+          </Link>
+        </Text>
+      
         <Button type="submit" className={styles.button}>
           Registrar
         </Button>
