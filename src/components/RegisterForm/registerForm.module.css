@@ -128,6 +128,16 @@ button::after{
 
 .formLink {
     color: var(--c-lightBlue);
+    font-weight: 700;
+}
+
+.labelAdm{
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--c-yellow);
+    font-weight: 650 !important;
+    margin-top: 2.3em;
 }
 
 input[type="radio"]:checked + .customRadio {
@@ -154,17 +164,15 @@ input[type="radio"]:checked + .customRadio::after {
         align-items: center;
         height: 100%;
         margin: 0;
+        padding: 0;
         background-color: #f0f0f0;
     }
     .form {
-        background: linear-gradient(0deg, var(--c-lightBlue) 0%, var(--c-blue) 100%);
-        background: #2e1f2733;
-
+        border-radius: 0;
     }
-    .userTypeLabel, .label {
-        color:#0c0c0c;
+    .labelAdm{
+        text-align: center !important;
     }
-    
 }
 
 .verificationCode {
