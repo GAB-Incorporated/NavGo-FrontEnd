@@ -1,3 +1,4 @@
 .noflow {
     overflow-x: hidden;
+    flex-direction: column;
 }
