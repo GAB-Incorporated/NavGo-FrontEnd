@@ -4,35 +4,6 @@
     background-color: #2e1f27;
 }
 
-.sidebar {
-    width: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--c-lightBlue);
-    border-top: 5px solid var(--c-orange);
-    border-right: 5px solid var(--c-orange);
-    border-bottom: 5px solid var(--c-orange);
-}
-
-.logoWrapper {
-    margin-top: 1vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.navLogo {
-    width: 60%;
-}
-
-.navText {
-    font-size: 1.5vw;
-    font-family: "Keania One", sans-serif;
-    color: black;
-}
-
 .body {
     width: 90%;
     display: flex;
