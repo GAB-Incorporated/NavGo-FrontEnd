@@ -36,6 +36,7 @@
 }
 
 .footerLinks {
+    display: flex;
     margin-top: 0.7vw !important;
     margin-bottom: 0.7vw !important;
     color: #fff !important;
