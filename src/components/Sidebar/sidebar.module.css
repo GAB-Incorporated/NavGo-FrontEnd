@@ -1,5 +1,6 @@
 .sidebar {
     width: 4%;
+    padding-bottom: 1vh;
     display: flex;
     flex-direction: column;
     align-items: center;
