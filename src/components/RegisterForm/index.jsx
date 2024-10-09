@@ -205,7 +205,6 @@ const RegisterForm = () => {
           </Text>
           </Link>
         </Text>
-      
         <Button type="submit" className={styles.button}>
           Registrar
         </Button>
