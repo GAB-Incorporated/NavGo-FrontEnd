@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import AdminDashboard from "../pages/AdminDashboard";
 import Subhome from "../pages/Subhome"
+import Mural from "../pages/Mural";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     {
         path: "/subhome",
         element: <Subhome/>
+    },
+    {
+        path: "/dashboard",
+        element: <Mural/>
     }
 ]) 
 
