@@ -6,15 +6,14 @@ import styles from "./mural.module.css";
 const Mural = () => {
     
     //testes
-    const subjectId = 1; 
-    const courseId = 2;
+    const classId = 6; 
 
     return (
         <Box w={"inherit"}>
             <Flex className={styles.pageWrapper}>
                 <Sidebar />
                 <Box className={styles.body}>
-                    <ChatComponent subjectId={subjectId} courseId={courseId} />
+                    <ChatComponent classId={classId} />
                 </Box>
             </Flex>
         </Box>

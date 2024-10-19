@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <Subhome/>
     },
     {
-        path: "/dashboard",
+        path: "/mural",
         element: <Mural/>
     }
 ]) 

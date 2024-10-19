@@ -14,7 +14,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await api.post('/user/login', {
+      const response = await api.post('/users/login', {
         email,
         password,
       });
