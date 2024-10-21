@@ -80,44 +80,37 @@ const InternalMap = () => {
     //verifica se o mapa já foi criado(ele não pode ser renderizado duas vezes, e como já temos o mapa externo, primeiro temos que destruir o mapa externo para criarmos o interno)
     if (!map) {
 
-      //estilo do mapa
-      const footprintStyle = {
-        color: 'black',
-        fillColor: 'white',
-        fillOpacity: 1
-      };
 
-      //estipo das salas
-      const roomStyle = {
+      const wallStyle = {
         color: 'black',
+        weight: 2,
         opacity: 1,
-        fillColor: 'white',
-        fillOpacity: 1
       };
   
       const A1footprint = L.rectangle([
         [0, 0],
         [72, 20]
-      ], footprintStyle);
+      ], wallStyle);
 
-      const A1sala1 = L.polygon([
+      
+      const A1sala1 = L.polyline([
         [2, 0],
         [10, 0],
         [10, 6],
-        [2, 6]
-      ], roomStyle).on('click', function () {
-        sidebar.show(); //deveria mostrar a sidebar com informações da sala, porém não funciona ainda.
-        sidebar.setContent('<h1>Sala 1</h1><img src="https://cdn.decoist.com/wp-content/uploads/2020/02/Beautiful-small-white-living-room-blends-monochromatic-beauty-with-modernity-53868.jpg" class="imgclass" />');
-      });
+        [2, 6],
+        [2, 0]
+      ], wallStyle).on('click', function() {
+        sidebar.show();
+      })
       
-      const A1sala2 = L.polygon([
+      const A1sala2 = L.polyline([
         [60, 0],
         [68, 0],
         [68, 6],
-        [60, 6]
-      ], roomStyle).on('click', function () {
+        [60, 6],
+        [60, 0],
+      ], wallStyle).on('click', function () {
         sidebar.show();
-        sidebar.setContent('<h1>Sala 2</h1><img src="https://cdn.decoist.com/wp-content/uploads/2020/02/Beautiful-small-white-living-room-blends-monochromatic-beauty-with-modernity-53868.jpg" class="imgclass" />');
       });
   
       const A1 = L.layerGroup([A1footprint, A1sala1, A1sala2]);
@@ -125,30 +118,44 @@ const InternalMap = () => {
       const A2footprint = L.rectangle([
         [0, 0],    //ponto sudoeste
         [72, 20]   //ponto nordeste
-      ], footprintStyle);
+      ], wallStyle);
+
+      const A2hallwayleft = L.polyline([
+        [0, 7],   // Ponto inicial à esquerda
+        [72, 7]   // Ponto final à direita
+      ], wallStyle).on('click', function () {
+        sidebar.show();
+      });
+
+      const A2hallwayright = L.polyline([
+        [0, 13],
+        [72, 13]
+      ], wallStyle).on('click', function() {
+        sidebar.show();
+      })
   
-      const A2sala1 = L.polygon([
+      const A2sala1 = L.polyline([
         [2, 0],
         [10, 0],
         [10, 6],
-        [2, 6]
-      ], roomStyle).on('click', function () {
+        [2, 6],
+        [2, 0]
+      ], wallStyle).on('click', function () {
         sidebar.show();
-        sidebar.setContent('<h1>Sala 1</h1><img src="https://cdn.decoist.com/wp-content/uploads/2020/02/Beautiful-small-white-living-room-blends-monochromatic-beauty-with-modernity-53868.jpg" class="imgclass" />');
       });
   
-      const A2sala2 = L.polygon([
+      const A2sala2 = L.polyline([
         [60, 0],
         [68, 0],
         [68, 6],
-        [60, 6]
-      ], roomStyle).on('click', function () {
+        [60, 6],
+        [60, 0]
+      ], wallStyle).on('click', function () {
         sidebar.show();
-        sidebar.setContent('<h1>Sala 2</h1><img src="https://cdn.decoist.com/wp-content/uploads/2020/02/Beautiful-small-white-living-room-blends-monochromatic-beauty-with-modernity-53868.jpg" class="imgclass" />');
       });
 
       //cria os layers para renderizar os elementos que foram criados
-      const A2 = L.layerGroup([A2footprint, A2sala1, A2sala2]);
+      const A2 = L.layerGroup([A2footprint, A2hallwayleft, A2hallwayright, A2sala1, A2sala2]);
       
       //define os layers base do mapa
       const baseMaps = {
