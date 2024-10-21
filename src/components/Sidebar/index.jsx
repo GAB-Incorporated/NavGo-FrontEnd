@@ -20,7 +20,7 @@ const Sidebar = () => {
                 <hr className={styles.sidebarDivider}/>
                 <Flex flexDirection="column" gap="2vh">
                     <Tool ToolIcon={TbFileExport} linkTo="/mural"/>
-                    <Tool ToolIcon={PiMapPinLineBold} linkTo="/mapa"/>
+                    <Tool ToolIcon={PiMapPinLineBold} linkTo="/map"/>
                 </Flex>
             </Box>
             <Box mt={"auto"}>
