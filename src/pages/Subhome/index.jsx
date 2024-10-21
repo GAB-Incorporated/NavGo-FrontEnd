@@ -1,24 +1,13 @@
-import { Box, Flex, Text, Image } from "@chakra-ui/react"
+import { Box, Flex, Text } from "@chakra-ui/react"
+import Sidebar from "../../components/Sidebar";
 import Footer from "../../components/Footer";
 import styles from "./subhome.module.css"
-import logo from "../../assets/navgo-logo.png"
-import { Link } from "react-router-dom";
 
 const Subhome = () => {
     return(
         <Box w={"inherit"}>
             <Flex className={styles.pageWrapper}>
-                <Box className={styles.sidebar}>
-                    <Box className={styles.logoWrapper}>
-                        <Image className={styles.navLogo} src={logo}/>
-                        <Text className={styles.navText}>NavGO</Text>
-                    </Box>
-                    <Image className={styles.toolIcon}/>
-                    <Image className={styles.toolIcon}/>
-                    <Link to={'/admDashboard'}>
-                        <Text>Painel administrativo</Text>
-                    </Link>
-                </Box>
+                <Sidebar/>
                 <Box className={styles.body}>
                     <Text className={styles.infoText}>
                         Bem-Vindo ao NavGO!
