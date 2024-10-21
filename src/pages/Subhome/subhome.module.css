@@ -1,0 +1,28 @@
+.pageWrapper {
+    width: 100%;
+    height: 85vh;
+    background-color: #2e1f27;
+}
+
+.body {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 2vw;
+    gap: 3vh;
+}
+
+.infoText {
+    font-size: 2vw;
+    color: white;
+}
+
+.signature {
+    display: flex;
+    color: white;
+    margin-left: 50vw;
+    font-size: 1.5vw;
+}

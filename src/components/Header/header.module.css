@@ -23,9 +23,9 @@
 }
 
 .title {
-    font-size: 3vw;
+    font-size: 3vw !important;
     font-family: "Keania One", sans-serif;
-    font-weight: 400;
+    font-weight: 100;
 }
 
 .headerDivider {
@@ -37,7 +37,45 @@
 }
 
 .slogan {
-    margin-top: 0.5vw;
-    font-size: 1.5vw;
-    align-self: center;
+    margin-top: 0.5vw !important;
+    font-size: 1.5vw !important;
+    align-self: center ;
+}
+
+@media all and (max-width: 1000px) {
+    .headerBody {
+        height: auto;
+        padding: 1.5vw 0;
+        justify-content: left;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .textWrapper {
+        align-items: center;
+    }
+
+    .headerDivider{
+        margin-left: 3vw;
+        height: 6vw;
+        width: 0.2rem; 
+    }
+
+    .slogan {
+        font-size: 3.5vw !important;
+        margin-left: -5.5vw;
+        padding-left: 1vw;
+        font-weight: 600;
+        text-align: center;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .title {
+        font-size: 5.5vw !important;
+    }
+    .logo {
+        width: 15vw;
+        height: auto;
+    }
 }

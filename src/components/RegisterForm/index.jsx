@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Box, Button, FormControl, useRadioGroup,FormLabel, Heading, Input, HStack, useToast } from '@chakra-ui/react';
+import { Box, Button, FormControl, useRadioGroup, FormLabel, Heading, Text, Input, Wrap, WrapItem, useToast, Tooltip } from '@chakra-ui/react';
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 import api from '../../api';
 import styles from './registerForm.module.css';
 import CustomRadio from '../CustomRadio';
-
+import { useNavigate, Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -13,29 +14,49 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [passwordRe, setPasswordRe] = useState('');
   const [userType, setUserType] = useState('STUDENT');
+  const [verificationCode, setVerificationCode] = useState('')
   const toast = useToast();
+  const navigate = useNavigate();
 
 
-  const { getRootProps, getRadioProps } = useRadioGroup({
+  const { getRadioProps } = useRadioGroup({
     name: 'framework',
     defaultValue: 'react',
   })
-  const group = getRootProps()
   const options = ['Estudante', 'Professor', 'Coordenador']
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (password !== passwordRe) {
+      toast({
+        title: 'Erro',
+        description: 'As senhas não coincidem.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+
     try {
-      const response = await api.post('/user/register', {
+      const requestData = {
         first_name: firstName,
         last_name: lastName,
         nick_name: nickName,
         email: email,
         password_hash: password,
         user_type: userType,
-      });
+        verification_code: verificationCode,
+      };
+
+      
+      if(userType === 'Coordenador' || userType === 'Professor'){
+        requestData.verification_code = verificationCode;
+      }
+
+      const response = await api.post('/user/register', requestData)
 
       if (response.status === 201) {
         toast({
@@ -44,11 +65,13 @@ const RegisterForm = () => {
           duration: 5000,
           isClosable: true,
         });
+        navigate('/login')
       }
     } catch (error) {
+      const errorMessage = error.response?.data?.message || "Erro no cadastro de usuário.";
       toast({
         title: 'Falha no Registro',
-        description: error,
+        description: errorMessage,
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -124,38 +147,64 @@ const RegisterForm = () => {
         </FormControl>
         <FormControl isRequired>
         <FormLabel className={styles.userTypeLabel}>Qual sua posição?</FormLabel>
-          <HStack {...group} className={styles.userType}>
-          {options.map((value) => {
-            const radio = getRadioProps({ value });
-            return (
-              <CustomRadio className={styles.userType} 
-                key={value} 
-                {...radio}
-                borderRadius="md"
-                bg="blue.200"
-                padding="1.2em"
-                transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
-                fontWeight='semibold'
-                _hover={{
-                  bg: 'yellow.100',
-                  cursor: 'pointer'
-                }}
-                _checked={{
-                  bg: 'yellow.400',
-                  color: 'black',
-                  borderColor: 'teal.600',
-                }}
-                _focus={{
-                  borderColor: 'black',
-                }}
-                onChange={(e) => setUserType(e.target.value)}
-                isChecked={userType === value}>
-                {value}
-              </CustomRadio>
-            );
-          })}
-          </HStack>
+          <Wrap spacing="20px" maxW="100%" justify='center'> 
+            {options.map((value) => {
+              const radio = getRadioProps({ value });
+              return (
+                <WrapItem key={value}> 
+                  <CustomRadio
+                    className={styles.userType}
+                    {...radio}
+                    borderRadius="md"
+                    bg="blue.200"
+                    padding="1.2em"
+                    transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+                    fontWeight="semibold"
+                    _hover={{
+                      bg: 'yellow.100',
+                      cursor: 'pointer',
+                    }}
+                    _checked={{
+                      bg: 'yellow.400',
+                      color: 'black',
+                      borderColor: 'teal.600',
+                    }}
+                    _focus={{
+                      borderColor: 'black',
+                    }}
+                    onChange={(e) => setUserType(e.target.value)}
+                    isChecked={userType === value}
+                  >
+                    {value}
+                  </CustomRadio>
+                </WrapItem>
+              );
+            })}
+          </Wrap>
         </FormControl>
+        {(userType === 'Coordenador' || userType === 'Professor') && (
+          <FormControl id="verificationCode" isRequired className={styles.verificationCode}>
+            <FormLabel className={styles.labelAdm}>Código de Verificação  
+              <Tooltip label="Entre em contato com o administrador da plataforma de sua instituição para cadastrar um usuário verificado">
+                <InfoOutlineIcon mb={'0.2em'} ml={'0.5em'} color={'black'}/>
+              </Tooltip>
+            </FormLabel>
+            <Input
+              type="text"
+              placeholder="Insira o código de verificação"
+              value={verificationCode}
+              onChange={(e) => setVerificationCode(e.target.value)}
+              className={styles.input}
+            />
+          </FormControl>
+        )}
+        <Text className={styles.formQuestion}>Já é cadastrado?
+          <Link to={"/login"}>
+          <Text className={styles.formLink}>
+            Se Logue Aqui!
+          </Text>
+          </Link>
+        </Text>
         <Button type="submit" className={styles.button}>
           Registrar
         </Button>
@@ -165,3 +214,4 @@ const RegisterForm = () => {
 }
 
 export default RegisterForm;
+

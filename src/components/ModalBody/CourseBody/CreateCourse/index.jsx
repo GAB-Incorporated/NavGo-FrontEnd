@@ -99,7 +99,6 @@ const CreateCourse = () => {
                     <Button
                         onClick={handleSubmit}
                         color={'#fff'} 
-                        mb={3} 
                         bg={'main.100'}
                         _hover={{
                             cursor: 'pointer'

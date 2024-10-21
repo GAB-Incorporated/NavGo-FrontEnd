@@ -70,8 +70,16 @@
     background-color: #d8b95c !important;
 }
 
-@media (max-width: 480px) {
+.formQuestion {
+    text-align: center;
+}
 
+.formLink {
+    color: var(--c-lightBlue);
+    font-weight: 700;
+}
+
+@media (max-width: 480px) {
     .body {
         display: flex;
         justify-content: center;
@@ -79,13 +87,9 @@
         height: 100%;
         margin: 0;
         background-color: #f0f0f0;
+        padding-top: 0;
     }
     .form {
-        background: linear-gradient(0deg, #B4D2E7 0%, #2274A5 100%);
-        background: #2e1f2733;
-
-    }
-    .label {
-        color:#0c0c0c;
+        border-radius: 0;
     }
 }
