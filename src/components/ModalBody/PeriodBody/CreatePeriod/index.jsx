@@ -3,13 +3,12 @@ import { useState } from "react"
 import api from "../../../../api"
 
 const CreatePeriod = () => {
-    const [periodName, setPeriodName] = useState("")
     const [periodStart, setPeriodStart] = useState(null)
     const [periodEnd, setPeriodEnd] = useState(null)
     const toast = useToast()
 
     const handleSubmit = async () => {
-        const data = {periodName, periodStart, periodEnd}
+        const data = {start_hour: periodStart, end_hour: periodEnd}
         try {
             await api.post("/periods", data)
             toast({
@@ -44,17 +43,6 @@ const CreatePeriod = () => {
                 <Text w={"100%"} textAlign={"center"} fontSize="1.5vw">
                     Cadastre os periodos de aula
                 </Text>
-                <Box>
-                    <Text>
-                        Nome do Periodo:
-                    </Text>
-                    <Input
-                        placeholder="Digite o nome periodo"
-                        value={periodName}
-                        onChange={(e) => setPeriodName(e.target.value)}
-                    >
-                    </Input>
-                </Box>
                 <Flex gap={"2vw"} fontSize={"1vw"} w="inherit">
                     <Box w="50%">
                         <Text>
