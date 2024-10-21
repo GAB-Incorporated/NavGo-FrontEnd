@@ -23,7 +23,6 @@ const Subhome = () => {
                     </Text>
                 </Box>
             </Flex>
-            <Footer/>
         </Box>
     )   
 }
