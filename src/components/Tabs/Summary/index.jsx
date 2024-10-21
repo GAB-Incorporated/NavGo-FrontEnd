@@ -341,7 +341,7 @@ const SummaryTab = () => {
                                             )
                                         } else {
                                             return (
-                                                <Box key={student.first_name+"ModII+Erro"} p="1vw 0" w="100%">
+                                                <Box key={student.first_name+"ModII Erro"} p="1vw 0" w="100%">
                                                     <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
                                                 </Box>
                                             )
