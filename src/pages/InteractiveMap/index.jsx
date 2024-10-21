@@ -80,6 +80,7 @@ const InternalMap = () => {
     //verifica se o mapa já foi criado(ele não pode ser renderizado duas vezes, e como já temos o mapa externo, primeiro temos que destruir o mapa externo para criarmos o interno)
     if (!map) {
 
+
       const wallStyle = {
         color: 'black',
         weight: 2,
