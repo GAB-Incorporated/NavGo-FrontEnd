@@ -1,4 +1,4 @@
-import styles from './students.module.css'
+// import styles from './students.module.css'
 
 const StudentsTab = () => {
     return (

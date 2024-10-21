@@ -152,14 +152,15 @@ const SummaryTab = () => {
                     <Box className={styles.boxBody}>
                         {courses.map((course) => (
                             <Box
+                                key={course.course_id}
                                 _hover={{cursor: 'pointer'}}
                                 className={styles.independentTabInfo}
                                 onClick={() => fetchCourseData(course.course_id, course.course_name)}    
                             >
-                                <Text>{course.course_name}</Text>
-                                <Flex alignItems="center" padding="0.5vh 0">
-                                    <Image className={styles.independent_icons} src="/src/assets/course_coordinator.png"/>
-                                    <Text className={styles.independent_small}>{course.coordinator_id}</Text>
+                                <Text key={course.course_name}>{course.course_name}</Text>
+                                <Flex alignItems="center" padding="0.5vh 0" key={course.course_name+"Flex"}>
+                                    <Image key={course.course_name+"Image"} className={styles.independent_icons} src="/src/assets/course_coordinator.png"/>
+                                    <Text key={course.course_name+"Text"} className={styles.independent_small}>{course.coordinator_id}</Text>
                                 </Flex>
                             </Box>
                         ))}
@@ -179,7 +180,7 @@ const SummaryTab = () => {
                     </Flex>
                     <Box className={styles.boxBody}>
                         {buildings.map((building) => (
-                            <Box className={styles.independentTabInfo}>
+                            <Box key={building.building_name+"Box"} className={styles.independentTabInfo}>
                                 <Text>{building.building_name}</Text>
                                 <Flex 
                                     alignItems="center" 
@@ -224,7 +225,7 @@ const SummaryTab = () => {
                     </Flex>
                     <Box className={styles.boxBody}>
                         {courseIsSelected ? courseHasSubjects ? subjects.map((subject) => (
-                            <Flex className={styles.independentTabInfo}>
+                            <Flex key={subject.subject_name} className={styles.independentTabInfo}>
                                 <Image className={styles.icons} src="/src/assets/locations.png"/>
                                 <Box>
                                     <Text>{subject.subject_name}</Text>
@@ -263,14 +264,14 @@ const SummaryTab = () => {
                                     {courseIsSelected ? courseHasStudents ? students.map((student) => {
                                         if (student.module_number == 1) {
                                             return (
-                                                <Flex className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
+                                                <Flex key={student.first_name+"ModI"} className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
                                                     <Image className={styles.icons} src="/src/assets/student.png"/>
                                                     <Text>{student.first_name+" "+student.last_name}</Text>
                                                 </Flex>
                                             )
                                         } else {
                                             return (
-                                                <Box p="1vw 0" w="100%">
+                                                <Box key={"Boxinha"} p="1vw 0" w="100%">
                                                     <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
                                                 </Box>
                                             )
@@ -298,14 +299,14 @@ const SummaryTab = () => {
                                     {courseIsSelected ? courseHasStudents ? students.map((student) => {
                                         if (student.module_number == 2) {
                                             return (
-                                                <Flex className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
+                                                <Flex key={student.first_name+"ModII"} className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
                                                     <Image className={styles.icons} src="/src/assets/student.png"/>
                                                     <Text>{student.first_name+" "+student.last_name}</Text>
                                                 </Flex>
                                             )
                                         } else {
                                             return (
-                                                <Box p="1vw 0" w="100%">
+                                                <Box key={"ModII Erro"} p="1vw 0" w="100%">
                                                     <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
                                                 </Box>
                                             )
@@ -333,14 +334,14 @@ const SummaryTab = () => {
                                     {courseIsSelected ? courseHasStudents ? students.map((student) => {
                                         if (student.module_number == 3) {
                                             return (
-                                                <Flex className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
+                                                <Flex key={student.first_name+"ModII"} className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
                                                     <Image className={styles.icons} src="/src/assets/student.png"/>
                                                     <Text>{student.first_name+" "+student.last_name}</Text>
                                                 </Flex>
                                             )
                                         } else {
                                             return (
-                                                <Box p="1vw 0" w="100%">
+                                                <Box key={student.first_name+"ModII+Erro"} p="1vw 0" w="100%">
                                                     <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
                                                 </Box>
                                             )

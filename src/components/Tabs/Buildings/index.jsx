@@ -1,4 +1,4 @@
-import styles from './buildings.module.css'
+// import styles from './buildings.module.css'
 
 const BuildingsTab = () => {
     return (

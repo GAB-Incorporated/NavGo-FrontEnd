@@ -1,4 +1,4 @@
-import styles from './subjects.module.css'
+// import styles from './subjects.module.css'
 
 const SubjectsTab = () => {
     return (
