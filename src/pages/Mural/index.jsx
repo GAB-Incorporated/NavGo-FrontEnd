@@ -18,7 +18,7 @@ const Mural = () => {
                 setClasses(response.data);
 
             } catch (error) {
-                console.log('aí ferra')
+                console.log('aí ferra' + error)
             }
         };
 

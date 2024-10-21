@@ -42,6 +42,7 @@ const router = createBrowserRouter([
         path: "/mural",
         element: <Mural/>
     },
+    {
         path: "/map",
         element: <InteractiveMap/>
     }
