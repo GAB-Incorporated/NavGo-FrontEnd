@@ -1,0 +1,94 @@
+.mainInfo, .courseInfo, .studentsInfo {
+    width: 100%;
+    justify-content: center;
+    gap: 2vw;
+    margin-bottom: 1vw;
+}
+
+.boxHeader {
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: var(--c-orange);
+    color: white;
+    height: 4vh;
+    gap: 1vh;
+}
+
+.headerTitle {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.addIcon {
+    color: var(--c-orange) !important;
+    background-color: white !important;
+}
+
+.boxBody {
+    max-height: 10.5vw;
+    align-content: center;
+    text-align: center;
+    background-color: #E6E6E6 !important;
+    overflow: scroll;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+    
+.separationText {
+    display: flex;
+    justify-content: center;
+    font-size: 2vw;
+    font-weight: 600;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+}
+
+.independentTabInfo {
+    margin-top: 4px;
+    font-size: 1.3vw;
+    text-align: left;
+    padding-left: 1vw;
+    background-color: white;
+}
+
+p.independent_small {
+    margin-left: 1%;
+    font-size: 1vw !important;
+    opacity: 0.6;
+}
+
+img.icons {
+    align-self: center;
+    margin-right: 1vw;
+    height: 2.5vw !important;
+}
+
+img.independent_icons {
+    height: 2vh !important;
+}
+
+.tabText {
+    font-size: 1.5vw !important;
+}
+
+.warningWrapper, .infoWrapper {
+    padding: 2vw;
+    font-size: 1.5vw;
+    justify-content: center;
+}
+
+.warningWrapper {
+    background-color: rgba(255, 173, 41, 0.6);
+    color: black;
+}
+
+.infoWrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.message {
+    width: 30ch;
+}
