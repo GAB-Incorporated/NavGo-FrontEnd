@@ -56,7 +56,7 @@ const RegisterForm = () => {
         requestData.verification_code = verificationCode;
       }
 
-      const response = await api.post('/user/register', requestData)
+      const response = await api.post('/users/register', requestData)
 
       if (response.status === 201) {
         toast({
