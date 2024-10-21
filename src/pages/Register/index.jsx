@@ -9,7 +9,6 @@ const Register = () => {
        <Flex className={styles.noflow}>
             <Header />
             <RegisterForm />
-            <Footer />
        </Flex>
     );
 }

@@ -12,7 +12,6 @@ const Login = () => {
                 <Box flexGrow={1}> 
                     <LoginForm />
                 </Box>
-                <Footer />
             </Box>
         </Box>
     );
