@@ -4,26 +4,44 @@ import ChatComponent from "../../components/ChatComponent";
 import Sidebar from "../../components/Sidebar";
 import api from '../../api.js'
 import styles from "./mural.module.css";
+import { jwtDecode } from 'jwt-decode';
 
 const Mural = () => {
     const [selectedClassId, setSelectedClassId] = useState(null);
     const [classes, setClasses] = useState([]);
-    const userId = 2;
 
     useEffect(() => {
+
+        const getUserIdFromToken = () => {
+            const token = localStorage.getItem('token');  
+
+            if (token) {
+                const decodedToken = jwtDecode(token);  
+
+                return decodedToken.id_usuario;  
+            }
+            return null;
+        };
+
+        const userId = getUserIdFromToken();
+
         const fetchClasses = async () => {
-            try {
-                const response = await api.get(`/classes/user/${userId}`); // Certifique-se de que o endpoint esteja correto
+            if (userId) {
+                try {
+                    const response = await api.get(`/classes/user/${userId}`);
+                    setClasses(response.data);
+                } catch (error) {
 
-                setClasses(response.data);
-
-            } catch (error) {
-                console.log('aí ferra' + error)
+                    //A implementar
+                    console.log('aí ferra' + error);
+                }
+            } else {
+                console.log('Token não encontrado ou inválido');
             }
         };
 
         fetchClasses();
-    }, [userId]);
+    }, []);
 
     return (
         <Box w={"inherit"}>
@@ -38,7 +56,7 @@ const Mural = () => {
                                 onClick={() => setSelectedClassId(classItem.class_id)}
                                 m={2}
                             >
-                                {classItem.subject_id}
+                                {classItem.class_id}
                             </Button>
                         ))}
                     </Flex>
