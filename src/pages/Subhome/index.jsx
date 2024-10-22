@@ -1,6 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import Sidebar from "../../components/Sidebar";
-import Footer from "../../components/Footer";
 import styles from "./subhome.module.css"
 
 const Subhome = () => {
@@ -23,7 +22,6 @@ const Subhome = () => {
                     </Text>
                 </Box>
             </Flex>
-            <Footer/>
         </Box>
     )   
 }
