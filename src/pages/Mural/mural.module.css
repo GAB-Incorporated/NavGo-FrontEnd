@@ -1,16 +1,25 @@
 .pageWrapper {
-    width: 100%;
+    display: flex;
     height: 100vh;
-    background-color: var(--c-lightBlue);
+    width: 100%;
+    background-color: #B4D2E7; /* cor de fundo azul claro */
 }
 
 .body {
-    width: 90%;
+    flex: 1;
+    margin: 2rem;
     display: flex;
     flex-direction: column;
-    text-align: center;
     align-items: center;
     justify-content: center;
-    margin: 2vw;
     gap: 3vh;
+}
+
+button {
+    background-color: #FF6E58; /* botões com cor laranja avermelhada */
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
 }
