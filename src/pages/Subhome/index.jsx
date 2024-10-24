@@ -1,6 +1,7 @@
-import { Box, Flex, Text } from "@chakra-ui/react"
+import { Box, Button, Flex, Text } from "@chakra-ui/react"
 import Sidebar from "../../components/Sidebar";
 import styles from "./subhome.module.css"
+import DashboardHeader from "../../components/DashboardHeader";
 
 const Subhome = () => {
     return(
@@ -8,18 +9,29 @@ const Subhome = () => {
             <Flex className={styles.pageWrapper}>
                 <Sidebar/>
                 <Box className={styles.body}>
-                    <Text className={styles.infoText}>
-                        Bem-Vindo ao NavGO!
-                    </Text>
-                    <Text className={styles.infoText}>
-                        Na barra ao lado temos as ferramentas disponiveis atualmente!
-                    </Text>
-                    <Text className={styles.infoText}>
-                        Qualquer dúvida entre em contato com o administrador do seu curso!
-                    </Text>
-                    <Text className={styles.signature}>
-                        Ass. Os Programmerz
-                    </Text>
+                    <DashboardHeader 
+                        instituicao="ETEC de Embu"
+                        pagina="Introdução"    
+                    />
+                    <Box className={styles.info}>
+                        <Text className={styles.infoText} marginBottom={"2vw"}>
+                            Primeira vez por aqui?
+                        </Text>
+                        <Text className={styles.infoText}>
+                            Não sabe usar alguma das plataformas?
+                        </Text>
+                        <Text className={styles.infoText}>
+                            Veja o nosso tutorial!
+                        </Text>
+                        <Flex className={styles.btnsWrapper}>
+                            <Button className={styles.subhomeBtn}>
+                                Mapa
+                            </Button>
+                            <Button className={styles.subhomeBtn}>
+                                Mural
+                            </Button>
+                        </Flex>
+                    </Box>
                 </Box>
             </Flex>
         </Box>
