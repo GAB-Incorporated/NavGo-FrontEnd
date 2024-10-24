@@ -1,0 +1,30 @@
+.body {
+    margin-bottom: 1em;
+    position: relative;
+}
+
+.divider {
+    display: block;
+    border: 1px solid;
+    border-color: #00000079;
+    position: relative;
+    margin-right: 2em;
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.bottomDivider {
+    display: block;
+    border: 1px solid;
+    border-color: #000;
+}
+
+.time {
+    margin-left: auto;
+    margin-right: 2.5em;
+}

@@ -1,0 +1,21 @@
+.header {
+    background-color: #2274ac;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em !important;
+    margin: 0 !important;
+    padding: 0.25em 0.5em !important;
+    text-align: center;
+}
+
+.content {
+    background-color: #B4D2E7;
+}
+
+.bottomDivider {
+    display: block;
+    border: 1px solid;
+    border-color: #000;
+    margin-left: -2em;
+}

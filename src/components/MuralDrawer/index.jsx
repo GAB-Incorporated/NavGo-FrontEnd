@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
+import DrawerClasses from './DrawerClasses/index.jsx';
 import styles from './muralDrawer.module.css';
 import api from '../../api.js';
 
@@ -44,12 +45,18 @@ const MuralDrawer = ({ userId, onClassSelect }) => {
       <Button as='button' bg='#2274ac' borderRadius={0} onClick={onOpen} height={100}>
         <ArrowBackIcon color='#fff' height={20} width={12} />
       </Button>
-      <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
+      <Drawer placement={'left'} onClose={onClose} isOpen={isOpen} size={'full'}>
         <DrawerOverlay />
-        <DrawerContent className={styles.DrawerText}>
-          <DrawerHeader bg='#2274ac' color='#fff' justifyContent='center' alignItems={'center'} fontSize='xx-large' borderBottomWidth='1px'>Suas Turmas</DrawerHeader>
-          <DrawerBody as='ul'>
-            <Flex wrap="wrap" mb={4}>
+        <DrawerContent>
+          <DrawerHeader className={styles.header}>Suas Turmas</DrawerHeader>
+          <DrawerBody className={styles.content}>
+            {classes.map((classItem) => (
+              <DrawerClasses
+                classId={classItem.class_id}
+                handler={() => handleClassClick(classItem.class_id)}
+              />
+            ))}
+            {/* <Flex wrap="wrap" mb={4}>
               {classes.map((classItem) => (
                 <Button
                   key={classItem.class_id}
@@ -59,7 +66,7 @@ const MuralDrawer = ({ userId, onClassSelect }) => {
                   {classItem.class_id}
                 </Button>
               ))}
-            </Flex>
+            </Flex> */}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

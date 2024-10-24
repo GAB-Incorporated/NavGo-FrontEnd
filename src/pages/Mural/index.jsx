@@ -1,7 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ChatComponent from "../../components/ChatComponent";
-import api from '../../api.js';
 import styles from "./mural.module.css";
 import { jwtDecode } from 'jwt-decode';
 import Header from '../../components/MuralHeader';
