@@ -6,7 +6,7 @@
 .divider {
     display: block;
     border: 1px solid;
-    border-color: #00000079;
+    border-color: #0000004b;
     position: relative;
     margin-right: 2em;
 }
@@ -18,6 +18,17 @@
     transform: translateY(-50%);
 }
 
+.teacher{
+    font-size: 0.9em;
+    color:#000000cc
+}
+
+.fileName{
+    font-size: 0.9em;
+    color:#000000cc;
+    margin-left: 0.4em;
+}
+
 .bottomDivider {
     display: block;
     border: 1px solid;
@@ -26,5 +37,6 @@
 
 .time {
     margin-left: auto;
-    margin-right: 2.5em;
+    margin-right: 3em;
+    font-size: 0.8em;
 }

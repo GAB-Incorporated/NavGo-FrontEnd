@@ -52,21 +52,11 @@ const MuralDrawer = ({ userId, onClassSelect }) => {
           <DrawerBody className={styles.content}>
             {classes.map((classItem) => (
               <DrawerClasses
+                classItem={classItem}
                 classId={classItem.class_id}
                 handler={() => handleClassClick(classItem.class_id)}
               />
             ))}
-            {/* <Flex wrap="wrap" mb={4}>
-              {classes.map((classItem) => (
-                <Button
-                  key={classItem.class_id}
-                  onClick={() => handleClassClick(classItem.class_id)}
-                  m={2}
-                >
-                  {classItem.class_id}
-                </Button>
-              ))}
-            </Flex> */}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
