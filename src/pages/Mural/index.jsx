@@ -9,7 +9,7 @@ import api from '../../api.js';
 
 const Mural = () => {
     const [userId, setUserId] = useState(null);
-    const [selectedClass, setSelectedClass] = useState(null);
+    const [selectedClass, setSelectedClass] = useState(1);
 
     useEffect(() => {
         const getUserIdFromToken = () => {
