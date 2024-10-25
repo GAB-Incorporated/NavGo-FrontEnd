@@ -2,13 +2,14 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ChatComponent from "../../components/ChatComponent";
 import styles from "./mural.module.css";
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import Header from '../../components/MuralHeader';
 import MuralDrawer from "../../components/MuralDrawer/index.jsx";
+import api from '../../api.js';
 
 const Mural = () => {
     const [userId, setUserId] = useState(null);
-    const [selectedClassId, setSelectedClassId] = useState(null);
+    const [selectedClass, setSelectedClass] = useState(null);
 
     useEffect(() => {
         const getUserIdFromToken = () => {
@@ -24,8 +25,14 @@ const Mural = () => {
         setUserId(userId);
     }, []);
 
-    const handleClassSelection = (classId) => {
-        setSelectedClassId(classId);
+    const handleClassSelection = async (classId) => {
+        try {
+            const response = await api.get(`/classes/${classId}`);
+            setSelectedClass(response.data);
+            console.log(selectedClass);
+        } catch (error) {
+            console.error("Erro ao buscar a classe:", error);
+        }
     };
 
     return (
@@ -35,20 +42,14 @@ const Mural = () => {
                     instituicao="Etec de Embu"
                     pagina="Mural digital"
                 />
+                <MuralDrawer
+                    userId={userId}
+                    onClassSelect={handleClassSelection}
+                    selectedClass={selectedClass}
+                />
                 <Box className={styles.body}>
-                    <Text fontSize="xl" mb={4}>Selecione uma Classe:</Text>
-                    {userId ? (
-                        <MuralDrawer
-                            userId={userId}
-                            onClassSelect={handleClassSelection} //Função de callback
-                        />
-                    ) : (
-                        <Text>Carregando...</Text>
-                    )}
-                    
-                    {/* Mostrar o ChatComponent apenas se uma classe for selecionada */}
-                    {selectedClassId ? (
-                        <ChatComponent classId={selectedClassId} />
+                    {selectedClass ? (
+                        <ChatComponent classId={selectedClass.class_id} />
                     ) : (
                         <Text>Nenhuma classe selecionada.</Text>
                     )}

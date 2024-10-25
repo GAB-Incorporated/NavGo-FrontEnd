@@ -1,6 +1,5 @@
 .pageWrapper {
     display: flex;
-    height: 100vh;
     width: 100%;
     background-color: #B4D2E7; /* cor de fundo azul claro */
 }
