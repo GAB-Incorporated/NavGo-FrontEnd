@@ -38,3 +38,7 @@
     margin-right: 0.5rem;
     background-color: #fff !important;
 }
+
+.fileAttached {
+    border: 1px solid #38A169; /* Verde sutil para indicar arquivo anexado */
+}

@@ -16,9 +16,8 @@ const Mural = () => {
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [message, setMessage] = useState("");
-
-
     const toast = useToast();
+
     useEffect(() => {
         const getUserIdFromToken = () => {
             if (token) {
@@ -42,6 +41,12 @@ const Mural = () => {
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
+        toast({
+            title: "Anexado.",
+            status: "info",
+            duration: 1000,
+            isClosable: true,
+        });
     };
 
     const handleUpload = async () => {
@@ -117,36 +122,37 @@ const Mural = () => {
             </Box>
 
             {userType === "STUDENT" ? null : (
-            <Flex className={styles.messageBar}>
-                <input
-                    type="file"
-                    onChange={handleFileChange}
-                    style={{ display: "none" }}
-                    id="fileUpload"
-                />
-                <IconButton
-                    as="label"
-                    htmlFor="fileUpload"
-                    aria-label="Anexar arquivo"
-                    icon={<AttachmentIcon />}
-                    variant="ghost"
-                    size="lg"
-                    className={styles.iconButton}
-                />
-                
-                <Input
-                    placeholder="Digite sua mensagem..."
-                    className={styles.inputField}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                />
-                <IconButton
-                    icon={<ArrowUpIcon />}
-                    color="#000"
-                    onClick={handleUpload}
-                />
-            </Flex>
-        )}
+                <Flex className={styles.messageBar}>
+                    <input
+                        type="file"
+                        onChange={handleFileChange}
+                        style={{ display: "none" }}
+                        id="fileUpload"
+                    />
+                    <IconButton
+                        as="label"
+                        htmlFor="fileUpload"
+                        aria-label="Anexar arquivo"
+                        icon={<AttachmentIcon />}
+                        variant="ghost"
+                        size="lg"
+                        className={styles.iconButton}
+                    />
+                    
+                    <Input
+                        placeholder="Digite sua mensagem..."
+                        className={`${styles.inputField} ${selectedFile ? styles.fileAttached : ''}`}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                    />
+                    <IconButton
+                        icon={<ArrowUpIcon />}
+                        color="#000"
+                        onClick={handleUpload}
+                        className={selectedFile ? styles.fileAttached : ''}
+                    />
+                </Flex>
+            )}
         </Flex>
     );
 };
