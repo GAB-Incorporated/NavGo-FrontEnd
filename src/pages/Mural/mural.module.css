@@ -1,6 +1,7 @@
 .pageWrapper {
     display: flex;
     width: 100%;
+    min-height: 100vh;
     background-color: #B4D2E7;
 }
 
@@ -12,6 +13,28 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 3vh;
+    margin-bottom: 4.5em;
+}
+
+.messageBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #B4D2E7;
+    padding: 0.5em;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.iconButton {
+    margin-right: 0.5rem; 
+}
+
+.inputField {
+    flex: 1;
+    margin-right: 0.5rem;
+    background-color: #fff !important;
 }
