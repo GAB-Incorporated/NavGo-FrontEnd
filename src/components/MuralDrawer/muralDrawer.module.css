@@ -1,0 +1,32 @@
+.header {
+    background-color: #2274ac;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em !important;
+    margin: 0 !important;
+    padding: 0em 0.5em !important;
+    text-align: center;
+}
+
+.content {
+    background-color: #B4D2E7;
+}
+
+.button{
+    background: #B4D2E7 !important;
+    height: 2em;
+    width: 2em;
+    transition: 300ms;
+}
+
+.button:hover{
+    background: #9abfda !important;
+    cursor: pointer;
+}
+
+.subjectName{
+    font-size: 1.35em;
+    text-align: center;
+    margin: auto 0;
+}
