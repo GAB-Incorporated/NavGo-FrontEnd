@@ -14,3 +14,10 @@
     margin: 2vw;
     gap: 3vh;
 }
+
+@media (max-width: 600px) {
+    .pageWrapper {
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
+}

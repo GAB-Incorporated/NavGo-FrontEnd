@@ -30,7 +30,6 @@ a {
 .normalWrapper {
     justify-content: space-between;
     width: 100vw;
-    margin-top: -1vw;
     border-top-left-radius: 55px;
     border-top-right-radius: 55px;
     background-color: white;

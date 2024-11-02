@@ -7,6 +7,7 @@ import 'leaflet-fullscreen';
 import 'leaflet.fullscreen/Control.FullScreen.css';
 import 'leaflet-sidebar-v2/js/leaflet-sidebar.js';
 import 'leaflet-sidebar-v2/css/leaflet-sidebar.css';
+import Sidebar from "../../components/Sidebar";
 
 
 const InteractiveMap = () => {
@@ -43,6 +44,7 @@ const InteractiveMap = () => {
 
   return (
     <div className={styles.mapContainer}>
+      <Sidebar/>
       {!showInternalMap ? (
         <MapContainer center={[-23.641154, -46.836002]}
           zoom={18}
