@@ -4,6 +4,7 @@ import { GoGear } from "react-icons/go";
 import { CiCircleInfo } from "react-icons/ci";
 import { TbFileExport } from "react-icons/tb";
 import { PiMapPinLineBold } from "react-icons/pi";
+import { MdHomeFilled } from "react-icons/md";
 import logo from "../../assets/navgo-logo.png"
 import styles from "./sidebar.module.css"
 import { Link } from "react-router-dom";
@@ -17,6 +18,10 @@ const Sidebar = () => {
                 </Link>
             </Box>
             <Box>
+                <hr className={styles.sidebarDivider}/>
+                <Flex flexDirection="column" gap="2vh">
+                    <Tool ToolIcon={MdHomeFilled} linkTo="/subhome"/>
+                </Flex>
                 <hr className={styles.sidebarDivider}/>
                 <Flex flexDirection="column" gap="2vh">
                     <Tool ToolIcon={TbFileExport} linkTo="/mural"/>
