@@ -1,4 +1,5 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, useDisclosure } from "@chakra-ui/react";
+import { useState } from "react";
 import { GoGear } from "react-icons/go";
 import { CiCircleInfo } from "react-icons/ci";
 import { TbFileExport } from "react-icons/tb";
@@ -9,8 +10,20 @@ import styles from "./sidebar.module.css"
 import { Link } from "react-router-dom";
 import DeskTool from "./DeskTool";
 import MobiTool from "./MobiTool";
+import ModalStructure from '../ModalStructure'
+import DashboardAlert from "../ModalBody/DashboardAlert";
 
 const Sidebar = () => {
+    const {isOpen, onOpen, onClose } = useDisclosure()
+    const [modalContent, setModalContent] = useState(<></>);
+    const [modalTitle, setModalTitle] = useState("")
+
+    const openModal = (content, title) => {
+        setModalContent(content);
+        setModalTitle(title)
+        onOpen();
+    };
+
     return (
         <>
         {innerWidth>=601 ? (
@@ -40,6 +53,13 @@ const Sidebar = () => {
                 </Box>
             </Box>
         ) : (
+        <>
+        <ModalStructure
+                isOpen={isOpen}
+                onClose={onClose}
+                title={modalTitle}
+                contentBody={modalContent}
+            />
         <Flex justifyContent="space-between">
             <Flex className={styles.normalWrapper}>
                 <Box className={styles.focusWrapperL}>
@@ -50,7 +70,7 @@ const Sidebar = () => {
                         <Image className={styles.mobileLogo} src={logo}/>
                     </Link>
                     <MobiTool ToolIcon={MdHomeFilled} toolSize={"8vw"} linkTo="/subhome"/>
-                    <MobiTool ToolIcon={GoGear} toolSize={"8vw"} linkTo="/dashboard"/>
+                    <GoGear size={"8vw"} onClick={() => openModal(<DashboardAlert/>, "Acesso Barrado!")}/>
                     <MobiTool ToolIcon={CiCircleInfo} toolSize={"8vw"} linkTo="/sobre"/>
                 </Flex>
                 <Box className={styles.focusWrapperR}>
@@ -59,6 +79,7 @@ const Sidebar = () => {
             </Flex>
             
         </Flex>
+        </>
         )}
         </>
     )
