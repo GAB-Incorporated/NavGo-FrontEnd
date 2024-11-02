@@ -4,3 +4,9 @@
     border-radius: 100px;
     border: 2px solid black;
 }
+
+@media (max-width: 600px) {
+    .toolWrapper {
+        padding: 0.3vw;
+    }
+}

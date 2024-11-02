@@ -1,5 +1,4 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
-import Tool from "./Tool";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { GoGear } from "react-icons/go";
 import { CiCircleInfo } from "react-icons/ci";
 import { TbFileExport } from "react-icons/tb";
@@ -8,34 +7,60 @@ import { MdHomeFilled } from "react-icons/md";
 import logo from "../../assets/navgo-logo.png"
 import styles from "./sidebar.module.css"
 import { Link } from "react-router-dom";
+import DeskTool from "./DeskTool";
+import MobiTool from "./MobiTool";
 
 const Sidebar = () => {
     return (
-        <Box className={styles.sidebar}>
-            <Box className={styles.logoWrapper}>
-                <Link to="/">
-                    <Image className={styles.navLogo} src={logo}/>
-                </Link>
+        <>
+        {innerWidth>=601 ? (
+            <Box className={styles.sidebar}>
+                <Box className={styles.logoWrapper}>
+                    <Link to="/">
+                        <Image className={styles.navLogo} src={logo}/>
+                    </Link>
+                </Box>
+                <Box>
+                    <hr className={styles.sidebarDivider}/>
+                    <Flex flexDirection="column" gap="2vh">
+                        <DeskTool ToolIcon={MdHomeFilled} linkTo="/subhome"/>
+                    </Flex>
+                    <hr className={styles.sidebarDivider}/>
+                    <Flex flexDirection="column" gap="2vh">
+                        <DeskTool ToolIcon={TbFileExport} linkTo="/mural"/>
+                        <DeskTool ToolIcon={PiMapPinLineBold} linkTo="/map"/>
+                    </Flex>
+                </Box>
+                <Box mt={"auto"}>
+                    <hr className={styles.sidebarDivider}/>
+                    <Flex flexDirection="column" gap="2vh">
+                        <DeskTool ToolIcon={GoGear} linkTo="/dashboard"/>
+                        <DeskTool ToolIcon={CiCircleInfo} linkTo="/sobre"/>
+                    </Flex>
+                </Box>
             </Box>
-            <Box>
-                <hr className={styles.sidebarDivider}/>
-                <Flex flexDirection="column" gap="2vh">
-                    <Tool ToolIcon={MdHomeFilled} linkTo="/subhome"/>
+        ) : (
+        <Flex justifyContent="space-between">
+            <Flex className={styles.normalWrapper}>
+                <Box className={styles.focusWrapperL}>
+                    <MobiTool ToolIcon={PiMapPinLineBold} toolSize={"10vw"} linkTo="/map"/>
+                </Box>
+                <Flex className={styles.toolsBar}>
+                    <Link to="/">
+                        <Image className={styles.mobileLogo} src={logo}/>
+                    </Link>
+                    <MobiTool ToolIcon={MdHomeFilled} toolSize={"8vw"} linkTo="/subhome"/>
+                    <MobiTool ToolIcon={GoGear} toolSize={"8vw"} linkTo="/dashboard"/>
+                    <MobiTool ToolIcon={CiCircleInfo} toolSize={"8vw"} linkTo="/sobre"/>
                 </Flex>
-                <hr className={styles.sidebarDivider}/>
-                <Flex flexDirection="column" gap="2vh">
-                    <Tool ToolIcon={TbFileExport} linkTo="/mural"/>
-                    <Tool ToolIcon={PiMapPinLineBold} linkTo="/map"/>
-                </Flex>
-            </Box>
-            <Box mt={"auto"}>
-                <hr className={styles.sidebarDivider}/>
-                <Flex flexDirection="column" gap="2vh">
-                    <Tool ToolIcon={GoGear} linkTo="/dashboard"/>
-                    <Tool ToolIcon={CiCircleInfo} linkTo="/sobre"/>
-                </Flex>
-            </Box>
-        </Box>
+                <Box className={styles.focusWrapperR}>
+                    <MobiTool ToolIcon={TbFileExport} toolSize={"12vw"} linkTo="/mural"/>
+                </Box>
+            </Flex>
+            
+        </Flex>
+        )}
+        </>
     )
 }
 
