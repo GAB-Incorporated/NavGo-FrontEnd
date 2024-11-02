@@ -37,6 +37,10 @@
 }
 
 @media (max-width: 600px) {
+    .pageWrapper {
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
     .info {
         margin-top: 20vw;
     }

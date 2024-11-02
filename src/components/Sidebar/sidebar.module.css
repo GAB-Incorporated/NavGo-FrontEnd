@@ -27,8 +27,13 @@ a {
     width: 60%;
 }
 
-.navText {
-    font-size: 1.5vw;
-    font-family: "Keania One", sans-serif;
-    color: black;
+@media (max-width: 900px) {
+    .sidebar {
+        width: 10%;
+    }
+    .sidebarDivider {
+        margin-top: 2vw;
+        margin-bottom: 2vw;
+        opacity: 0.8;
+    }
 }
