@@ -1,0 +1,9 @@
+.dbBody {
+    overflow-y: scroll;
+    height: auto;
+    background-color: var(--c-lightBlue);
+}
+
+.tabText {
+    font-size: 1.5vw !important;
+}

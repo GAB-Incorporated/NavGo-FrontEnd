@@ -56,7 +56,7 @@ const RegisterForm = () => {
         requestData.verification_code = verificationCode;
       }
 
-      const response = await api.post('/user/register', requestData)
+      const response = await api.post('/users/register', requestData)
 
       if (response.status === 201) {
         toast({
@@ -67,6 +67,7 @@ const RegisterForm = () => {
         });
         navigate('/login')
       }
+      <Link to={"/subhome"}/>
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Erro no cadastro de usuário.";
       toast({
@@ -156,7 +157,7 @@ const RegisterForm = () => {
                     className={styles.userType}
                     {...radio}
                     borderRadius="md"
-                    bg="blue.200"
+                    bg="#fff"
                     padding="1.2em"
                     transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
                     fontWeight="semibold"
@@ -198,10 +199,10 @@ const RegisterForm = () => {
             />
           </FormControl>
         )}
-        <Text className={styles.formQuestion}>Já é cadastrado?
+        <Text className={styles.formQuestion}> <b>Já é cadastrado?</b>
           <Link to={"/login"}>
           <Text className={styles.formLink}>
-            Se Logue Aqui!
+            Entre <b>Aqui!</b>
           </Text>
           </Link>
         </Text>
