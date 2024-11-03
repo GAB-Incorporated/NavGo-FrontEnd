@@ -19,11 +19,16 @@ export const Home = () => {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum  fringilla quam lacus, nec pretium ante mattis ut. Morbi sit amet quam  sit amet sapien auctor condimentum ac at nulla. Integer at augue ut  magna tempus egestas. Phasellus ac tempor elit. Vivamus laoreet augue  tempor, cursus purus ac, vestibulum ex. Pellentesque volutpat mauris  purus, ut aliquam odio luctus id. Ut ligula orci, malesuada at rutrum  eget, euismod non magna. Sed et augue sed ligula porta porta. Aliquam  semper nibh dolor, porta auctor elit vulputate et.
                             </Text>
                             <Box className={styles.buttonWrapper}>
-                            <Link to={"/login"}>
-                                <Button className={styles.mapButton} bg={"main.100"}>
-                                    Abrir Mapa
-                                </Button>
-                            </Link>
+                                <Link to={"/login/map"}>
+                                    <Button className={styles.mapButton} bg={"main.100"}>
+                                        Abrir Mapa
+                                    </Button>
+                                </Link>
+                                <Link to={"/login"}>
+                                    <Button className={styles.mapButton} bg={"main.100"}>
+                                        Utilização
+                                    </Button>
+                                </Link>
                             </Box>
                         </Flex>
                     </Box>
@@ -40,9 +45,14 @@ export const Home = () => {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum  fringilla quam lacus, nec pretium ante mattis ut. Morbi sit amet quam  sit amet sapien auctor condimentum ac at nulla. Integer at augue ut  magna tempus egestas. Phasellus ac tempor elit. Vivamus laoreet augue  tempor, cursus purus ac, vestibulum ex. Pellentesque volutpat mauris  purus, ut aliquam odio luctus id. Ut ligula orci, malesuada at rutrum  eget, euismod non magna. Sed et augue sed ligula porta porta. Aliquam  semper nibh dolor, porta auctor elit vulputate et.
                             </Text>
                             <Box className={styles.invertedButtonWrapper}>
-                                <Link to={"/login"}>
+                                <Link to={"/login/mural"}>
                                     <Button className={styles.transButton} bg={"main.200"}>
                                         Transferir Arquivos
+                                    </Button>
+                                </Link>
+                                <Link to={"/login"}>
+                                    <Button className={styles.transButton} bg={"main.200"}>
+                                        Utilização
                                     </Button>
                                 </Link>
                             </Box>

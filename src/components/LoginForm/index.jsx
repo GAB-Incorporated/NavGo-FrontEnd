@@ -4,7 +4,7 @@ import api from '../../api';
 import styles from './loginForm.module.css';
 import { useNavigate, Link } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({choosedTool}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const toast = useToast();
@@ -28,7 +28,8 @@ const LoginForm = () => {
           isClosable: true,
         });
       }
-      navigate('/subhome');
+
+      choosedTool ? navigate("/"+choosedTool) : navigate("/subhome");
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Erro desconhecido. Tente novamente mais tarde.';
       toast({
@@ -68,11 +69,17 @@ const LoginForm = () => {
             className={styles.input}
           />
           <Text className={styles.formQuestion}> <b>Não possui login?</b>
+            {choosedTool ? 
+            <Link to={"/register/"+choosedTool}>
+              <Text className={styles.formLink}>
+                Se cadastre <b>Aqui!</b>
+              </Text>
+            </Link> : 
             <Link to={"/register"}>
-            <Text className={styles.formLink}>
-              Se cadastre <b>Aqui!</b>
-            </Text>
-            </Link>
+              <Text className={styles.formLink}>
+                Se cadastre <b>Aqui!</b>
+              </Text>
+            </Link>}
           </Text>
         </FormControl>
         <Button type="submit" className={styles.button}>

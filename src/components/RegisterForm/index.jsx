@@ -4,9 +4,10 @@ import { InfoOutlineIcon } from "@chakra-ui/icons";
 import api from '../../api';
 import styles from './registerForm.module.css';
 import CustomRadio from '../CustomRadio';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 
 const RegisterForm = () => {
+  const { choosedTool } = useParams()
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [nickName, setNickName] = useState('');
@@ -56,19 +57,36 @@ const RegisterForm = () => {
         requestData.verification_code = verificationCode;
       }
 
-      const response = await api.post('/users/register', requestData)
+      const responseR = await api.post('/users/register', requestData)
 
-      if (response.status === 201) {
+      const responseL = await api.post('/users/login', {
+        email,
+        password,
+      })
+
+      if (responseR.status === 201 && responseL.status !== 200) {
         toast({
-          title: 'Registrado com Sucesso',
+          title: 'Registrado com Sucesso, porém erro no Login',
+          description: 'Seu usuário foi registrado, porém não foi possivel logar automaticamente. Prossiga para o login!',
+          status: 'warning',
+          duration: 5000,
+          isClosable: true,
+        });
+
+        choosedTool ? navigate("/login/"+choosedTool) : navigate("/login");
+      } else if (responseR.status === 201 && responseL.status === 200) {
+        toast({
+          title: 'Registrado e Logado com Sucesso',
           status: 'success',
           duration: 5000,
           isClosable: true,
         });
-        navigate('/login')
+
+        choosedTool ? navigate("/"+choosedTool) : navigate("/subhome");
       }
-      <Link to={"/subhome"}/>
+
     } catch (error) {
+      console.log(error)
       const errorMessage = error.response?.data?.message || "Erro no cadastro de usuário.";
       toast({
         title: 'Falha no Registro',
