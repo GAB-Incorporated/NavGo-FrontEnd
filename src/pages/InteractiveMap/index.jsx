@@ -80,25 +80,12 @@ const InternalMap = () => {
     //verifica se o mapa já foi criado(ele não pode ser renderizado duas vezes, e como já temos o mapa externo, primeiro temos que destruir o mapa externo para criarmos o interno)
     if (!map) {
 
+
       const wallStyle = {
         color: 'black',
         weight: 2,
         opacity: 1,
       };
-
-      // const corredor = L.polyline([
-      //   [0, 8],
-      //   [72, 8]
-      // ], wallStyle).on('click', function() {
-      //   sidebar.show();
-      // })
-
-      // const corredor2 = L.polyline([
-      //   [0, 13],
-      //   [72, 13]
-      // ], wallStyle).on('click', function() {
-      //   sidebar.show();
-      // })
   
       const firstFloor = L.rectangle([
         [0, 0],
@@ -106,68 +93,25 @@ const InternalMap = () => {
       ], wallStyle);
 
       
-      const library = L.polygon([
-        [72, 8],
-        [72, 20],
-        [64, 20],
-        [64, 8]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
-
-      const cpd = L.polygon([
-        [72, 0],
-        [72, 8],
-        [61, 8],
-        [61, 0]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
-
-      const secretary = L.polygon([
-        [64, 13],
-        [64, 20],
-        [52, 20],
-        [52, 13]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
-
-      const diretory = L.polygon([
-        [52, 13],
-        [52, 20],
-        [46, 20],
-        [46, 13]
-      ], wallStyle).on('click', function() {
-        sidebar.show();
-      });
-
-      const kitchen = L.polygon([
-        [46, 13],
-        [46, 20],
-        [38, 20],
-        [38, 13]
+      const A1sala1 = L.polyline([
+        [2, 0],
+        [10, 0],
+        [10, 6],
+        [2, 6],
+        [2, 0]
       ], wallStyle).on('click', function() {
         sidebar.show();
       })
-
-      const labMaker = L.polygon([
-        [20, 14],
-        [10, 14],
-        [10, 20],
-        [20, 20]
-      ], wallStyle).on('click', function() {
+      
+      const A1sala2 = L.polyline([
+        [60, 0],
+        [68, 0],
+        [68, 6],
+        [60, 6],
+        [60, 0],
+      ], wallStyle).on('click', function () {
         sidebar.show();
-      })
-
-      const auditorium = L.polygon([
-        [0, 14],
-        [10, 14],
-        [10, 20],
-        [0, 20]
-      ], wallStyle).on('click', function() {
-        sidebar.show();
-      })
+      });
   
       const A1 = L.layerGroup([firstFloor, library, cpd, secretary, diretory, kitchen, auditorium, labMaker]);
   
@@ -176,21 +120,21 @@ const InternalMap = () => {
         [72, 20]   //ponto nordeste
       ], wallStyle);
 
-      const A2hallwayleft = L.polygon([
+      const A2hallwayleft = L.polyline([
         [0, 7],   // Ponto inicial à esquerda
         [72, 7]   // Ponto final à direita
       ], wallStyle).on('click', function () {
         sidebar.show();
       });
 
-      const A2hallwayright = L.polygon([
+      const A2hallwayright = L.polyline([
         [0, 13],
         [72, 13]
       ], wallStyle).on('click', function() {
         sidebar.show();
       })
   
-      const A2sala1 = L.polygon([
+      const A2sala1 = L.polyline([
         [2, 0],
         [10, 0],
         [10, 6],
@@ -200,7 +144,7 @@ const InternalMap = () => {
         sidebar.show();
       });
   
-      const A2sala2 = L.polygon([
+      const A2sala2 = L.polyline([
         [60, 0],
         [68, 0],
         [68, 6],
@@ -211,7 +155,7 @@ const InternalMap = () => {
       });
 
       //cria os layers para renderizar os elementos que foram criados
-      const A2 = L.layerGroup([secondFloor, A2hallwayleft, A2hallwayright, A2sala1, A2sala2]);
+      const A2 = L.layerGroup([A2footprint, A2hallwayleft, A2hallwayright, A2sala1, A2sala2]);
       
       //define os layers base do mapa
       const baseMaps = {

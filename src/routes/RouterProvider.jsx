@@ -4,8 +4,9 @@ import NotFound from "../pages/NotFound"
 import ModalTest from "../pages/ModalTest";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import AdminDashboard from "../pages/AdminDashboard";
+import Dashboard from "../pages/Dashboard";
 import Subhome from "../pages/Subhome"
+import Mural from "../pages/Mural";
 import InteractiveMap from "../pages/InteractiveMap";
 
 const router = createBrowserRouter([
@@ -30,17 +31,21 @@ const router = createBrowserRouter([
         element: <Login/>
     },
     {
-        path: "/admDashboard",
-        element: <AdminDashboard/>
+        path: "/dashboard",
+        element: <Dashboard/>
     },
     {
         path: "/subhome",
         element: <Subhome/>
     },
     {
+        path: "/mural",
+        element: <Mural/>
+    },
+    {
         path: "/map",
         element: <InteractiveMap/>
-    },
+    }
 ]) 
 
 const Routes = () => {

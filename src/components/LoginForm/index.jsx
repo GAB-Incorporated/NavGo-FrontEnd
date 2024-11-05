@@ -14,7 +14,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await api.post('/user/login', {
+      const response = await api.post('/users/login', {
         email,
         password,
       });
@@ -67,10 +67,10 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
             className={styles.input}
           />
-          <Text className={styles.formQuestion}>Não possui login?
+          <Text className={styles.formQuestion}> <b>Não possui login?</b>
             <Link to={"/register"}>
             <Text className={styles.formLink}>
-              Se Cadastre Aqui!
+              Se cadastre <b>Aqui!</b>
             </Text>
             </Link>
           </Text>
