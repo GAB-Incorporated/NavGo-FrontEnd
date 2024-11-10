@@ -50,4 +50,5 @@ jobs:
             --image "${{ env.IMAGE_TAG }}" \
             --region "${{ env.REGION }}" \
             --platform managed \
-            --allow-unauthenticated
+            --allow-unauthenticated \
+            --port 3000
