@@ -76,7 +76,7 @@ const InteractiveMap = () => {
 const InternalMap = () => {
   console.log("Iniciando o mapa interno");
   useEffect(() => {
-    let map, sidebar;
+    let map;
     //verifica se o mapa já foi criado(ele não pode ser renderizado duas vezes, e como já temos o mapa externo, primeiro temos que destruir o mapa externo para criarmos o interno)
     if (!map) {
 
@@ -86,133 +86,242 @@ const InternalMap = () => {
         opacity: 1,
       };
 
-      // const corredor = L.polyline([
-      //   [0, 8],
-      //   [72, 8]
-      // ], wallStyle).on('click', function() {
-      //   sidebar.show();
-      // })
+      const createPopupContent = (content) => {
+        const container = L.DomUtil.create('div', 'popup-content');
+        
+        const title = L.DomUtil.create('h4', 'popup-title', container);
+        title.textContent = content.title;
+        
+        const description = L.DomUtil.create('p', 'popup-description', container);
+        description.textContent = content.description;
+      
+        return container;
+      };
 
-      // const corredor2 = L.polyline([
-      //   [0, 13],
-      //   [72, 13]
-      // ], wallStyle).on('click', function() {
-      //   sidebar.show();
-      // })
-  
       const firstFloor = L.rectangle([
         [0, 0],
         [72, 20]
       ], wallStyle);
 
-      
+      const staircaseFirstFloor = L.polygon([ // Escada no segundo andar
+        [55, 2],
+        [59, 2],
+        [59, 8],
+        [55, 8]
+      ], {
+        color: 'blue',
+        fillColor: 'lightblue',
+        fillOpacity: 0.5,
+      }).bindPopup(createPopupContent({ title: "Escada 1º Andar", description: "Escada para o térreo e para o segundo andar." }));
+
+      const stairLineFirstFloor = L.polygon([
+        [57, 8],
+        [57, 2]
+      ], {
+        color: 'blue',
+        fillColor: 'lightblue',
+        fillOpacity: 0.5,
+      }).bindPopup(createPopupContent({ title: "Escada 1º Andar", description: "Escada para o térreo e para o segundo andar." }))
+
       const library = L.polygon([
         [72, 8],
         [72, 20],
         [64, 20],
         [64, 8]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
+      ], wallStyle).bindPopup(createPopupContent({ title: "Biblioteca", description: "Informações sobre a biblioteca e como chegar lá." }));
 
       const cpd = L.polygon([
         [72, 0],
         [72, 8],
-        [61, 8],
-        [61, 0]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
+        [59, 8],
+        [59, 0]
+      ], wallStyle).bindPopup(createPopupContent({ title: "CPD", description: "Informações sobre o CPD." }));
 
       const secretary = L.polygon([
         [64, 13],
         [64, 20],
-        [52, 20],
-        [52, 13]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
+        [53, 20],
+        [53, 13]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Secretaria", description: "Informações sobre a secretaria." }));
 
       const diretory = L.polygon([
-        [52, 13],
-        [52, 20],
-        [46, 20],
-        [46, 13]
-      ], wallStyle).on('click', function() {
-        sidebar.show();
-      });
+        [53, 13],
+        [53, 20],
+        [44, 20],
+        [44, 13]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Diretoria", description: "Informações sobre a diretoria." }));
 
       const kitchen = L.polygon([
-        [46, 13],
-        [46, 20],
-        [38, 20],
-        [38, 13]
-      ], wallStyle).on('click', function() {
-        sidebar.show();
-      })
+        [44, 13],
+        [44, 20],
+        [34, 20],
+        [34, 13]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Cozinha", description: "Informações sobre a cozinha." }));
+
+      const mensBathroom = L.polygon([
+        [34, 13],
+        [34, 20],
+        [27, 20],
+        [27, 13]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Banheiro Masculino", description: "Informações sobre o banheiro masculino." }));
+
+      const womensBathroom = L.polygon([
+        [27, 13],
+        [27, 20],
+        [20, 20],
+        [20, 13]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Banheiro Feminino", description: "Informações sobre o banheiro feminino." }));
 
       const labMaker = L.polygon([
-        [20, 14],
-        [10, 14],
+        [20, 13],
+        [10, 13],
         [10, 20],
         [20, 20]
-      ], wallStyle).on('click', function() {
-        sidebar.show();
-      })
+      ], wallStyle).bindPopup(createPopupContent({ title: "Laboratório Maker", description: "Informações sobre o laboratório maker." }));
 
       const auditorium = L.polygon([
-        [0, 14],
-        [10, 14],
+        [0, 13],
+        [10, 13],
         [10, 20],
         [0, 20]
-      ], wallStyle).on('click', function() {
-        sidebar.show();
-      })
-  
-      const A1 = L.layerGroup([firstFloor, library, cpd, secretary, diretory, kitchen, auditorium, labMaker]);
-  
+      ], wallStyle).bindPopup(createPopupContent({ title: "Auditório", description: "Informações sobre o auditório." }));
+
+      const cafeteria = L.polygon([
+        [0, 0],
+        [12, 0],
+        [12, 8],
+        [0, 8]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Cafeteria", description: "Informações sobre a cafeteria." }));
+
+      const A1 = L.layerGroup([ //Fim da config do térreo
+        firstFloor, 
+        staircaseFirstFloor, stairLineFirstFloor,
+        library, cpd, secretary, diretory, kitchen, mensBathroom, womensBathroom, labMaker, auditorium, cafeteria
+      ]);
+
       const secondFloor = L.rectangle([
-        [0, 0],    //ponto sudoeste
-        [72, 20]   //ponto nordeste
+        [0, 0],
+        [72, 20]
       ], wallStyle);
 
-      const A2hallwayleft = L.polygon([
-        [0, 7],   // Ponto inicial à esquerda
-        [72, 7]   // Ponto final à direita
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
+      const staircaseSecondFloor = L.polygon([ // Escada no segundo andar
+        [55, 2],
+        [59, 2],
+        [59, 8],
+        [55, 8]
+      ], {
+        color: 'blue',
+        fillColor: 'lightblue',
+        fillOpacity: 0.5,
+      }).bindPopup(createPopupContent({ title: "Escada 1º Andar", description: "Escada para o térreo e para o segundo andar." }));
 
-      const A2hallwayright = L.polygon([
-        [0, 13],
-        [72, 13]
-      ], wallStyle).on('click', function() {
-        sidebar.show();
-      })
-  
-      const A2sala1 = L.polygon([
+      const stairLine = L.polygon([
+        [57, 8],
+        [57, 2]
+      ], {
+        color: 'blue',
+        fillColor: 'lightblue',
+        fillOpacity: 0.5,
+      }).bindPopup(createPopupContent({ title: "Escada 1º Andar", description: "Escada para o térreo e para o segundo andar." }))
+      // const A2hallwayleft = L.polygon([
+      //   [0, 7],
+      //   [72, 7]
+      // ], wallStyle)
+
+      // const A2hallwayright = L.polygon([
+      //   [0, 13],
+      //   [72, 13]
+      // ], wallStyle)
+
+      const lab06 = L.polygon([
         [2, 0],
         [10, 0],
         [10, 6],
-        [2, 6],
-        [2, 0]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
-  
-      const A2sala2 = L.polygon([
-        [60, 0],
-        [68, 0],
-        [68, 6],
-        [60, 6],
-        [60, 0]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
+        [2, 6]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Laboratório 6", description: "zaas" }));
 
-      //cria os layers para renderizar os elementos que foram criados
-      const A2 = L.layerGroup([secondFloor, A2hallwayleft, A2hallwayright, A2sala1, A2sala2]);
+      const lab01 = L.polygon([
+        [67, 8],
+        [65, 8],
+        [65, 8],
+        [65, 10],
+        [72, 10],
+        [72, 0],
+        [67, 0],
+      ], wallStyle).bindPopup(createPopupContent({ title: "Laboratório 1", description: "O melhor lab" }));
       
+      const lab04 = L.polygon([
+        [66, 12],
+        [65, 12],
+        [65, 10],
+        [72, 10],
+        [72, 20],
+        [67, 20],
+        [67, 12]
+      ], wallStyle).bindPopup(createPopupContent({title: "Lab 04", description: "Laboratório 4"}));
+      
+      const lab05 = L.polygon([
+        [67, 12],
+        [67, 20],
+        [59, 20],
+        [59, 12]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Lab 05", description: "Laboratório 5"}));
+      
+      const lab03 = L.polygon([
+        [59, 0],
+        [67, 0],
+        [67, 8],
+        [59, 8]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Sala 2", description: "Informações sobre a Sala 2." }));
+      
+      function createQuarterCircle(center, radius, startAngle, endAngle, segments = 30) {
+        const latlngs = [center];
+        const angleStep = (endAngle - startAngle) / segments;
+      
+        for (let i = 0; i <= segments; i++) {
+          const angleRad = (startAngle + i * angleStep) * (Math.PI / 180);
+          const lat = center[0] + (radius / 111) * Math.cos(angleRad); // Aproximação para latitude
+          const lng = center[1] + (radius / (111 * Math.cos(center[0] * (Math.PI / 180)))) * Math.sin(angleRad); // Aproximação para longitude
+          latlngs.push([lat, lng]);
+        }
+      
+        latlngs.push(center); // Fechar o polígono
+        return L.polygon(latlngs, wallStyle, {
+        });
+      }
+      
+      const lab07Corner = createQuarterCircle([52, 16], 222, 360, 270); // 0 a 90 graus para um quarto de círculo
+      
+      const wallCorner = L.polygon([
+        [54, 16],
+        [54, 20],
+        [52, 20],
+        [52, 16]
+      ], wallStyle)
+
+      const lab07 = L.polygon([
+        [59, 12],
+        [59, 20],
+        [52, 20],
+        [52, 12]
+      ], wallStyle).bindPopup(createPopupContent({ title: "Lab 07", description: "Laboratório 07"}));
+
+
+      // const lab07 = L.polygon([
+      //   [67, 12],
+      //   [67, 20],
+      //   [52, 20],
+      //   [52, 12]
+      // ], wallStyle).bindPopup(createPopupContent({ title: "Lab 07", description: "Laboratório 07"}));
+
+
+      const A2 = L.layerGroup([ // Primeiro andar
+        secondFloor, 
+        staircaseSecondFloor, stairLine,
+        lab01, lab04, lab05, lab06, lab03,
+        lab07, lab07Corner, wallCorner
+      ]);
+
       //define os layers base do mapa
       const baseMaps = {
         "Térreo": A1,
@@ -221,29 +330,18 @@ const InternalMap = () => {
       
       //cria o mapa interno
       map = L.map('internalMap', {
-        crs: L.CRS.Simple, //define o sistema de coordenadas
-        minZoom: 0, //define o nível de zoom mínimo
-        layers: [A1], //define o layer inicial
+        crs: L.CRS.Simple, // Define o sistema de coordenadas
+        minZoom: 0, // Define o nível de zoom mínimo
+        layers: [A2], // Define o layer inicial para o segundo andar
       });
       
-      //define o centro do mapa
-      map.setView([25.25, 9.5], 3);
-      //adiciona o botão de tela cheia
+      // Define o centro do mapa para o segundo andar
+      map.setView([55, 25], 5); // Ajuste as coordenadas e o zoom conforme necessário
+      
+      // Adiciona o botão de tela cheia
       map.addControl(new L.Control.Fullscreen());
-  
-      //evento de mudança de layer
-      map.on('baselayerchange', function () {
-        //deveria ocultar a sidebar, mas como não está funcionando, não acontece ainda.
-        sidebar.hide();
-      });
-  
-      sidebar = L.control.sidebar('sidebar', {
-        closeButton: true,
-        position: 'right'
-      });
-      map.addControl(sidebar);
-  
-      L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
+      
+      L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);    
     }
     
     //função para limpar o mapa quando o componente é desmontado
@@ -257,11 +355,10 @@ const InternalMap = () => {
   
   //retorna o mapa interno
   return (
-    <div style={{height: "100vh", width: "100%"}}>
-      <div id="internalMap" style={{height: "100%"}}></div>
-      <div id="sidebar"></div>
+    <div style={{ height: "100vh", width: "100%" }}>
+      <div id="internalMap" style={{ height: "100%" }}></div>
     </div>
-  )
+  );
 }
 
 export default InteractiveMap;
