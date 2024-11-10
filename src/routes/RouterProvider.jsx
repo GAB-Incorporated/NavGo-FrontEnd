@@ -23,8 +23,16 @@ const router = createBrowserRouter([
         element: <NotFound />
     },
     {
+        path: "/register/:choosedTool",
+        element: <Register/>
+    },
+    {
         path: "/register",
         element: <Register/>
+    },
+    {
+        path: "/login/:choosedTool",
+        element: <Login/>
     },
     {
         path: "/login",
