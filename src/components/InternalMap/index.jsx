@@ -38,42 +38,52 @@ const InternalMap = () => {
     }
   };
 
+  const createPopupContent = (content) => {
+    const container = L.DomUtil.create('div', 'popup-content');
+    
+    const title = L.DomUtil.create('h4', 'popup-title', container);
+    title.textContent = content.title;
+    
+    const description = L.DomUtil.create('p', 'popup-description', container);
+    description.textContent = content.description;
+  
+    return container;
+  };
+
   useEffect(() => {
     let map, sidebar;
 
     if (!map) {
         const wallStyle = {
-            color: 'black',
-            weight: 2,
-            opacity: 1,
+          color: 'black',
+          weight: 2,
+          opacity: 1,
         };
 
         map = L.map('internalMap', {
-            crs: L.CRS.Simple,
-            minZoom: 0,
+          crs: L.CRS.Simple,
+          minZoom: 0,
         });
 
         map.setView([25.25, 9.5], 3);
         map.addControl(new L.Control.Fullscreen());
 
         sidebar = L.control.sidebar('sidebar', {
-            closeButton: true,
-            position: 'right'
+          closeButton: true,
+          position: 'right'
         });
         map.addControl(sidebar);
 
         const layers = {};
 
         locations.forEach((location) => {
-        const layer = L.polygon(location.coordinates, wallStyle).on('click', function () {
-          sidebar.show();
-        });
-        
-        if (!layers[location.floor_number]) {
-          layers[location.floor_number] = L.layerGroup([layer]);
-        } else {
-          layers[location.floor_number].addLayer(layer);
-        }
+          const layer = L.polygon(location.coordinates, wallStyle).bindPopup(createPopupContent({ title: location.location_name, description: location.description}));
+          
+            if (!layers[location.floor_number]) {
+              layers[location.floor_number] = L.layerGroup([layer]);
+            } else {
+              layers[location.floor_number].addLayer(layer);
+            }
         });
 
         const baseMaps = {
