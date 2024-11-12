@@ -24,9 +24,9 @@ const InternalMap = () => {
   }, []);
 
   const calculateRoute = async () => {
-    const start = { x: 72.00, y: 8.00, floor: 0, building_id: 1 };
-    const end = { x: 20.00, y: 20.00, floor: 0, building_id: 1 };
-
+    const start = { x: 3, y: 9, floor: 0, building_id: 1 };
+    const end = { x: 61, y: 9, floor: 1, building_id: 1 };
+    
     try {
       const response = await api.post('/routing/route', {
         start,
@@ -50,57 +50,111 @@ const InternalMap = () => {
     return container;
   };
 
+  const drawCartesianPlane = (map, xMax, yMax) => {
+    for (let i = 0; i <= xMax; i++) {
+      L.polyline([[i, 0], [i, yMax]], { color: 'gray', weight: 1, opacity: 0.5 }).addTo(map);
+      L.marker([i, -0.5], { icon: new L.DivIcon({ className: 'coordinate-label', html: i }) }).addTo(map);
+    }
+    for (let j = 0; j <= yMax; j++) {
+      L.polyline([[0, j], [xMax, j]], { color: 'gray', weight: 1, opacity: 0.5 }).addTo(map);
+      L.marker([-0.5, j], { icon: new L.DivIcon({ className: 'coordinate-label', html: j }) }).addTo(map);
+    }
+  };
+
+  const drawPathLines = (path, pathLayers) => {
+    const floorPaths = {};
+
+    // Agrupa os nodes por andar
+    path.forEach((node) => {
+      if (!floorPaths[node.floor]) {
+        floorPaths[node.floor] = [];
+      }
+      floorPaths[node.floor].push([node.x, node.y]);
+    });
+
+    // Desenha uma linha para cada andar com os pontos agrupados
+    Object.keys(floorPaths).forEach((floor) => {
+      const points = floorPaths[floor];
+      const line = L.polyline(points, { color: 'blue', weight: 2 });
+
+      if (!pathLayers[floor]) {
+        pathLayers[floor] = L.layerGroup([line]);
+      } else {
+        pathLayers[floor].addLayer(line);
+      }
+    });
+  };
+
   useEffect(() => {
     let map, sidebar;
 
     if (!map) {
         const wallStyle = {
-          color: 'black',
-          weight: 2,
-          opacity: 1,
+            color: 'black',
+            weight: 2,
+            opacity: 1,
         };
 
         map = L.map('internalMap', {
-          crs: L.CRS.Simple,
-          minZoom: 0,
+            crs: L.CRS.Simple,
+            minZoom: 0,
         });
 
         map.setView([25.25, 9.5], 3);
-        map.addControl(new L.Control.Fullscreen());
 
         sidebar = L.control.sidebar('sidebar', {
-          closeButton: true,
-          position: 'right'
+            closeButton: true,
+            position: 'right'
         });
         map.addControl(sidebar);
 
-        const layers = {};
+        const locationLayers = {};
+        const pathLayers = {};
 
         locations.forEach((location) => {
-          const layer = L.polygon(location.coordinates, wallStyle).bindPopup(createPopupContent({ title: location.location_name, description: location.description}));
+            const layer = L.polygon(location.coordinates, wallStyle)
+                .bindPopup(createPopupContent({ title: location.location_name, description: location.description }));
           
-            if (!layers[location.floor_number]) {
-              layers[location.floor_number] = L.layerGroup([layer]);
+            if (!locationLayers[location.floor_number]) {
+                locationLayers[location.floor_number] = L.layerGroup([layer]);
             } else {
-              layers[location.floor_number].addLayer(layer);
+                locationLayers[location.floor_number].addLayer(layer);
             }
         });
 
+        // Nodes por andar
+        path.forEach((node) => {
+            const circle = L.circle([node.x, node.y], { radius: 0.5, color: 'blue' });
+
+            if (!pathLayers[node.floor]) {
+                pathLayers[node.floor] = L.layerGroup([circle]);
+            } else {
+                pathLayers[node.floor].addLayer(circle);
+            }
+        });   
+
+        drawPathLines(path, pathLayers);
+        drawCartesianPlane(map, 72, 20);
+             
+        // Combina as camadas
         const baseMaps = {
-            ...Object.keys(layers).reduce((acc, key) => {
-            acc[`Floor ${key}`] = layers[key];
-            return acc;
-            }, {}),
+          ...Object.keys(locationLayers).reduce((acc, key) => {
+              const locationLayer = locationLayers[key];
+              const pathLayer = pathLayers[key];
+
+              // Previne undefined
+              if (locationLayer && pathLayer) {
+                  acc[`Floor ${key}`] = L.layerGroup([locationLayer, pathLayer]);
+              } else if (locationLayer) {
+                  acc[`Floor ${key}`] = locationLayer;
+              } else if (pathLayer) {
+                  acc[`Floor ${key}`] = pathLayer;
+              }
+              return acc;
+          }, {}),
         };
+      L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
 
-        L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
-
-        // Desenha os nodes como bolinhas
-        if (path.length > 0) {
-            path.forEach(node => {
-                L.circle([node.x, node.y], { radius: 0.5, color: 'blue' }).addTo(map);
-            });
-        }
     }
 
     return () => {
@@ -110,6 +164,7 @@ const InternalMap = () => {
         }
     };
   }, [locations, path]);
+
 
   return (
       <div style={{height: "100vh", width: "100%"}}>
