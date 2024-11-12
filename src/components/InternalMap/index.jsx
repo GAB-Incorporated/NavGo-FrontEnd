@@ -4,10 +4,15 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-fullscreen';
 import 'leaflet.fullscreen/Control.FullScreen.css';
 import api from '../../api.js';
+import styles from './InternalMap.module.css'
 
 const InternalMap = () => {
   const [locations, setLocations] = useState([]);
   const [path, setPath] = useState([]);
+
+  const [nodes, setNodes] = useState([]);
+  const [selectedStartNode, setSelectedStartNode] = useState(null);
+  const [selectedEndNode, setSelectedEndNode] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,18 +27,34 @@ const InternalMap = () => {
     fetchData();
   }, []);
 
-  const calculateRoute = async () => {
-    const start = { x: 3, y: 9, floor: 0, building_id: 1 };
-    const end = { x: 61, y: 9, floor: 1, building_id: 1 };
+  useEffect(() => {
+    const fetchNodes = async () => {
+      try {
+        const response = await api.get("/routing/nodes");
+        setNodes(response.data);
+      } catch (err) {
+        console.error("Erro ao buscar os nodes:", err);
+      }
+    };
     
+    fetchNodes();
+  }, []);
+
+  const handleRouteCalculation = async () => {
+    if (!selectedStartNode || !selectedEndNode) return;
+
     try {
-      const response = await api.post('/routing/route', {
-        start,
-        end,
+      const startNode = nodes.find((node) => node.node_id === parseInt(selectedStartNode));
+      const endNode = nodes.find((node) => node.node_id === parseInt(selectedEndNode));
+
+      const response = await api.post("/routing/route", {
+        start: { x: startNode.x, y: startNode.y, floor: startNode.floor_number, building_id: startNode.building_id },
+        end: { x: endNode.x, y: endNode.y, floor: endNode.floor_number, building_id: endNode.building_id },
       });
+
       setPath(response.data);
     } catch (err) {
-      console.error(err);
+      console.error("Erro ao calcular a rota:", err);
     }
   };
 
@@ -170,12 +191,54 @@ const InternalMap = () => {
   }, [locations, path]);
 
   return (
-      <div style={{height: "100vh", width: "100%"}}>
-          <div id="internalMap" style={{height: "100%"}}></div>
-          <div id="sidebar"></div>
-          <button onClick={calculateRoute}>Calculate Route</button> {/* Botão horrível no fim da tela para teste */}
+    <div>
+      <div className={styles.container}>
+        <div id="internalMap" className={styles.internalMap}></div>
+        <div id="sidebar" className={styles.sidebar}></div>
+
+        <div className={styles.overlay}>
+          <div className={styles.selectWrapper}>
+            <select
+              id="startNode"
+              onChange={(e) => setSelectedStartNode(e.target.value)}
+              className={styles.selectInput}
+            >
+              <option value="">Selecione o Inicio</option>
+              {nodes.map((node) => (
+                <option key={node.node_id} value={node.node_id}>
+                  {`Andar ${node.floor_number} - ${node.description}`}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.selectWrapper}>
+            <select
+              id="endNode"
+              onChange={(e) => setSelectedEndNode(e.target.value)}
+              className={styles.selectInput}
+            >
+              <option value="">Selecione o Destino</option>
+              {nodes.map((node) => (
+                <option key={node.node_id} value={node.node_id}>
+                  {`Andar ${node.floor_number} - ${node.description}`}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button
+            onClick={handleRouteCalculation}
+            disabled={!selectedStartNode || !selectedEndNode}
+            className={styles.calculateButton}
+          >
+            Calcular Rota
+          </button>
+        </div>
       </div>
+    </div>
   );
+  
 };
 
 export default InternalMap;
