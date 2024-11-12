@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { MapContainer, TileLayer, Polygon, Polyline, Popup} from "react-leaflet";
+import { MapContainer, TileLayer, Polygon, Polyline, Popup } from "react-leaflet";
 import styles from './interactiveMap.module.css';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-fullscreen';
 import 'leaflet.fullscreen/Control.FullScreen.css';
 import 'leaflet-sidebar-v2/js/leaflet-sidebar.js';
 import 'leaflet-sidebar-v2/css/leaflet-sidebar.css';
+import Sidebar from '../../components/Sidebar';
 import InternalMap from "../../components/InternalMap/index.jsx";
-
 
 const InteractiveMap = () => {
 
@@ -38,12 +38,13 @@ const InteractiveMap = () => {
   ];
 
   const handleBuildingClick = () => {
-    setShowInternalMap(true)
+    setShowInternalMap(true);
   };
 
   return (
     <div className={styles.mapContainer}>
-      <Sidebar/>
+      {!showInternalMap && <Sidebar />}
+      
       {!showInternalMap ? (
         <MapContainer center={[-23.641154, -46.836002]}
           zoom={18}
