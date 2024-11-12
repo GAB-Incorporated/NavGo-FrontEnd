@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "http://localhost:3333"
+    baseURL: "https://navgo-api-120458826340.southamerica-east1.run.app"
 });
 
 export default api;
