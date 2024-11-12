@@ -14,7 +14,6 @@ const InternalMap = () => {
       try {
         const locationsResponse = await api.get('/locations');
         setLocations(locationsResponse.data);
-
       } catch (err) {
         console.error(err);
       }
@@ -137,23 +136,28 @@ const InternalMap = () => {
         drawCartesianPlane(map, 72, 20);
              
         // Combina as camadas
-        const baseMaps = {
-          ...Object.keys(locationLayers).reduce((acc, key) => {
-              const locationLayer = locationLayers[key];
-              const pathLayer = pathLayers[key];
+        const baseMaps = Object.keys(locationLayers).reduce((acc, key) => {
+            const locationLayer = locationLayers[key];
+            const pathLayer = pathLayers[key];
 
-              // Previne undefined
-              if (locationLayer && pathLayer) {
-                  acc[`Floor ${key}`] = L.layerGroup([locationLayer, pathLayer]);
-              } else if (locationLayer) {
-                  acc[`Floor ${key}`] = locationLayer;
-              } else if (pathLayer) {
-                  acc[`Floor ${key}`] = pathLayer;
-              }
-              return acc;
-          }, {}),
-        };
-      L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
+            if (locationLayer && pathLayer) {
+              acc[`Andar ${key == 0 ? 'Térreo' : key}`] = L.layerGroup([locationLayer, pathLayer]);
+            } else if (locationLayer) {
+                acc[`Andar ${key}`] = locationLayer;
+            } else if (pathLayer) {
+                acc[`Andar ${key}`] = pathLayer;
+            }
+            return acc;
+        }, {});
+
+        // Constante 'não' é usada mas é responsável por criar o radiogroup de camada
+        const layerControl = L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
+        
+        // Marca o primeiro andar omo a camada inicial selecionada
+        const firstLayer = baseMaps[`Andar Térreo`];
+        if (firstLayer) {
+            firstLayer.addTo(map);
+        }
 
     }
 
@@ -164,7 +168,6 @@ const InternalMap = () => {
         }
     };
   }, [locations, path]);
-
 
   return (
       <div style={{height: "100vh", width: "100%"}}>
