@@ -42,3 +42,10 @@
 .fileAttached {
     border: 1px solid #38A169; /* Verde sutil para indicar arquivo anexado */
 }
+
+@media (max-width: 600px) {
+    .pageWrapper {
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
+}

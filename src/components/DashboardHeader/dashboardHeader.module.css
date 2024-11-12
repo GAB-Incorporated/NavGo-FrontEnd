@@ -25,3 +25,63 @@
 .dbSubtitle {
     font-size: 1.3vw;
 }
+
+@media (max-width: 1150px) {
+    .wrapper {
+        height: fit-content;
+    }
+    
+    .dbTitle {
+        padding-top: 1vw;
+        padding-bottom: 1vw;
+        font-size: 2.5vw;
+    }
+    
+    .dbDivider {
+        width: 0.2rem;
+        height: 2vw;
+        margin: 0 1rem;
+    }
+    
+    .dbSubtitle {
+        font-size: 1.5vw;
+    }
+}
+
+@media (max-width: 700px) {    
+    .dbTitle {
+        padding-left: 2vw;
+        font-size: 4vw;
+    }
+    
+    .dbDivider {
+        width: 0.2rem;
+        height: 3vw;
+        margin: 0 1rem;
+    }
+    
+    .dbSubtitle {
+        font-size: 2.5vw;
+    }
+}
+
+@media (max-width: 400px) {   
+    .wrapper {
+        justify-content: center;
+    }
+
+    .dbTitle {
+        padding-left: 0vw;
+        font-size: 5vw;
+    }
+    
+    .dbDivider {
+        width: 0.2rem;
+        height: 3.5vw;
+        margin: 0 2vw;
+    }
+    
+    .dbSubtitle {
+        font-size: 3.5vw;
+    }
+}

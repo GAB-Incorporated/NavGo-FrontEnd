@@ -43,6 +43,7 @@ const InteractiveMap = () => {
 
   return (
     <div className={styles.mapContainer}>
+      <Sidebar/>
       {!showInternalMap ? (
         <MapContainer center={[-23.641154, -46.836002]}
           zoom={18}
