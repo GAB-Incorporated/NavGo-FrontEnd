@@ -84,7 +84,7 @@ const RegisterForm = () => {
 
         choosedTool ? navigate("/"+choosedTool) : navigate("/subhome");
       }
-
+      <Link to={"/subhome"}/>
     } catch (error) {
       console.log(error)
       const errorMessage = error.response?.data?.message || "Erro no cadastro de usuário.";
