@@ -177,8 +177,7 @@ const InternalMap = () => {
             return acc;
         }, {});
 
-        // Constante 'não' é usada mas é responsável por criar o radiogroup de camada
-        const layerControl = L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
+        L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
         
         // Marca o primeiro andar omo a camada inicial selecionada
         const firstLayer = baseMaps[`Andar 0`];
