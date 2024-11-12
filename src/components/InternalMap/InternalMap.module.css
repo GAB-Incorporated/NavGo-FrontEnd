@@ -15,7 +15,7 @@
     padding: 10px;
     width: 100vw;
     z-index: 1000;
-    transition: 0.3s ease; /* Adiciona uma transição suave */
+    transition: 0.3s ease;
 }
 
 .selectWrapper {
@@ -49,18 +49,6 @@
     background-color: #ca5c4b;
 }
 
-/* MapStyles.module.css */
-
-/* Configuração do overlay */
-.overlay {
-    position: absolute;
-    background: var(--c-blue);
-    padding: 10px;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    overflow: hidden;
-}
-
 .overlay.minimized {
     height: 40px;
     padding: 5px;
@@ -82,6 +70,7 @@
     padding: 8px 16px;
     cursor: pointer;
     transition: 300ms;
+    z-index: 1000;
 }
 
 .toggleButton:hover{
