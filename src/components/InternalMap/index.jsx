@@ -14,6 +14,12 @@ const InternalMap = () => {
   const [selectedStartNode, setSelectedStartNode] = useState(null);
   const [selectedEndNode, setSelectedEndNode] = useState(null);
 
+  const [isOverlayVisible, setOverlayVisible] = useState(true);
+
+  const toggleOverlay = () => {
+    setOverlayVisible(prevState => !prevState);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -162,7 +168,7 @@ const InternalMap = () => {
             const pathLayer = pathLayers[key];
 
             if (locationLayer && pathLayer) {
-              acc[`Andar ${key == 0 ? 'Térreo' : key}`] = L.layerGroup([locationLayer, pathLayer]);
+              acc[`Andar ${key}`] = L.layerGroup([locationLayer, pathLayer]);
             } else if (locationLayer) {
                 acc[`Andar ${key}`] = locationLayer;
             } else if (pathLayer) {
@@ -175,7 +181,7 @@ const InternalMap = () => {
         const layerControl = L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
         
         // Marca o primeiro andar omo a camada inicial selecionada
-        const firstLayer = baseMaps[`Andar Térreo`];
+        const firstLayer = baseMaps[`Andar 0`];
         if (firstLayer) {
             firstLayer.addTo(map);
         }
@@ -195,46 +201,60 @@ const InternalMap = () => {
       <div className={styles.container}>
         <div id="internalMap" className={styles.internalMap}></div>
         <div id="sidebar" className={styles.sidebar}></div>
+        {isOverlayVisible && (
+        <button className={styles.toggleButton} onClick={toggleOverlay}>
+          Minimizar
+        </button>
+        )}
+        {isOverlayVisible && (
+          <div className={styles.overlay}>
 
-        <div className={styles.overlay}>
-          <div className={styles.selectWrapper}>
-            <select
-              id="startNode"
-              onChange={(e) => setSelectedStartNode(e.target.value)}
-              className={styles.selectInput}
+            <div className={styles.selectWrapper}>
+              <select
+                id="startNode"
+                onChange={(e) => setSelectedStartNode(e.target.value)}
+                className={styles.selectInput}
+              >
+                <option value="">Selecione o Início</option>
+                {nodes.map((node) => (
+                  <option key={node.node_id} value={node.node_id}>
+                    {`Andar ${node.floor_number} - ${node.description}`}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className={styles.selectWrapper}>
+              <select
+                id="endNode"
+                onChange={(e) => setSelectedEndNode(e.target.value)}
+                className={styles.selectInput}
+              >
+                <option value="">Selecione o Destino</option>
+                {nodes.map((node) => (
+                  <option key={node.node_id} value={node.node_id}>
+                    {`Andar ${node.floor_number} - ${node.description}`}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              onClick={handleRouteCalculation}
+              disabled={!selectedStartNode || !selectedEndNode}
+              className={styles.calculateButton}
             >
-              <option value="">Selecione o Inicio</option>
-              {nodes.map((node) => (
-                <option key={node.node_id} value={node.node_id}>
-                  {`Andar ${node.floor_number} - ${node.description}`}
-                </option>
-              ))}
-            </select>
+              Calcular Rota
+            </button>
           </div>
+        )}
 
-          <div className={styles.selectWrapper}>
-            <select
-              id="endNode"
-              onChange={(e) => setSelectedEndNode(e.target.value)}
-              className={styles.selectInput}
-            >
-              <option value="">Selecione o Destino</option>
-              {nodes.map((node) => (
-                <option key={node.node_id} value={node.node_id}>
-                  {`Andar ${node.floor_number} - ${node.description}`}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <button
-            onClick={handleRouteCalculation}
-            disabled={!selectedStartNode || !selectedEndNode}
-            className={styles.calculateButton}
-          >
-            Calcular Rota
+        {/* Botão fixo na parte inferior direita da página quando o overlay estiver minimizado */}
+        {!isOverlayVisible && (
+          <button className={styles.toggleButtonMinimized} onClick={toggleOverlay}>
+            Expandir
           </button>
-        </div>
+        )}
       </div>
     </div>
   );
