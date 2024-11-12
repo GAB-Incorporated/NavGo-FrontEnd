@@ -56,9 +56,15 @@
     }
     
     .infoText {
-        font-size: 3vw;
+        font-size: 4vw;
         font-weight: 700;
         color: black;
+    }
+}
+
+@media (max-width: 400px) {
+    .info {
+        margin-top: 60vw;
     }
 }
 
