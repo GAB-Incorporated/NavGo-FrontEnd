@@ -11,7 +11,7 @@ const CreateCourse = () => {
     
     const getCoordinators = useCallback(async () => {
         try {
-            const coordinatorsData = await api.get("/user/coordinators")
+            const coordinatorsData = await api.get("/users/coordinators")
             setCoordinators(coordinatorsData.data);
         } catch (error) {
             toast({
