@@ -67,14 +67,14 @@ const LocationBodyCreate = () => {
         try{
             const data = {
                 campus: campus,
-                building: buildingId,
+                building_id: buildingId,
                 floor_number: Number(floorNumber),
                 location_type_id: locationTypeId,
                 location_name: locationName,
                 description: description,
             };
 
-            const response = await api.post('/location', data)
+            const response = await api.post('/locations', data)
 
             if(response.status === 201) {
                 toast({
@@ -159,7 +159,7 @@ const LocationBodyCreate = () => {
                          onChange={(e) => setBuildingId(e.target.value)}
                         className={styles.inputField}
                     >
-                        {building.map((type) => (
+                        {Array.isArray(building) && building.map((type) => (
                             <option key={type.building_id} value={type.building_id}>
                                 {type.building_name}
                             </option>

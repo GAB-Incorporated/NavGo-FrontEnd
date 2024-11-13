@@ -1,41 +1,67 @@
-import { Box, Flex, Text, Image } from "@chakra-ui/react"
-import Footer from "../../components/Footer";
+import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react"
+import Sidebar from "../../components/Sidebar";
 import styles from "./subhome.module.css"
-import logo from "../../assets/navgo-logo.png"
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import DashboardHeader from "../../components/DashboardHeader";
+import ModalStructure from "../../components/ModalStructure";
+import MapBody from "../../components/ModalBody/SubhomeBody/MapBody";
+import MuralBody from "../../components/ModalBody/SubhomeBody/MuralBody";
 
 const Subhome = () => {
+    const {isOpen, onOpen, onClose } = useDisclosure()
+    const [modalContent, setModalContent] = useState(<></>);
+    const [modalTitle, setModalTitle] = useState("")
+
+    const openModal = (content, title) => {
+        setModalContent(content);
+        setModalTitle(title)
+        onOpen();
+    };
+
     return(
         <Box w={"inherit"}>
+            <ModalStructure
+                isOpen={isOpen}
+                onClose={onClose}
+                title={modalTitle}
+                contentBody={modalContent}
+                headerBGColor='main.100'
+                headerColor='white'
+            />
             <Flex className={styles.pageWrapper}>
-                <Box className={styles.sidebar}>
-                    <Box className={styles.logoWrapper}>
-                        <Image className={styles.navLogo} src={logo}/>
-                        <Text className={styles.navText}>NavGO</Text>
-                    </Box>
-                    <Image className={styles.toolIcon}/>
-                    <Image className={styles.toolIcon}/>
-                    <Link to={'/admDashboard'}>
-                        <Text>Painel administrativo</Text>
-                    </Link>
-                </Box>
+                <Sidebar/>
                 <Box className={styles.body}>
-                    <Text className={styles.infoText}>
-                        Bem-Vindo ao NavGO!
-                    </Text>
-                    <Text className={styles.infoText}>
-                        Na barra ao lado temos as ferramentas disponiveis atualmente!
-                    </Text>
-                    <Text className={styles.infoText}>
-                        Qualquer dúvida entre em contato com o administrador do seu curso!
-                    </Text>
-                    <Text className={styles.signature}>
-                        Ass. Os Programmerz
-                    </Text>
+                    <DashboardHeader 
+                        instituicao="ETEC de Embu"
+                        pagina="Introdução"    
+                    />
+                    <Box className={styles.info}>
+                        <Text className={styles.infoText} marginBottom={"2vw"}>
+                            Primeira vez por aqui?
+                        </Text>
+                        <Text className={styles.infoText}>
+                            Não sabe usar alguma das plataformas?
+                        </Text>
+                        <Text className={styles.infoText}>
+                            Veja o nosso tutorial!
+                        </Text>
+                        <Flex className={styles.btnsWrapper}>
+                            <Button 
+                                className={styles.subhomeBtn}
+                                onClick={() => openModal(<MapBody/>, "Como Usar o Mapa")}>
+                                Mapa
+                            </Button>
+                            <Button 
+                                className={styles.subhomeBtn}
+                                onClick={() => openModal(<MuralBody/>, "Como Usar o Mural")}>
+                                Mural
+                            </Button>
+                        </Flex>
+                    </Box>
                 </Box>
             </Flex>
-            <Footer/>
         </Box>
+        
     )   
 }
 

@@ -1,0 +1,42 @@
+.body {
+    margin-bottom: 1em;
+    position: relative;
+}
+
+.divider {
+    display: block;
+    border: 1px solid;
+    border-color: #0000004b;
+    position: relative;
+    margin-right: 2em;
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.teacher{
+    font-size: 0.9em;
+    color:#000000cc
+}
+
+.fileName{
+    font-size: 0.9em;
+    color:#000000cc;
+    margin-left: 0.4em;
+}
+
+.bottomDivider {
+    display: block;
+    border: 1px solid;
+    border-color: #000;
+}
+
+.time {
+    margin-left: auto;
+    margin-right: 3em;
+    font-size: 0.8em;
+}

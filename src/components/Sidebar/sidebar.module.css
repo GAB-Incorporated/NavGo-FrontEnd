@@ -1,0 +1,70 @@
+.sidebar {
+    width: 4%;
+    padding-bottom: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--c-blue);
+}
+
+.sidebarDivider {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    height: 5px;
+    border-radius: 30px;
+    background-color: white;
+    opacity: 0.5;
+}
+
+a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navLogo {
+    margin-top: 1vw;
+    width: 60%;
+}
+
+.normalWrapper {
+    justify-content: space-between;
+    width: 100vw;
+    border-top-left-radius: 55px;
+    border-top-right-radius: 55px;
+    background-color: white;
+    border: 3px solid black;
+    border-bottom: none;
+}
+
+.toolsBar {
+    width: inherit;
+    margin: 0 4vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.focusWrapperL {margin-left: -3.5vw;}
+.focusWrapperR {margin-right: -3.5vw;}
+
+.focusWrapperL, .focusWrapperR {
+    margin-bottom: -3.5vw;
+    padding: 6vw;
+    border-radius: 100px;
+    border: 3px solid black;
+    background-color: white;
+}
+.mobileLogo {
+    width: 12vw;
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 10%;
+    }
+    .sidebarDivider {
+        margin-top: 2vw;
+        margin-bottom: 2vw;
+        opacity: 0.8;
+    }
+}

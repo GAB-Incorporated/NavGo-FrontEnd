@@ -76,6 +76,7 @@
     align-items: end;
     margin-left: 20vw;
     margin-bottom: 3vw;
+    gap: 2vw;
 }
 
 .invertedButtonWrapper {
@@ -84,6 +85,7 @@
     align-items: end;
     margin-right: 15vw;
     margin-bottom: 3vw;
+    gap: 2vw;
 }
 
 .mapButton {
