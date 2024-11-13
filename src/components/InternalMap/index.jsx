@@ -176,7 +176,7 @@ const InternalMap = () => {
       const customButton = L.Control.extend({
         options: { position: 'topright' },
   
-        onAdd: (map) => {
+        onAdd: () => {
           const container = L.DomUtil.create('button', 'leaflet-bar leaflet-control custom-button');
           container.innerHTML = 'Sair';
           container.style.backgroundColor = 'white';

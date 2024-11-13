@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from './chatComponent.module.css'
 import api from '../../api.js';
-import { Box, Text, Link, Spinner, useToast } from "@chakra-ui/react";
+import { Box, Text, Spinner, useToast, Button, Flex } from "@chakra-ui/react";
 
 const ChatComponent = ({ classId }) => {
     const [files, setFiles] = useState([]);
@@ -62,18 +62,19 @@ const ChatComponent = ({ classId }) => {
                                 <Text className={styles.fileName}>
                                     {formattedFileName}
                                 </Text>
-                                <Text className={styles.fileName}>
+
+                                <Flex className={styles.buttonContainer}>
+                                    <Button as="a" href={file.url} target="_blank" rel="noopener noreferrer" className={styles.button}>
+                                        Visualizar Arquivo
+                                    </Button>
+                                    <Button as="a" download href={file.downloadUrl} className={styles.button}>
+                                        Baixar Arquivo
+                                    </Button>
+                                </Flex>
+
+                                <Text className={styles.dateText}>
                                     {formattedDate}
                                 </Text>
-                                <Box className={styles.previewBox}>
-                                    <Text>Preview se possível</Text>
-                                </Box>
-                                <Link href={file.url} className={styles.link} isExternal>
-                                    Visualizar Arquivo
-                                </Link>
-                                <Link download href={file.downloadUrl} className={styles.link}>
-                                    Baixar Arquivo
-                                </Link>
                             </Box>
                         );
                     })
