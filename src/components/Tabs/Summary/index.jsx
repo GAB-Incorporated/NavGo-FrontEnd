@@ -15,9 +15,11 @@ const SummaryTab = () => {
     const [buildings, setBuildings] = useState([]);
     const [subjects, setSubjects] = useState([])
     const [students, setStudents] = useState([])
+    const [teachers, setTeachers] = useState([])
     const [courseIsSelected, setCourseIsSelected] = useState(false)
     const [courseHasSubjects, setCourseHasSubjects] = useState(Boolean)
     const [courseHasStudents, setCourseHasStudents] = useState(Boolean)
+    const [courseHasTeachers, setCourseHasTeachers] = useState(Boolean)
     const {isOpen, onOpen, onClose } = useDisclosure()
     const [modalContent, setModalContent] = useState(<></>);
     const [modalTitle, setModalTitle] = useState("")
@@ -55,6 +57,7 @@ const SummaryTab = () => {
     const fetchCourseData = (courseId, courseName) => {
         setCourseIsSelected(true)
         fetchCourseStudents(courseName)
+        fetchCourseTeachers(courseId)
         fetchCourseSubjects(courseId)
     }
 
@@ -87,10 +90,31 @@ const SummaryTab = () => {
         }
     }
 
+    const fetchCourseTeachers = async (courseId) => {
+        try {
+            let teacherData = await api.get('/courses/teachers/'+courseId)
+
+            console.log((teacherData))
+
+            if (teacherData.data.length > 0) setCourseHasTeachers(true)
+
+            setTeachers(teacherData.data);
+        } catch (error) {
+            setCourseHasTeachers(false)
+            toast({
+                title: 'Falha ao carregar os Professores',
+                description: error.response.data,
+                status: 'error',
+                duration: 10000,
+                isClosable: true,
+            });
+        }
+    }
+
     const fetchCourseStudents = async (courseName) => {
         try {
             const studentArr = []
-            let studentData = await api.get('/user/students')
+            let studentData = await api.get('/users/students')
             console.log(studentData.data)
             studentData.data.map(student => {
                 if (student.course_name == courseName) {
@@ -186,7 +210,9 @@ const SummaryTab = () => {
                                     alignItems="center" 
                                     padding="0.5vh 0"
                                     _hover={{cursor: 'pointer'}}
-                                    onClick={() => openModal(<Buildings buildingName={building.building_name}/>, "Lista de Locais")}
+                                    onClick={() => openModal(<Buildings 
+                                        buildingID={building.building_id}
+                                        buildingName={building.building_name}/>, "Lista de Locais")}
                                 >
                                     <Image className={styles.independent_icons} src="/src/assets/locations.png"/>
                                     <Text className={styles.independent_small}>Visualizar Locais</Text>
@@ -203,7 +229,20 @@ const SummaryTab = () => {
                         <Text className={styles.headerTitle}>Professores</Text>
                     </Flex>
                     <Box className={styles.boxBody}>
-                        {courseIsSelected ? <></> : (
+                        {courseIsSelected ? courseHasTeachers ? teachers.map((teacher) => (
+                            <Flex key={teacher} className={styles.independentTabInfo}>
+                                <Image className={styles.icons} src="/src/assets/professor.png"/>
+                                <Box>
+                                    <Text>{teacher.teacher_name}</Text>
+                                    <Text className={styles.independent_small}>Módulo X</Text>
+                                </Box>
+                            </Flex>
+                        )) : (
+                            <Flex className={styles.warningWrapper}>
+                                <Text className={styles.message}>
+                                    Curso selecionado, não possui professores vinculados.
+                                </Text>
+                            </Flex>) : (
                             <Flex className={styles.infoWrapper}>
                                 <Text className={styles.message}>
                                     Selecione um Curso para as informações aparecerem aqui.
