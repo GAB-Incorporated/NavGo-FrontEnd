@@ -5,6 +5,7 @@ import 'leaflet-fullscreen';
 import 'leaflet.fullscreen/Control.FullScreen.css';
 import api from '../../api.js';
 import styles from './InternalMap.module.css'
+import { useNavigate } from "react-router-dom";
 
 const InternalMap = () => {
   const [locations, setLocations] = useState([]);
@@ -15,6 +16,8 @@ const InternalMap = () => {
   const [selectedEndNode, setSelectedEndNode] = useState(null);
 
   const [isOverlayVisible, setOverlayVisible] = useState(true);
+
+  const navigate = useNavigate();
 
   const toggleOverlay = () => {
     setOverlayVisible(prevState => !prevState);
@@ -102,85 +105,103 @@ const InternalMap = () => {
 
   useEffect(() => {
     let map, sidebar;
-
+  
     if (!map) {
-        const wallStyle = {
-            color: 'black',
-            weight: 2,
-            opacity: 1,
-        };
-
-        map = L.map('internalMap', {
-            crs: L.CRS.Simple,
-            minZoom: 0,
-        });
-
-        map.setView([25.25, 9.5], 3);
-
-        sidebar = L.control.sidebar('sidebar', {
-            closeButton: true,
-            position: 'right'
-        });
-        map.addControl(sidebar);
-
-        const locationLayers = {};
-        const pathLayers = {};
-
-        locations.forEach((location) => {
-            const layer = L.polygon(location.coordinates, wallStyle)
-                .bindPopup(createPopupContent({ title: location.location_name, description: location.description }));
+      const wallStyle = {
+        color: 'black',
+        weight: 2,
+        opacity: 1,
+      };
+  
+      map = L.map('internalMap', {
+        crs: L.CRS.Simple,
+        minZoom: 0,
+      });
+  
+      map.setView([25.25, 9.5], 3);
+  
+      sidebar = L.control.sidebar('sidebar', {
+        closeButton: true,
+        position: 'right'
+      });
+      map.addControl(sidebar);
+  
+      const locationLayers = {};
+      const pathLayers = {};
+  
+      locations.forEach((location) => {
+        const layer = L.polygon(location.coordinates, wallStyle)
+          .bindPopup(createPopupContent({ title: location.location_name, description: location.description }));
+  
+        if (!locationLayers[location.floor_number]) {
+          locationLayers[location.floor_number] = L.layerGroup([layer]);
+        } else {
+          locationLayers[location.floor_number].addLayer(layer);
+        }
+      });
+  
+      path.forEach((node) => {
+        const circle = L.circle([node.x, node.y], { radius: 0.5, color: 'blue' });
+  
+        if (!pathLayers[node.floor]) {
+          pathLayers[node.floor] = L.layerGroup([circle]);
+        } else {
+          pathLayers[node.floor].addLayer(circle);
+        }
+      });
+  
+      drawPathLines(path, pathLayers);
+  
+      const baseMaps = Object.keys(locationLayers).reduce((acc, key) => {
+        const locationLayer = locationLayers[key];
+        const pathLayer = pathLayers[key];
+  
+        if (locationLayer && pathLayer) {
+          acc[`Andar ${key}`] = L.layerGroup([locationLayer, pathLayer]);
+        } else if (locationLayer) {
+          acc[`Andar ${key}`] = locationLayer;
+        } else if (pathLayer) {
+          acc[`Andar ${key}`] = pathLayer;
+        }
+        return acc;
+      }, {});
+  
+      L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
+  
+      const firstLayer = baseMaps[`Andar 0`];
+      if (firstLayer) {
+        firstLayer.addTo(map);
+      }
+  
+      const customButton = L.Control.extend({
+        options: { position: 'topright' },
+  
+        onAdd: () => {
+          const container = L.DomUtil.create('button', 'leaflet-bar leaflet-control custom-button');
+          container.innerHTML = 'Sair';
+          container.style.backgroundColor = 'white';
+          container.style.width = '50px';
+          container.style.height = '30px';
           
-            if (!locationLayers[location.floor_number]) {
-                locationLayers[location.floor_number] = L.layerGroup([layer]);
-            } else {
-                locationLayers[location.floor_number].addLayer(layer);
-            }
-        });
-
-        // Nodes por andar
-        path.forEach((node) => {
-            const circle = L.circle([node.x, node.y], { radius: 0.5, color: 'blue' });
-
-            if (!pathLayers[node.floor]) {
-                pathLayers[node.floor] = L.layerGroup([circle]);
-            } else {
-                pathLayers[node.floor].addLayer(circle);
-            }
-        });   
-
-        drawPathLines(path, pathLayers);
-             
-        // Combina as camadas
-        const baseMaps = Object.keys(locationLayers).reduce((acc, key) => {
-            const locationLayer = locationLayers[key];
-            const pathLayer = pathLayers[key];
-
-            if (locationLayer && pathLayer) {
-              acc[`Andar ${key}`] = L.layerGroup([locationLayer, pathLayer]);
-            } else if (locationLayer) {
-                acc[`Andar ${key}`] = locationLayer;
-            } else if (pathLayer) {
-                acc[`Andar ${key}`] = pathLayer;
-            }
-            return acc;
-        }, {});
-
-        L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
-
-        // Marca o primeiro andar omo a camada inicial selecionada
-        const firstLayer = baseMaps[`Andar 0`];
-        if (firstLayer) {
-            firstLayer.addTo(map);
-        }
+          container.onclick = () => {
+            navigate('/subHome');
+          };
+          
+          return container;
+        },
+      });
+  
+      map.addControl(new customButton());
     }
-
+  
     return () => {
-        if (map) {
-            map.remove();
-            map = null;
-        }
+      if (map) {
+        map.remove();
+        map = null;
+      }
     };
   }, [locations, path]);
+  
 
   return (
     <div>
