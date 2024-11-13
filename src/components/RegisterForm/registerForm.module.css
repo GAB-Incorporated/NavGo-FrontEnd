@@ -163,15 +163,70 @@ input[type="radio"]:checked + .customRadio::after {
         justify-content: center;
         align-items: center;
         height: 100%;
-        margin: 0;
-        padding: 0;
+        margin-top: 0 !important;
         background-color: #f0f0f0;
+        padding-top: 1.5em;
+    }
+    .title {
+        color: var(--c-yellow);
+        font-weight: bold;
+        font-size: 50px !important; 
+        text-align: center;
+        margin: 0;
+        margin-bottom: 0.5em;
     }
     .form {
-        border-radius: 0;
+        max-width: 700px;
+        width: 100%;
+        padding: 20px;
+        padding-top: 0;
+        margin-top: 0;
+        border-radius: none !important;
+        background: none;
+        box-shadow: none;
+    }
+    .label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #000000;
+        font-weight: 650 !important;
+    }
+    .userTypeLabel {
+        text-align: center !important;
+        display: block;
+        font-size: 16px !important;
+        margin-bottom: 1em !important;
+        color: #000;
+        font-weight: 650 !important;
+    }
+    .formQuestion {
+        margin-top: 1em;
+        text-align: center;
+    }
+    .button {
+
+        background-color: var(--c-yellow) !important;
+        border: none;
+        color: #000 !important;
+        padding: 10px 20px;
+        font-size: 1.3em !important;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%; 
+        box-sizing: border-box;
+        margin-top: 1.5em;   
+    }
+    .button:hover {
+        background-color: #c2a347 !important;
+    }
+    .formLink {
+        color: #000;
+        font-weight: 500;
     }
     .labelAdm{
         text-align: center !important;
+        color:#000;
     }
 }
 

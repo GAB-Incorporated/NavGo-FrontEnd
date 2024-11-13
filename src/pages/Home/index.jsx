@@ -16,14 +16,19 @@ export const Home = () => {
                                 MAPA DA INSTITUIÇÃO
                             </Text>
                             <Text className={styles.description}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum  fringilla quam lacus, nec pretium ante mattis ut. Morbi sit amet quam  sit amet sapien auctor condimentum ac at nulla. Integer at augue ut  magna tempus egestas. Phasellus ac tempor elit. Vivamus laoreet augue  tempor, cursus purus ac, vestibulum ex. Pellentesque volutpat mauris  purus, ut aliquam odio luctus id. Ut ligula orci, malesuada at rutrum  eget, euismod non magna. Sed et augue sed ligula porta porta. Aliquam  semper nibh dolor, porta auctor elit vulputate et.
+                                O Mapa NavGo de sua instituição pode ser usado para a identificação dos diversos locais e suas funções, desde salas de aula até espaços comunitários. Acompanhado de uma ferramenta de rota, o estudante é garantido de se localizar corretamente em seu ambiente e poder se informar e familiarizar rapidamente, alavancando sua experiência.
                             </Text>
                             <Box className={styles.buttonWrapper}>
-                            <Link to={"/login"}>
-                                <Button className={styles.mapButton} bg={"main.100"}>
-                                    Abrir Mapa
-                                </Button>
-                            </Link>
+                                <Link to={"/login/map"}>
+                                    <Button className={styles.mapButton} bg={"main.100"}>
+                                        Abrir Mapa
+                                    </Button>
+                                </Link>
+                                <Link to={"/login"}>
+                                    <Button className={styles.mapButton} bg={"main.100"}>
+                                        Utilização
+                                    </Button>
+                                </Link>
                             </Box>
                         </Flex>
                     </Box>
@@ -37,12 +42,17 @@ export const Home = () => {
                                 TRANSFERÊNCIA DE ARQUIVOS
                             </Text>
                             <Text className={styles.invertedDescription}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum  fringilla quam lacus, nec pretium ante mattis ut. Morbi sit amet quam  sit amet sapien auctor condimentum ac at nulla. Integer at augue ut  magna tempus egestas. Phasellus ac tempor elit. Vivamus laoreet augue  tempor, cursus purus ac, vestibulum ex. Pellentesque volutpat mauris  purus, ut aliquam odio luctus id. Ut ligula orci, malesuada at rutrum  eget, euismod non magna. Sed et augue sed ligula porta porta. Aliquam  semper nibh dolor, porta auctor elit vulputate et.
+                                O Mural NavGo proporciona ao estudante uma experiência aprimorada de seus estudos academicos, concentrando seus materiais de aula em um só lugar, agrupando arquivos importantes para o estudo de sua terminada disciplina em um lugar de fácil acesso para todos, eliminando a necessidade do uso de ferramentas de terceiros não focadas em instituições educacionais.
                             </Text>
                             <Box className={styles.invertedButtonWrapper}>
-                                <Link to={"/login"}>
+                                <Link to={"/login/mural"}>
                                     <Button className={styles.transButton} bg={"main.200"}>
                                         Transferir Arquivos
+                                    </Button>
+                                </Link>
+                                <Link to={"/login"}>
+                                    <Button className={styles.transButton} bg={"main.200"}>
+                                        Utilização
                                     </Button>
                                 </Link>
                             </Box>
