@@ -1,0 +1,10 @@
+.info {
+    color: black;
+    font-weight: bold;
+}
+
+.infoLabel {
+    color: black;
+    opacity: 0.5;
+    font-size: 1vw;
+}
