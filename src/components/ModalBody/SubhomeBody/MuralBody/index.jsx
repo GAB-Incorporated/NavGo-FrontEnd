@@ -4,7 +4,7 @@ const MuralBody = () => {
 
     return (
         <Box>
-            <Box bgColor={'main.300'} m="1vw" pl="0.5vw" pr="0.5vw" borderRadius='20px'>
+            <Box bgColor={'main.300'} m="1vw" pl={5} pt={4} pr={5} pb={4} borderRadius='20px'>
                 <Text>
                     No mural será possivel visualizar os arquivos enviados 
                     por professores referentes a diferentes aulas.

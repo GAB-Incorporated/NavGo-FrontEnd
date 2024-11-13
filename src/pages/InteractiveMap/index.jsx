@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Polygon, Polyline, Popup} from "react-leaflet";
+import { useState } from "react";
+import { MapContainer, TileLayer, Polygon, Polyline, Popup } from "react-leaflet";
 import styles from './interactiveMap.module.css';
-import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-fullscreen';
 import 'leaflet.fullscreen/Control.FullScreen.css';
 import 'leaflet-sidebar-v2/js/leaflet-sidebar.js';
 import 'leaflet-sidebar-v2/css/leaflet-sidebar.css';
-import Sidebar from "../../components/Sidebar";
-
+import Sidebar from '../../components/Sidebar';
+import InternalMap from "../../components/InternalMap/index.jsx";
 
 const InteractiveMap = () => {
 
@@ -39,12 +38,13 @@ const InteractiveMap = () => {
   ];
 
   const handleBuildingClick = () => {
-    setShowInternalMap(true)
+    setShowInternalMap(true);
   };
 
   return (
     <div className={styles.mapContainer}>
-      <Sidebar/>
+      {!showInternalMap && <Sidebar />}
+      
       {!showInternalMap ? (
         <MapContainer center={[-23.641154, -46.836002]}
           zoom={18}
@@ -66,7 +66,7 @@ const InteractiveMap = () => {
           <Polyline positions={hallwayCoordinates} color="green">
             <Popup>Entrada principal</Popup>
           </Polyline>
-
+          
         </MapContainer>
       ) : (
         <InternalMap />
@@ -74,140 +74,5 @@ const InteractiveMap = () => {
     </div>
   );
 };
-
-const InternalMap = () => {
-  console.log("Iniciando o mapa interno");
-  useEffect(() => {
-    let map, sidebar;
-    //verifica se o mapa já foi criado(ele não pode ser renderizado duas vezes, e como já temos o mapa externo, primeiro temos que destruir o mapa externo para criarmos o interno)
-    if (!map) {
-
-
-      const wallStyle = {
-        color: 'black',
-        weight: 2,
-        opacity: 1,
-      };
-  
-      const A1footprint = L.rectangle([
-        [0, 0],
-        [72, 20]
-      ], wallStyle);
-
-      
-      const A1sala1 = L.polyline([
-        [2, 0],
-        [10, 0],
-        [10, 6],
-        [2, 6],
-        [2, 0]
-      ], wallStyle).on('click', function() {
-        sidebar.show();
-      })
-      
-      const A1sala2 = L.polyline([
-        [60, 0],
-        [68, 0],
-        [68, 6],
-        [60, 6],
-        [60, 0],
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
-  
-      const A1 = L.layerGroup([A1footprint, A1sala1, A1sala2]);
-  
-      const A2footprint = L.rectangle([
-        [0, 0],    //ponto sudoeste
-        [72, 20]   //ponto nordeste
-      ], wallStyle);
-
-      const A2hallwayleft = L.polyline([
-        [0, 7],   // Ponto inicial à esquerda
-        [72, 7]   // Ponto final à direita
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
-
-      const A2hallwayright = L.polyline([
-        [0, 13],
-        [72, 13]
-      ], wallStyle).on('click', function() {
-        sidebar.show();
-      })
-  
-      const A2sala1 = L.polyline([
-        [2, 0],
-        [10, 0],
-        [10, 6],
-        [2, 6],
-        [2, 0]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
-  
-      const A2sala2 = L.polyline([
-        [60, 0],
-        [68, 0],
-        [68, 6],
-        [60, 6],
-        [60, 0]
-      ], wallStyle).on('click', function () {
-        sidebar.show();
-      });
-
-      //cria os layers para renderizar os elementos que foram criados
-      const A2 = L.layerGroup([A2footprint, A2hallwayleft, A2hallwayright, A2sala1, A2sala2]);
-      
-      //define os layers base do mapa
-      const baseMaps = {
-        "Térreo": A1,
-        "1º Andar": A2
-      };
-      
-      //cria o mapa interno
-      map = L.map('internalMap', {
-        crs: L.CRS.Simple, //define o sistema de coordenadas
-        minZoom: 0, //define o nível de zoom mínimo
-        layers: [A1], //define o layer inicial
-      });
-      
-      //define o centro do mapa
-      map.setView([25.25, 9.5], 3);
-      //adiciona o botão de tela cheia
-      map.addControl(new L.Control.Fullscreen());
-  
-      //evento de mudança de layer
-      map.on('baselayerchange', function () {
-        //deveria ocultar a sidebar, mas como não está funcionando, não acontece ainda.
-        sidebar.hide();
-      });
-  
-      sidebar = L.control.sidebar('sidebar', {
-        closeButton: true,
-        position: 'right'
-      });
-      map.addControl(sidebar);
-  
-      L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
-    }
-    
-    //função para limpar o mapa quando o componente é desmontado
-    return () => {
-      if (map) {
-        map.remove();
-        map = null;
-      }
-    };
-  }, []);
-  
-  //retorna o mapa interno
-  return (
-    <div style={{height: "100vh", width: "100%"}}>
-      <div id="internalMap" style={{height: "100%"}}></div>
-      <div id="sidebar"></div>
-    </div>
-  )
-}
 
 export default InteractiveMap;
