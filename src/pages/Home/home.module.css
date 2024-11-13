@@ -1,213 +1,117 @@
 .homeContainer {
     flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
-.container {
-    width: 100vw;
-    height: 60vh;
+.section {
+    width: 100%;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.mapImage {
-    width: auto;
-    background-repeat: no-repeat;
+.sectionImage1 {
+    width: 100%;
     height: 100%;
+    background-image: url(src/assets/map-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
     background-position: right;
-    background-image: url("/src/assets/map-image.png");
 }
 
-.transImage {
-    width: auto;
+.sectionImage2 {
+    width: 100%;
+    height: 100%;
+    background-image: url(src/assets/trans-image.png);
     background-repeat: no-repeat;
-    height: 100%;
-    background-position: left;
-    background-image: url("/src/assets/trans-image.png");
+    background-size: cover;
+    background-position: right;
 }
 
-.mapBody {
-    height: 100%;
+.sectionBody2 {
     width: 100%;
-    background: rgb(255,115,92);
-    background: linear-gradient(90deg, rgba(255,115,92,1) 0%, rgba(255,255,255,0) 100%); 
+    background: linear-gradient(90deg, rgba(233,197,104,1) 0%, rgba(255,255,255,0) 100%);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.transBody {
-    height: 100%;
+.sectionBody1 {
     width: 100%;
-    background: rgb(233,197,104);
-    background: linear-gradient(270deg, rgba(233,197,104,1) 0%, rgba(255,255,255,0) 100%); 
+    background: linear-gradient(90deg, rgba(255,115,92,1) 0%, rgba(255,255,255,0) 100%);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .contentWrapper {
-    height: 100%;
+    display: flex;
     flex-direction: column;
-    margin-left: 2vw;
-    padding-top: 2vw;
-}
-
-.invertedContentWrapper {
-    height: 100%;
-    align-items: end;
-    flex-direction: column;
-    margin-right: 2vw;
-    padding-top: 2vw;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
 }
 
 .title {
-    font-size: 3vw;
-    margin-bottom: 2vw;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: bold;
+    margin-bottom: 1rem;
 }
 
 .description {
-    font-size: 1.4rem;
-    width: 70vw;
-    text-align: left;
-}
-
-.invertedDescription {
-    font-size: 1.4rem;
-    width: 70vw;
-    text-align: right;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    max-width: 70vw;
+    text-align: center;
 }
 
 .buttonWrapper {
-    height: 100%;
     display: flex;
-    align-items: end;
-    margin-left: 20vw;
-    margin-bottom: 3vw;
-    gap: 2vw;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-.invertedButtonWrapper {
-    height: 100%;
-    display: flex;
-    align-items: end;
-    margin-right: 15vw;
-    margin-bottom: 3vw;
-    gap: 2vw;
+.sectionButton2 {
+    padding: 0.5rem 1rem;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    border: 3px solid #d8a41f;
+    border-top: 1px solid #d8a41f;
+    background-color: #f5cc64 !important;
+    color: white;
 }
 
-.mapButton {
-    height: 3vw !important;
-    width: auto;
-    font-size: 1.5vw !important;
-    border: 4px solid #a12e1c;
-    background-color: var(--c-orange);
+.sectionButton2:hover {
+    background-color: #ffc941 !important;
 }
 
-.transButton {
-    height: 3vw !important;
-    width: auto;
-    font-size: 1.5vw !important;
-    border: 4px solid #a7801e;
-    background-color: var(--c-orange);
+.sectionButton1 {
+    padding: 0.5rem 1rem;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    border: 3px solid #b43b28;
+    border-top: 1px solid #ff735c;
+    background-color: #ff735c !important;
+    color: white;
 }
 
-@media all and (max-width: 1450px) {
-    .mapButton .transButton {
-        height: 3.5vw !important;
-        width: 15vw;
-    }
+.sectionButton1:hover {
+    background-color: #ff6148 !important;
 }
 
-@media all and (max-width: 1000px) {
-    .mapBody, .transBody {
-        background: none;
-    }
-    .transBody {
-        background: linear-gradient(0deg, rgba(233,197,104,0.7) 0%, rgba(255,255,255,0) 100%); 
-    }
-    .mapBody {
-        background: linear-gradient(0deg, rgba(255,115,92,0.7) 0%, rgba(255,255,255,0) 100%); 
-    }
-    .buttonWrapper, .invertedButtonWrapper {
-        height: auto;
-        margin: 3vh 0;
-    }
-    .mapButton, .transButton {
-        font-size: 3vw !important;
-        height: 5vw !important;
-    }
-    .title {
-        text-align: center;
-        font-size: 5vw;
-    }
-    .description, .invertedDescription {
-        text-align: center;
-        width: 90% !important;
-        font-size: 2vw;
-    }
-    .contentWrapper, .invertedContentWrapper {
-        align-items: center !important;
+@media (min-width: 1024px) {
+    .description {
+        padding-bottom: 10vh;
     }
 }
 
-@media all and (max-width: 700px) {
-    .contentWrapper, .invertedContentWrapper {
-        height: min-content !important;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .buttonWrapper, .invertedButtonWrapper {
-        margin: 3vh 0;
-    }
-    .description, .invertedDescription {
-        text-justify: auto;
-        text-align: center;
-        width: 60% !important;
-        font-size: 2.5vw;
-    }
-    .container {
-        height: fit-content;
-    }
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
-}
 
-@media all and (max-width: 600px) {
-    .title {
-        font-size: 8vw;
-        margin: 2vh;
+@media (max-width: 600px) {
+    .description, .title {
+        max-width: 90%;
     }
-    .description, .invertedDescription {
-        width: 80% !important;
-        font-size: 2vw;
-    }
-    .container {
-        height: 50vh;
-    }
-}
-
-@media all and (max-width: 400px) {
-    .title {
-        font-size: 8vw;
-        margin: 2vh;
-    }
-    .description, .invertedDescription {
-        width: 90% !important;
-        font-size: 3.2vw;
-    }
-    .mapButton, .transButton {
-        font-size: 5vw !important;
-        height: 8vw !important;
-    }
-    .container {
-        height: 50vh;
-    }
-}
-
-@media all and (max-width: 250px) {
-    .description, .invertedDescription {
-        width: 90% !important;
-        font-size: 4vw;
-    }
-    .mapButton, .transButton {
-        font-size: 7vw !important;
-        height: 12vw !important;
+    .sectionBody {
+        padding: 1rem;
     }
 }
