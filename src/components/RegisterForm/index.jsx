@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Box, Button, FormControl, useRadioGroup, FormLabel, Heading, Text, Input, Wrap, WrapItem, useToast, Tooltip } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { Box, Button, FormControl, useRadioGroup, FormLabel, Heading, Text, Input, Wrap, WrapItem, useToast, Tooltip, Select } from '@chakra-ui/react';
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import api from '../../api';
 import styles from './registerForm.module.css';
@@ -16,6 +16,9 @@ const RegisterForm = () => {
   const [passwordRe, setPasswordRe] = useState('');
   const [userType, setUserType] = useState('STUDENT');
   const [verificationCode, setVerificationCode] = useState('')
+  const [courses, setCourses] = useState([])
+  const [courseId, setCourseId] = useState("")
+  const [moduleId, setModuleId] = useState("")
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -50,6 +53,8 @@ const RegisterForm = () => {
         password_hash: password,
         user_type: userType,
         verification_code: verificationCode,
+        course_id: courseId,
+        module_id: moduleId
       };
 
       
@@ -57,7 +62,14 @@ const RegisterForm = () => {
         requestData.verification_code = verificationCode;
       }
 
+      if(userType === 'Estudante'){
+        requestData.course_id = courseId;
+        requestData.module_id = moduleId;
+      }
+
       const responseR = await api.post('/users/register', requestData)
+
+      const responseS = await api.post('/users/students', requestData)
 
       const responseL = await api.post('/users/login', {
         email,
@@ -74,7 +86,7 @@ const RegisterForm = () => {
         });
 
         choosedTool ? navigate("/login/"+choosedTool) : navigate("/login");
-      } else if (responseR.status === 201 && responseL.status === 200) {
+      } else if (responseR.status === 201 && responseS.status === 200 && responseL.status === 200) {
         toast({
           title: 'Registrado e Logado com Sucesso',
           status: 'success',
@@ -97,6 +109,25 @@ const RegisterForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+        try {
+            const response = await api.get("/courses"); 
+            setCourses(response.data.message); 
+        } catch (error) {
+            toast({
+                title: "Erro ao carregar cursos.",
+                description: error.message,
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+                position: "top",
+            });
+        }
+    };        
+    fetchCourses();
+}, [toast]);
 
   return (
     <Box className={styles.body}>
@@ -201,6 +232,45 @@ const RegisterForm = () => {
             })}
           </Wrap>
         </FormControl>
+        {(userType === 'Estudante') && (
+          <FormControl id="studentForm" isRequired>
+            <Text textAlign="center" mt={5} color={"main.200"} fontWeight={800}>Adicione as informações relacionadas ao seu curso:</Text>
+            <FormLabel className={styles.labelAdm}>Curso Atual</FormLabel>
+            <Select
+              required
+              placeholder="Selecione seu curso"
+              value={courseId}
+              onChange={(e) => setCourseId(e.target.value)}
+              className={styles.input}
+              mb={4}
+            >
+              {courses.map((course) => (
+                  <option key={course.course_id} value={course.course_id}>
+                      {course.course_name} 
+                  </option>
+              ))}
+            </Select>
+            <FormLabel className={styles.labelAdm}>Módulo Atual</FormLabel>
+            <Select
+              required
+              placeholder="Selecione seu módulo"
+              value={moduleId}
+              onChange={(e) => setModuleId(e.target.value)}
+              className={styles.input}
+              mb={4}
+            >
+              <option key={"module"+1} value={1}>
+                  1
+              </option>
+              <option key={"module"+2} value={2}>
+                  2
+              </option>
+              <option key={"module"+3} value={3}>
+                  3
+              </option>
+            </Select>
+          </FormControl>
+        )}
         {(userType === 'Coordenador' || userType === 'Professor') && (
           <FormControl id="verificationCode" isRequired className={styles.verificationCode}>
             <FormLabel className={styles.labelAdm}>Código de Verificação  
