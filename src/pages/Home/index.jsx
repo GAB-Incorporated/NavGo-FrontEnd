@@ -1,31 +1,31 @@
 import { Box, Flex, Button, Text } from "@chakra-ui/react";
 import Header from "../../components/Header";
-import Footer from "../../components/Footer"
-import styles from "./home.module.css"
+import Footer from "../../components/Footer";
+import styles from "./home.module.css";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
     return (
        <Flex className={styles.homeContainer}>
-            <Header/>
-            <Box className={styles.container}>
-                <Box className={styles.mapImage}>
-                    <Box className={styles.mapBody}>
+            <Header />
+            <Box className={styles.section}>
+                <Box className={styles.sectionImage1}>
+                    <Box className={styles.sectionBody1}>
                         <Flex className={styles.contentWrapper}>
                             <Text className={styles.title}>
                                 MAPA DA INSTITUIÇÃO
                             </Text>
                             <Text className={styles.description}>
-                                O Mapa NavGo de sua instituição pode ser usado para a identificação dos diversos locais e suas funções, desde salas de aula até espaços comunitários. Acompanhado de uma ferramenta de rota, o estudante é garantido de se localizar corretamente em seu ambiente e poder se informar e familiarizar rapidamente, alavancando sua experiência.
+                                O Mapa NavGo permite uma identificação precisa e eficiente dos diversos espaços da instituição com a funcionalidade de rotas integrada, cada estudante tem a garantia de encontrar o caminho correto e se orientar facilmente dentro do ambiente acadêmico.
                             </Text>
                             <Box className={styles.buttonWrapper}>
                                 <Link to={"/login/map"}>
-                                    <Button className={styles.mapButton} bg={"main.100"}>
+                                    <Button className={styles.sectionButton1}>
                                         Abrir Mapa
                                     </Button>
                                 </Link>
                                 <Link to={"/login"}>
-                                    <Button className={styles.mapButton} bg={"main.100"}>
+                                    <Button className={styles.sectionButton1}>
                                         Utilização
                                     </Button>
                                 </Link>
@@ -34,24 +34,24 @@ export const Home = () => {
                     </Box>
                 </Box>  
             </Box>
-            <Box className={styles.container}>
-                <Box className={styles.transImage}>
-                    <Box className={styles.transBody}>
-                        <Flex className={styles.invertedContentWrapper}>
+            <Box className={styles.section}>
+                <Box className={styles.sectionImage2}>
+                    <Box className={styles.sectionBody2}>
+                        <Flex className={styles.contentWrapper}>
                             <Text className={styles.title}>
                                 TRANSFERÊNCIA DE ARQUIVOS
                             </Text>
-                            <Text className={styles.invertedDescription}>
-                                O Mural NavGo proporciona ao estudante uma experiência aprimorada de seus estudos academicos, concentrando seus materiais de aula em um só lugar, agrupando arquivos importantes para o estudo de sua terminada disciplina em um lugar de fácil acesso para todos, eliminando a necessidade do uso de ferramentas de terceiros não focadas em instituições educacionais.
+                            <Text className={styles.description}>
+                                O Mural NavGo aprimora a experiência acadêmica ao concentrar todos os materiais de aula em um único ambiente digital, de fácil acesso, oferecendo uma plataforma acessível e organizada para todos os estudantes, e elimina a necessidade de utilizar ferramentas externas não especializadas no contexto educacional.
                             </Text>
-                            <Box className={styles.invertedButtonWrapper}>
+                            <Box className={styles.buttonWrapper}>
                                 <Link to={"/login/mural"}>
-                                    <Button className={styles.transButton} bg={"main.200"}>
+                                    <Button className={styles.sectionButton2}>
                                         Transferir Arquivos
                                     </Button>
                                 </Link>
                                 <Link to={"/login"}>
-                                    <Button className={styles.transButton} bg={"main.200"}>
+                                    <Button className={styles.sectionButton2}>
                                         Utilização
                                     </Button>
                                 </Link>
@@ -60,7 +60,7 @@ export const Home = () => {
                     </Box>
                 </Box>  
             </Box>
-            <Footer/>
+            <Footer />
        </Flex>
     );
 }
