@@ -76,17 +76,6 @@ const InternalMap = () => {
     return container;
   };
 
-  const drawCartesianPlane = (map, xMax, yMax) => {
-    for (let i = 0; i <= xMax; i++) {
-      L.polyline([[i, 0], [i, yMax]], { color: 'gray', weight: 1, opacity: 0.5 }).addTo(map);
-      L.marker([i, -0.5], { icon: new L.DivIcon({ className: 'coordinate-label', html: i }) }).addTo(map);
-    }
-    for (let j = 0; j <= yMax; j++) {
-      L.polyline([[0, j], [xMax, j]], { color: 'gray', weight: 1, opacity: 0.5 }).addTo(map);
-      L.marker([-0.5, j], { icon: new L.DivIcon({ className: 'coordinate-label', html: j }) }).addTo(map);
-    }
-  };
-
   const drawPathLines = (path, pathLayers) => {
     const floorPaths = {};
 
@@ -160,7 +149,6 @@ const InternalMap = () => {
         });   
 
         drawPathLines(path, pathLayers);
-        drawCartesianPlane(map, 72, 20);
              
         // Combina as camadas
         const baseMaps = Object.keys(locationLayers).reduce((acc, key) => {
@@ -178,13 +166,12 @@ const InternalMap = () => {
         }, {});
 
         L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
-        
+
         // Marca o primeiro andar omo a camada inicial selecionada
         const firstLayer = baseMaps[`Andar 0`];
         if (firstLayer) {
             firstLayer.addTo(map);
         }
-
     }
 
     return () => {
@@ -217,7 +204,7 @@ const InternalMap = () => {
                 <option value="">Selecione o Início</option>
                 {nodes.map((node) => (
                   <option key={node.node_id} value={node.node_id}>
-                    {`Andar ${node.floor_number} - ${node.description}`}
+                    {`${node.description}`}
                   </option>
                 ))}
               </select>
@@ -232,7 +219,7 @@ const InternalMap = () => {
                 <option value="">Selecione o Destino</option>
                 {nodes.map((node) => (
                   <option key={node.node_id} value={node.node_id}>
-                    {`Andar ${node.floor_number} - ${node.description}`}
+                    {`${node.description}`}
                   </option>
                 ))}
               </select>
@@ -248,10 +235,9 @@ const InternalMap = () => {
           </div>
         )}
 
-        {/* Botão fixo na parte inferior direita da página quando o overlay estiver minimizado */}
         {!isOverlayVisible && (
           <button className={styles.toggleButtonMinimized} onClick={toggleOverlay}>
-            Expandir
+            Escolher Rota
           </button>
         )}
       </div>

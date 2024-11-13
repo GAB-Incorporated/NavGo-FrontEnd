@@ -66,7 +66,7 @@ const InteractiveMap = () => {
           <Polyline positions={hallwayCoordinates} color="green">
             <Popup>Entrada principal</Popup>
           </Polyline>
-
+          
         </MapContainer>
       ) : (
         <InternalMap />
