@@ -77,7 +77,6 @@ const Sidebar = () => {
                     <MobiTool ToolIcon={TbFileExport} toolSize={"12vw"} linkTo="/mural"/>
                 </Box>
             </Flex>
-            
         </Flex>
         </>
         )}
