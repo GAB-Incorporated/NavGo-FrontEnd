@@ -1,5 +1,5 @@
 import { Box, Image, Text } from "@chakra-ui/react"
-import navgoLogo from "../../assets/navgo-logo.png"
+import navgoLogo from "../../../public/images/navgo-logo.png"
 import styles from "./header.module.css"
 
 const Header = () => {

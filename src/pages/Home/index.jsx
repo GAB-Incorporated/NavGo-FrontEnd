@@ -15,14 +15,14 @@ export const Home = () => {
             <Header />
             <Box className={styles.sectionBody1}>
                 <Box className={styles.sectionImage1}>
-                        <Flex className={styles.contentWrapper}>
+                        <Flex className={styles.contentWrapper1}>
                             <Text className={styles.title}>
                                 MAPA DA INSTITUIÇÃO
                             </Text>
                             <Text className={styles.description}>
                                 O Mapa NavGo permite uma identificação precisa e eficiente dos diversos espaços da instituição com a funcionalidade de rotas integrada, cada estudante tem a garantia de encontrar o caminho correto e se orientar facilmente dentro do ambiente acadêmico.
                             </Text>
-                            <Box className={styles.buttonWrapper}>
+                            <Box className={styles.buttonWrapper1}>
                                 <Link to={"/login/map"}>
                                     <Button className={styles.sectionButton1}>
                                         Abrir Mapa
@@ -39,14 +39,14 @@ export const Home = () => {
             </Box>
             <Box className={styles.sectionBody2}>
                 <Box className={styles.sectionImage2}>
-                        <Flex className={styles.contentWrapper}>
-                            <Text className={styles.title}>
+                        <Flex className={styles.contentWrapper2}>
+                            <Text className={styles.title2}>
                                 TRANSFERÊNCIA DE ARQUIVOS
                             </Text>
-                            <Text className={styles.description}>
+                            <Text className={styles.description2}>
                                 O Mural NavGo aprimora a experiência acadêmica ao concentrar todos os materiais de aula em um único ambiente digital, de fácil acesso, oferecendo uma plataforma acessível e organizada para todos os estudantes, e elimina a necessidade de utilizar ferramentas externas não especializadas no contexto educacional.
                             </Text>
-                            <Box className={styles.buttonWrapper}>
+                            <Box className={styles.buttonWrapper2}>
                                 <Link to={"/login/mural"}>
                                     <Button className={styles.sectionButton2}>
                                         Transferir Arquivos
