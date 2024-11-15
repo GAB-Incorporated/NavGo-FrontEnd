@@ -2,10 +2,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
 }
 
 .section {
-    width: 100%;
+    width: auto;
     min-height: 40vh;
     display: flex;
     align-items: center;
@@ -13,25 +14,23 @@
 }
 
 .sectionImage1 {
-    width: 100%;
+    width: auto;
     height: 100%;
     background-image: url(src/assets/map-image.png);
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
+    background-position: left;
 }
 
 .sectionImage2 {
-    width: 100%;
+    width: auto;
     height: 100%;
     background-image: url(src/assets/trans-image.png);
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
+    justify-self: right;
 }
 
 .sectionBody2 {
-    width: 100%;
+    width: 100vh;
     background: linear-gradient(90deg, rgba(233,197,104,1) 0%, rgba(255,255,255,0) 100%);
     padding: 2rem;
     display: flex;
@@ -41,7 +40,7 @@
 
 .sectionBody1 {
     width: 100%;
-    background: linear-gradient(90deg, rgba(255,115,92,1) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,115,92,1) 100%);
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -91,7 +90,7 @@
     padding: 0.5rem 1rem;
     font-size: clamp(0.8rem, 2vw, 1.2rem);
     border: 3px solid #b43b28;
-    border-top: 1px solid #ff735c;
+    border-top: 1px solid #b43b28;
     background-color: #ff735c !important;
     color: white;
 }

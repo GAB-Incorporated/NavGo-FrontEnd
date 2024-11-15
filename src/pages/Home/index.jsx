@@ -5,12 +5,16 @@ import styles from "./home.module.css";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
+
+    // O TEXTO PRECISA ESTAR PARA ONDE ESTÁ MAIS ESCURO
+    // A IMAGEM FICA AONDE ESTÁ MAIS CLARO
+    // O FUNDO DA IMAGEM É 'ESCONDIDO' COM O DEGRADE
+
     return (
        <Flex className={styles.homeContainer}>
             <Header />
-            <Box className={styles.section}>
+            <Box className={styles.sectionBody1}>
                 <Box className={styles.sectionImage1}>
-                    <Box className={styles.sectionBody1}>
                         <Flex className={styles.contentWrapper}>
                             <Text className={styles.title}>
                                 MAPA DA INSTITUIÇÃO
@@ -31,12 +35,10 @@ export const Home = () => {
                                 </Link>
                             </Box>
                         </Flex>
-                    </Box>
                 </Box>  
             </Box>
-            <Box className={styles.section}>
+            <Box className={styles.sectionBody2}>
                 <Box className={styles.sectionImage2}>
-                    <Box className={styles.sectionBody2}>
                         <Flex className={styles.contentWrapper}>
                             <Text className={styles.title}>
                                 TRANSFERÊNCIA DE ARQUIVOS
@@ -57,7 +59,6 @@ export const Home = () => {
                                 </Link>
                             </Box>
                         </Flex>
-                    </Box>
                 </Box>  
             </Box>
             <Footer />
