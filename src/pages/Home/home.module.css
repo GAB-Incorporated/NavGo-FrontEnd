@@ -29,6 +29,7 @@
 }
 
 .sectionBody1 {
+    background: linear-gradient(270deg, rgba(233,197,104,1) 0%, rgba(255,255,255,0) 100%); 
     width: 100%;
     position: relative;
     display: flex;
@@ -37,6 +38,7 @@
 }
 
 .sectionBody2 {
+    background: linear-gradient(90deg, rgba(255,115,92,1) 0%, rgba(255,255,255,0) 100%);
     width: 100%;
     position: relative;
     display: flex;
@@ -47,9 +49,10 @@
 .contentWrapper2 {
     display: flex;
     flex-direction: column;
+    
     align-items: left;
     gap: 1rem;
-    margin-left: 5rem;
+    margin-left: 0rem;
     margin-top: 2rem;
 }
 
@@ -68,7 +71,7 @@
     text-align: right;
 }
 
-.description {
+.description1 {
     font-size: clamp(1rem, 2vw, 1.5rem);
     max-width: 45vw;
     text-align: right;
@@ -104,7 +107,7 @@
 }
 
 
-.sectionButton2 {
+.sectionButton1 {
     padding: 0.5rem 1rem;
     font-size: clamp(0.8rem, 2vw, 1.2rem);
     border: 3px solid #d8a41f;
@@ -113,11 +116,11 @@
     color: white;
 }
 
-.sectionButton2:hover {
+.sectionButton1:hover {
     background-color: #ffc941 !important;
 }
 
-.sectionButton1 {
+.sectionButton2 {
     padding: 0.5rem 1rem;
     font-size: clamp(0.8rem, 2vw, 1.2rem);
     border: 3px solid #b43b28;
@@ -126,7 +129,7 @@
     color: white;
 }
 
-.sectionButton1:hover {
+.sectionButton2:hover {
     background-color: #ff6148 !important;
 }
 
