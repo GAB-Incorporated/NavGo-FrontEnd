@@ -5,7 +5,6 @@ import { CiCircleInfo } from "react-icons/ci";
 import { TbFileExport } from "react-icons/tb";
 import { PiMapPinLineBold } from "react-icons/pi";
 import { MdHomeFilled } from "react-icons/md";
-import logo from "../../../public/images/navgo-logo.png"
 import styles from "./sidebar.module.css"
 import { Link } from "react-router-dom";
 import DeskTool from "./DeskTool";
@@ -30,7 +29,7 @@ const Sidebar = () => {
             <Box className={styles.sidebar}>
                 <Box className={styles.logoWrapper}>
                     <Link to="/">
-                        <Image className={styles.navLogo} src={logo}/>
+                        <Image className={styles.navLogo} src='/images/navgo-logo.png'/>
                     </Link>
                 </Box>
                 <Box>
@@ -67,7 +66,7 @@ const Sidebar = () => {
                 </Box>
                 <Flex className={styles.toolsBar}>
                     <Link to="/">
-                        <Image className={styles.mobileLogo} src={logo}/>
+                        <Image className={styles.mobileLogo} src='/images/navgo-logo.png'/>
                     </Link>
                     <MobiTool ToolIcon={MdHomeFilled} toolSize={"8vw"} linkTo="/subhome"/>
                     <GoGear size={"8vw"} onClick={() => openModal(<DashboardAlert/>, "Acesso Barrado!")}/>

@@ -34,7 +34,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: end;
+    padding: 0 4em;
 }
 
 .sectionBody2 {
@@ -43,25 +44,23 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
+    padding: 0 4em;
 }
 
 .contentWrapper2 {
     display: flex;
     flex-direction: column;
-    
     align-items: left;
     gap: 1rem;
-    margin-left: 0rem;
     margin-top: 2rem;
 }
 
 .contentWrapper1 {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    text-align: left;
     gap: 1rem;
-    margin-right: 5rem;
     margin-top: 2rem;
 }
 
@@ -93,9 +92,9 @@
 .buttonWrapper1 {
     display: flex;
     gap: 1rem;
+    justify-content: end;
     margin-top: 1rem;
     margin-bottom: 3em;
-    margin-right: 20%;
 }
 
 .buttonWrapper2 {
@@ -103,7 +102,6 @@
     gap: 1rem;
     margin-top: 1rem;
     margin-bottom: 3em;
-    margin-left: 20%;
 }
 
 
@@ -134,7 +132,7 @@
 }
 
 @media (min-width: 1024px) {
-    .description {
+    .sectionBody1, .sectionBody2 {
         padding-bottom: 10vh;
     }
 }
