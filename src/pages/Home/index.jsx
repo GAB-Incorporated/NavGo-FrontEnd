@@ -6,10 +6,6 @@ import { Link } from "react-router-dom";
 
 export const Home = () => {
 
-    // O TEXTO PRECISA ESTAR PARA ONDE ESTÁ MAIS ESCURO
-    // A IMAGEM FICA AONDE ESTÁ MAIS CLARO
-    // O FUNDO DA IMAGEM É 'ESCONDIDO' COM O DEGRADE
-
     return (
        <Flex className={styles.homeContainer}>
             <Header />

@@ -139,10 +139,23 @@
 
 
 @media (max-width: 600px) {
-    .description, .title {
-        max-width: 90%;
+    .contentWrapper2, .contentWrapper1 {
+        text-align: center !important;
     }
-    .sectionBody {
-        padding: 1rem;
+
+    .contentWrapper1 {
+        align-items: flex-end !important;
+        margin-right: -35px !important;
+        padding-right: 0;
+    }
+
+    .description1, .description2, .title {
+        max-width: 80%;
+    }
+
+    .sectionBody1, .sectionBody2 {
+        display: flex;
+        align-items: center;
     }
 }
+
