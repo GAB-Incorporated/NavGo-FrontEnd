@@ -1,5 +1,5 @@
 import { Box, FormControl, FormLabel, Input, Button, Heading, Text, useToast } from "@chakra-ui/react";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import api from '../../api';
 import styles from './loginForm.module.css';
 import { useNavigate, Link } from "react-router-dom";
@@ -9,6 +9,25 @@ const LoginForm = ({choosedTool}) => {
   const [password, setPassword] = useState('');
   const toast = useToast();
   const navigate = useNavigate();
+  const hasCheckedToken = useRef(false);
+
+  useEffect(() => {
+    if (hasCheckedToken.current) return;
+    hasCheckedToken.current = true;
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      toast({
+        title: 'Sessão recuperada',
+        description: 'Você já está logado.',
+        status: 'info',
+        duration: 3000,
+        isClosable: false,
+        position: 'top-right',
+      });
+      choosedTool ? navigate("/" + choosedTool) : navigate("/subhome");
+    }
+  }, [choosedTool, navigate, toast]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
