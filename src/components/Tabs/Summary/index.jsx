@@ -63,21 +63,16 @@ const SummaryTab = () => {
 
     const fetchCourseSubjects = async (courseId) => {
         try {
-            const subjectArr = []
-            let subjectData = await api.get('/subjects')
-            console.log(subjectData.data)
-            subjectData.data.map(subject => {
+            setSubjects([]);
+            const subjectArr = [];
+            let subjectData = await api.get('/subjects');
+            subjectData.data.forEach((subject) => {
                 if (subject.course_id == courseId) {
-                    subjectArr.push(subject)
+                    subjectArr.push(subject);
                 }
-            })
-
-            console.log(subjectArr)
-
-            if (subjectArr.length > 0) setCourseHasSubjects(true)
-            else setCourseHasSubjects(false)
-
-            console.log("SUBJECTS UPDADE"+courseHasSubjects)
+            });
+    
+            setCourseHasSubjects(subjectArr.length > 0);
             setSubjects(subjectArr);
         } catch (error) {
             toast({
@@ -88,7 +83,7 @@ const SummaryTab = () => {
                 isClosable: true,
             });
         }
-    }
+    };
 
     const fetchCourseTeachers = async (courseId) => {
         try {
@@ -96,9 +91,9 @@ const SummaryTab = () => {
 
             console.log((teacherData))
 
-            if (teacherData.data.length > 0) setCourseHasTeachers(true)
+            if (teacherData.data.modules.length > 0) setCourseHasTeachers(true)
 
-            setTeachers(teacherData.data);
+            setTeachers(teacherData.data.modules);
         } catch (error) {
             setCourseHasTeachers(false)
             toast({
@@ -113,33 +108,27 @@ const SummaryTab = () => {
 
     const fetchCourseStudents = async (courseName) => {
         try {
-            const studentArr = []
-            let studentData = await api.get('/users/students')
-            console.log(studentData.data)
-            studentData.data.map(student => {
+            setStudents([]);
+            const studentArr = [];
+            let studentData = await api.get('/users/students');
+            studentData.data.forEach((student) => {
                 if (student.course_name == courseName) {
-                    studentArr.push(student)
-                    console.log("ADDED"+student.first_name)
+                    studentArr.push(student);
                 }
-            })
-
-            if (students.length > 0) {
-                setCourseHasStudents(true) 
-                console.log("Tem estudante")}
-            else {
-                setCourseHasStudents(false) 
-                console.log("Não Tem estudante")}
+            });
+    
+            setCourseHasStudents(studentArr.length > 0);
             setStudents(studentArr);
         } catch (error) {
             toast({
-                title: 'Falha ao carregar as Alunos',
+                title: 'Falha ao carregar os Alunos',
                 description: error.message,
                 status: 'error',
                 duration: 10000,
                 isClosable: true,
             });
         }
-    }
+    };
 
     const openModal = (content, title) => {
         setModalContent(content);
@@ -183,7 +172,7 @@ const SummaryTab = () => {
                             >
                                 <Text key={course.course_name}>{course.course_name}</Text>
                                 <Flex alignItems="center" padding="0.5vh 0" key={course.course_name+"Flex"}>
-                                    <Image key={course.course_name+"Image"} className={styles.independent_icons} src="/src/assets/course_coordinator.png"/>
+                                    <Image key={course.course_name+"Image"} className={styles.independent_icons} src="images/course_coordinator.png"/>
                                     <Text key={course.course_name+"Text"} className={styles.independent_small}>{course.coordinator_id}</Text>
                                 </Flex>
                             </Box>
@@ -214,7 +203,7 @@ const SummaryTab = () => {
                                         buildingID={building.building_id}
                                         buildingName={building.building_name}/>, "Lista de Locais")}
                                 >
-                                    <Image className={styles.independent_icons} src="/src/assets/locations.png"/>
+                                    <Image className={styles.independent_icons} src="images/locations.png"/>
                                     <Text className={styles.independent_small}>Visualizar Locais</Text>
                                 </Flex>
                             </Box>
@@ -231,10 +220,10 @@ const SummaryTab = () => {
                     <Box className={styles.boxBody}>
                         {courseIsSelected ? courseHasTeachers ? teachers.map((teacher) => (
                             <Flex key={teacher} className={styles.independentTabInfo}>
-                                <Image className={styles.icons} src="/src/assets/professor.png"/>
+                                <Image className={styles.icons} src="images/professor.png"/>
                                 <Box>
-                                    <Text>{teacher.teacher_name}</Text>
-                                    <Text className={styles.independent_small}>Módulo X</Text>
+                                    <Text>{teacher.first_name} {teacher.last_name}</Text>
+                                    <Text className={styles.independent_small}>{teacher.email}</Text>
                                 </Box>
                             </Flex>
                         )) : (
@@ -265,11 +254,11 @@ const SummaryTab = () => {
                     <Box className={styles.boxBody}>
                         {courseIsSelected ? courseHasSubjects ? subjects.map((subject) => (
                             <Flex key={subject.subject_name} className={styles.independentTabInfo}>
-                                <Image className={styles.icons} src="/src/assets/locations.png"/>
                                 <Box>
                                     <Text>{subject.subject_name}</Text>
-                                    <Text className={styles.independent_small}>Módulo X</Text>
+                                    <Text className={styles.independent_small}>Módulo 1</Text>
                                 </Box>
+                                <Image className={styles.subjectIcon} src="images/locations.png"/>
                             </Flex>
                         )) : (
                             <Flex className={styles.warningWrapper}>
@@ -300,32 +289,32 @@ const SummaryTab = () => {
                                     <Text className={styles.headerTitle}>Alunos</Text>
                                 </Flex>
                                 <Flex className={styles.boxBody} justifyContent="space-between">
-                                    {courseIsSelected ? courseHasStudents ? students.map((student) => {
-                                        if (student.module_number == 1) {
-                                            return (
-                                                <Flex key={student.first_name+"ModI"} className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
-                                                    <Image className={styles.icons} src="/src/assets/student.png"/>
-                                                    <Text>{student.first_name+" "+student.last_name}</Text>
-                                                </Flex>
-                                            )
-                                        } else {
-                                            return (
-                                                <Box key={"Boxinha"} p="1vw 0" w="100%">
-                                                    <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
-                                                </Box>
-                                            )
-                                        }
-                                    }) : (
+                                    {courseIsSelected ? courseHasStudents ? (
+                                        students.some((student) => student.module_number === 1) ? (
+                                            students.map((student) => {
+                                                if (student.module_number === 1) {
+                                                    return (
+                                                        <Flex key={student.first_name + "ModI"} className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
+                                                            <Image className={styles.icons} src="images/student.png" />
+                                                            <Text>{student.first_name + " " + student.last_name}</Text>
+                                                        </Flex>
+                                                    );
+                                                }
+                                            })
+                                        ) : (
+                                            <Box p="1vw 0" w="100%">
+                                                <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
+                                            </Box>
+                                        )
+                                    ) : (
                                         <Flex className={styles.warningWrapper} w="100%">
-                                            <Text className={styles.message}>
-                                                Curso selecionado, não possui alunos vinculados.
-                                            </Text>
-                                        </Flex>) : (
+                                            <Text className={styles.message}>Curso selecionado, não possui alunos vinculados.</Text>
+                                        </Flex>
+                                    ) : (
                                         <Flex className={styles.infoWrapper} w="100%">
-                                            <Text className={styles.message}>
-                                                Selecione um Curso para as informações aparecerem aqui.
-                                            </Text>
-                                        </Flex>)}
+                                            <Text className={styles.message}>Selecione um Curso para as informações aparecerem aqui.</Text>
+                                        </Flex>
+                                    )}
                                 </Flex>
                             </Box>
                         </TabPanel>
@@ -335,32 +324,25 @@ const SummaryTab = () => {
                                     <Text className={styles.headerTitle}>Alunos</Text>
                                 </Flex>
                                 <Flex className={styles.boxBody} justifyContent="space-between">
-                                    {courseIsSelected ? courseHasStudents ? students.map((student) => {
-                                        if (student.module_number == 2) {
-                                            return (
-                                                <Flex key={student.first_name+"ModII"} className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
-                                                    <Image className={styles.icons} src="/src/assets/student.png"/>
-                                                    <Text>{student.first_name+" "+student.last_name}</Text>
-                                                </Flex>
-                                            )
-                                        } else {
-                                            return (
-                                                <Box key={"ModII Erro"} p="1vw 0" w="100%">
-                                                    <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
-                                                </Box>
-                                            )
-                                        }
-                                    }) : (
-                                        <Flex className={styles.warningWrapper} w="100%">
-                                            <Text className={styles.message}>
-                                                Curso selecionado, não possui alunos vinculados.
-                                            </Text>
-                                        </Flex>) : (
-                                        <Flex className={styles.infoWrapper} w="100%">
-                                            <Text className={styles.message}>
-                                                Selecione um Curso para as informações aparecerem aqui.
-                                            </Text>
-                                        </Flex>)}
+                                    {courseIsSelected ? courseHasStudents ? students.map((student, index) => (
+                                    <Flex key={student.student_id || index} className={styles.independentTabInfo}>
+                                        <Image className={styles.icons} src="images/student.png"/>
+                                        <Box>
+                                            <Text>{student.first_name} {student.last_name}</Text>
+                                            <Text className={styles.independent_small}>{student.email}</Text>
+                                        </Box>
+                                    </Flex>
+                                )) : (
+                                    <Flex className={styles.warningWrapper}>
+                                        <Text className={styles.message}>
+                                            Curso selecionado, não possui alunos vinculados.
+                                        </Text>
+                                    </Flex>) : (
+                                    <Flex className={styles.infoWrapper}>
+                                        <Text className={styles.message}>
+                                            Selecione um Curso para as informações aparecerem aqui.
+                                        </Text>
+                                    </Flex>)}
                                 </Flex>
                             </Box>
                         </TabPanel>
@@ -374,7 +356,7 @@ const SummaryTab = () => {
                                         if (student.module_number == 3) {
                                             return (
                                                 <Flex key={student.first_name+"ModII"} className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
-                                                    <Image className={styles.icons} src="/src/assets/student.png"/>
+                                                    <Image className={styles.icons} src="images/student.png"/>
                                                     <Text>{student.first_name+" "+student.last_name}</Text>
                                                 </Flex>
                                             )
