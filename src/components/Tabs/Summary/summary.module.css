@@ -51,18 +51,27 @@
     text-align: left;
     padding-left: 1vw;
     background-color: white;
+    white-space: nowrap;
 }
 
 p.independent_small {
     margin-left: 1%;
     font-size: 1vw !important;
     opacity: 0.6;
+    white-space: nowrap;
 }
 
 img.icons {
     align-self: center;
     margin-right: 1vw;
     height: 2.5vw !important;
+}
+
+img.subjectIcon {
+    align-items: top;
+    height: 0.8em;
+    margin-left: 0.5vw;
+    margin-top: 0.1vw;
 }
 
 img.independent_icons {
