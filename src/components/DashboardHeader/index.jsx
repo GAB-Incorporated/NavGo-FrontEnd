@@ -19,7 +19,7 @@ const DashboardHeader = ({instituicao, pagina, isMural = null}) => {
                     _hover={{cursor: "pointer", color: "lightgray"}}
                     transition={"color 0.3s ease-in-out"}
                     onClick={() => navigate("/subhome")}
-                    boxSize={10} 
+                    boxSize={6}
                     position="absolute" 
                     right="5"
                     alignSelf="center"/>
