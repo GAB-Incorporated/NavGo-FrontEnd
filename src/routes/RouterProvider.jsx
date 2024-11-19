@@ -1,14 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
-import NotFound from "../pages/NotFound"
+import NotFound from "../pages/NotFound";
 import ModalTest from "../pages/ModalTest";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
-import Subhome from "../pages/Subhome"
+import Subhome from "../pages/Subhome";
 import Mural from "../pages/Mural";
 import InteractiveMap from "../pages/InteractiveMap";
-import ProtectedRoutes from '../utils/ProtectedRoutes';
+import ProtectedRoute from '../utils/ProtectedRoute';
 
 const router = createBrowserRouter([
     {
@@ -41,19 +41,19 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <ProtectedRoutes element={<Dashboard />} />
+        element: <ProtectedRoute element={<Dashboard />} />
     },
     {
         path: "/subhome",
-        element: <ProtectedRoutes element={<Subhome />} />
+        element: <ProtectedRoute element={<Subhome />} />
     },
     {
         path: "/mural",
-        element: <ProtectedRoutes element={<Mural />} />
+        element: <ProtectedRoute element={<Mural />} />
     },
     {
         path: "/map",
-        element: <ProtectedRoutes element={<InteractiveMap />} />
+        element: <ProtectedRoute element={<InteractiveMap />} />
     }
 ]) 
 
@@ -61,6 +61,6 @@ const Routes = () => {
     return (
         <RouterProvider router={router} />
     );
-  };
+};
 
 export default Routes;

@@ -1,6 +1,6 @@
 import { Box, FormControl, FormLabel, Input, Button, Heading, Text, useToast } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from 'react';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import api from '../../api';
 import styles from './loginForm.module.css';
 import { useNavigate, Link } from "react-router-dom";
@@ -12,11 +12,11 @@ const LoginForm = ({ choosedTool }) => {
   const navigate = useNavigate();
   const hasCheckedToken = useRef(false);
 
-  // Função para verificar se o token é válido e não expirou
+  // Verifica se o token é valido E não expirou
   const isTokenExpired = (token) => {
     try {
       const decodedToken = jwtDecode(token);
-      const currentTime = Date.now() / 1000; // Em segundos
+      const currentTime = Date.now() / 1000;
       return decodedToken.exp < currentTime;
     } catch (error) {
       console.error("Erro ao decodificar o token: ", error);
@@ -24,7 +24,6 @@ const LoginForm = ({ choosedTool }) => {
     }
   };
 
-  // Efeito para verificar se já existe um token válido no localStorage
   useEffect(() => {
     if (hasCheckedToken.current) return;
     hasCheckedToken.current = true;
@@ -55,7 +54,6 @@ const LoginForm = ({ choosedTool }) => {
     }
   }, [choosedTool, navigate, toast]);
 
-  // Função para lidar com o login
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -66,8 +64,7 @@ const LoginForm = ({ choosedTool }) => {
       });
 
       if (response.data.token) {
-        // Use o método 'login' do AuthContext para autenticar o usuário
-        login(response.data.token);
+        localStorage.setItem('token', response.data.token);
         toast({
           title: 'Login Efetuado com Sucesso',
           status: 'success',
@@ -75,7 +72,6 @@ const LoginForm = ({ choosedTool }) => {
           isClosable: true,
         });
 
-        // Redireciona para a rota escolhida ou para a página padrão
         choosedTool ? navigate("/" + choosedTool) : navigate("/subhome");
       }
     } catch (error) {
