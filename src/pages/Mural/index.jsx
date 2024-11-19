@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AttachmentIcon, ArrowUpIcon } from "@chakra-ui/icons";
 import ChatComponent from "../../components/ChatComponent";
 import { jwtDecode } from 'jwt-decode';
-import Header from '../../components/MuralHeader';
+import Header from '../../components/DashboardHeader';
 import MuralDrawer from "../../components/MuralDrawer/index.jsx";
 import api from '../../api.js';
 import styles from './mural.module.css';
@@ -107,7 +107,7 @@ const Mural = () => {
 
     return (
         <Flex className={styles.pageWrapper} direction="column" flex="1">
-            <Header instituicao="Etec de Embu" pagina="Mural digital" />
+            <Header instituicao="Etec de Embu" pagina="Mural digital" isMural/>
             <MuralDrawer
                 userId={userId}
                 onClassSelect={handleClassSelection}

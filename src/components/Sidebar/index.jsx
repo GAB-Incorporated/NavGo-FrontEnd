@@ -62,21 +62,16 @@ const Sidebar = () => {
             />
         <Flex justifyContent="space-between">
             <Flex className={styles.normalWrapper}>
-                <Box className={styles.focusWrapperL}>
-                    <MobiTool ToolIcon={PiMapPinLineBold} toolSize={"10vw"} linkTo="/map"/>
-                </Box>
                 <Flex className={styles.toolsBar}>
+                    <MobiTool ToolIcon={PiMapPinLineBold} toolSize={"8vw"} linkTo="/map"/>
+                    <MobiTool ToolIcon={MdHomeFilled} toolSize={"6vw"} linkTo="/subhome"/>
                     <Link to="/">
                         <Image className={styles.mobileLogo} src={logo}/>
                     </Link>
-                    <MobiTool ToolIcon={MdHomeFilled} toolSize={"8vw"} linkTo="/subhome"/>
-                    <GoGear size={"8vw"} onClick={() => openModal(<DashboardAlert/>, "Acesso Barrado!")}/>
-                    <MobiTool ToolIcon={CiCircleInfo} toolSize={"8vw"} linkTo="/sobre"/>
+                    <GoGear size={"6vw"} onClick={() => openModal(<DashboardAlert/>, "Acesso Barrado!")}/>
+                    <MobiTool ToolIcon={TbFileExport} toolSize={"8vw"} linkTo="/mural"/>
                 </Flex>
-                <Box className={styles.focusWrapperR}>
-                    <MobiTool ToolIcon={TbFileExport} toolSize={"12vw"} linkTo="/mural"/>
-                </Box>
-            </Flex>
+            </Flex>            
         </Flex>
         </>
         )}
