@@ -8,8 +8,7 @@ import Dashboard from "../pages/Dashboard";
 import Subhome from "../pages/Subhome"
 import Mural from "../pages/Mural";
 import InteractiveMap from "../pages/InteractiveMap";
-import ProtectedRoute from '../context/ProtectedRoute';
-import { AuthProvider } from '../context/AuthContext';
+import ProtectedRoutes from '../utils/ProtectedRoutes';
 
 const router = createBrowserRouter([
     {
@@ -42,27 +41,25 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <ProtectedRoute element={<Dashboard />} />
+        element: <ProtectedRoutes element={<Dashboard />} />
     },
     {
         path: "/subhome",
-        element: <ProtectedRoute element={<Subhome />} />
+        element: <ProtectedRoutes element={<Subhome />} />
     },
     {
         path: "/mural",
-        element: <ProtectedRoute element={<Mural />} />
+        element: <ProtectedRoutes element={<Mural />} />
     },
     {
         path: "/map",
-        element: <ProtectedRoute element={<InteractiveMap />} />
+        element: <ProtectedRoutes element={<InteractiveMap />} />
     }
 ]) 
 
 const Routes = () => {
     return (
-      <AuthProvider>
         <RouterProvider router={router} />
-      </AuthProvider>
     );
   };
 

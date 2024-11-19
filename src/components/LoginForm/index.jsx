@@ -4,7 +4,6 @@ import {jwtDecode} from 'jwt-decode';
 import api from '../../api';
 import styles from './loginForm.module.css';
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from '../../context/AuthContext';
 
 const LoginForm = ({ choosedTool }) => {
   const [email, setEmail] = useState('');
@@ -12,7 +11,6 @@ const LoginForm = ({ choosedTool }) => {
   const toast = useToast();
   const navigate = useNavigate();
   const hasCheckedToken = useRef(false);
-  const { login, isAuthenticated } = useAuth();
 
   // Função para verificar se o token é válido e não expirou
   const isTokenExpired = (token) => {
@@ -91,13 +89,6 @@ const LoginForm = ({ choosedTool }) => {
       });
     }
   };
-
-  // Redirecionar caso o usuário já esteja autenticado
-  useEffect(() => {
-    if (isAuthenticated) {
-      choosedTool ? navigate("/" + choosedTool) : navigate("/subhome");
-    }
-  }, [isAuthenticated, choosedTool, navigate]);
 
   return (
     <Box className={styles.body}>
