@@ -1,213 +1,161 @@
 .homeContainer {
     flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
-.container {
-    width: 100vw;
-    height: 60vh;
+.section {
+    width: 100%;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.mapImage {
-    width: auto;
-    background-repeat: no-repeat;
+.sectionImage1 {
+    width: 100%;
     height: 100%;
-    background-position: right;
-    background-image: url("/src/assets/map-image.png");
-}
-
-.transImage {
-    width: auto;
+    background-image: url("/images/map-image.png");
     background-repeat: no-repeat;
-    height: 100%;
     background-position: left;
-    background-image: url("/src/assets/trans-image.png");
 }
 
-.mapBody {
-    height: 100%;
+.sectionImage2 {
     width: 100%;
-    background: rgb(255,115,92);
-    background: linear-gradient(90deg, rgba(255,115,92,1) 0%, rgba(255,255,255,0) 100%); 
+    height: 100%;
+    background-image: url("/images/trans-image.png");
+    background-repeat: no-repeat;
+    background-position: right;
 }
 
-.transBody {
-    height: 100%;
-    width: 100%;
-    background: rgb(233,197,104);
+.sectionBody1 {
     background: linear-gradient(270deg, rgba(233,197,104,1) 0%, rgba(255,255,255,0) 100%); 
-}
-
-.contentWrapper {
-    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
     flex-direction: column;
-    margin-left: 2vw;
-    padding-top: 2vw;
-}
-
-.invertedContentWrapper {
-    height: 100%;
     align-items: end;
+    padding: 0 4em;
+}
+
+.sectionBody2 {
+    background: linear-gradient(90deg, rgba(255,115,92,1) 0%, rgba(255,255,255,0) 100%);
+    width: 100%;
+    position: relative;
+    display: flex;
     flex-direction: column;
-    margin-right: 2vw;
-    padding-top: 2vw;
+    align-items: start;
+    padding: 0 4em;
+}
+
+.contentWrapper2 {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.contentWrapper1 {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 1rem;
+    margin-top: 2rem;
 }
 
 .title {
-    font-size: 3vw;
-    margin-bottom: 2vw;
-}
-
-.description {
-    font-size: 1.4rem;
-    width: 70vw;
-    text-align: left;
-}
-
-.invertedDescription {
-    font-size: 1.4rem;
-    width: 70vw;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: bold;
     text-align: right;
 }
 
-.buttonWrapper {
-    height: 100%;
+.description1 {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    max-width: 45vw;
+    text-align: right;
+}
+
+.title2 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: bold;
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.description2 {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    max-width: 50vw;
+    text-align: left;
+}
+
+.buttonWrapper1 {
     display: flex;
-    align-items: end;
-    margin-left: 20vw;
-    margin-bottom: 3vw;
-    gap: 2vw;
+    gap: 1rem;
+    justify-content: end;
+    margin-top: 1rem;
+    margin-bottom: 3em;
 }
 
-.invertedButtonWrapper {
-    height: 100%;
+.buttonWrapper2 {
     display: flex;
-    align-items: end;
-    margin-right: 15vw;
-    margin-bottom: 3vw;
-    gap: 2vw;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 3em;
 }
 
-.mapButton {
-    height: 3vw !important;
-    width: auto;
-    font-size: 1.5vw !important;
-    border: 4px solid #a12e1c;
-    background-color: var(--c-orange);
+
+.sectionButton1 {
+    padding: 0.5rem 1rem;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    border: 3px solid #d8a41f;
+    border-top: 1px solid #d8a41f;
+    background-color: #f5cc64 !important;
+    color: white;
 }
 
-.transButton {
-    height: 3vw !important;
-    width: auto;
-    font-size: 1.5vw !important;
-    border: 4px solid #a7801e;
-    background-color: var(--c-orange);
+.sectionButton1:hover {
+    background-color: #ffc941 !important;
 }
 
-@media all and (max-width: 1450px) {
-    .mapButton .transButton {
-        height: 3.5vw !important;
-        width: 15vw;
-    }
+.sectionButton2 {
+    padding: 0.5rem 1rem;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    border: 3px solid #b43b28;
+    border-top: 1px solid #b43b28;
+    background-color: #ff735c !important;
+    color: white;
 }
 
-@media all and (max-width: 1000px) {
-    .mapBody, .transBody {
-        background: none;
-    }
-    .transBody {
-        background: linear-gradient(0deg, rgba(233,197,104,0.7) 0%, rgba(255,255,255,0) 100%); 
-    }
-    .mapBody {
-        background: linear-gradient(0deg, rgba(255,115,92,0.7) 0%, rgba(255,255,255,0) 100%); 
-    }
-    .buttonWrapper, .invertedButtonWrapper {
-        height: auto;
-        margin: 3vh 0;
-    }
-    .mapButton, .transButton {
-        font-size: 3vw !important;
-        height: 5vw !important;
-    }
-    .title {
-        text-align: center;
-        font-size: 5vw;
-    }
-    .description, .invertedDescription {
-        text-align: center;
-        width: 90% !important;
-        font-size: 2vw;
-    }
-    .contentWrapper, .invertedContentWrapper {
-        align-items: center !important;
+.sectionButton2:hover {
+    background-color: #ff6148 !important;
+}
+
+@media (min-width: 1024px) {
+    .sectionBody1, .sectionBody2 {
+        padding-bottom: 10vh;
     }
 }
 
-@media all and (max-width: 700px) {
-    .contentWrapper, .invertedContentWrapper {
-        height: min-content !important;
-        margin-left: 0;
-        margin-right: 0;
+
+@media (max-width: 600px) {
+    .contentWrapper2, .contentWrapper1 {
+        text-align: center !important;
     }
-    .buttonWrapper, .invertedButtonWrapper {
-        margin: 3vh 0;
+
+    .contentWrapper1 {
+        align-items: flex-end !important;
+        margin-right: -35px !important;
+        padding-right: 0;
     }
-    .description, .invertedDescription {
-        text-justify: auto;
-        text-align: center;
-        width: 60% !important;
-        font-size: 2.5vw;
+
+    .description1, .description2, .title {
+        max-width: 80%;
     }
-    .container {
-        height: fit-content;
-    }
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
+
+    .sectionBody1, .sectionBody2 {
+        display: flex;
+        align-items: center;
     }
 }
 
-@media all and (max-width: 600px) {
-    .title {
-        font-size: 8vw;
-        margin: 2vh;
-    }
-    .description, .invertedDescription {
-        width: 80% !important;
-        font-size: 2vw;
-    }
-    .container {
-        height: 50vh;
-    }
-}
-
-@media all and (max-width: 400px) {
-    .title {
-        font-size: 8vw;
-        margin: 2vh;
-    }
-    .description, .invertedDescription {
-        width: 90% !important;
-        font-size: 3.2vw;
-    }
-    .mapButton, .transButton {
-        font-size: 5vw !important;
-        height: 8vw !important;
-    }
-    .container {
-        height: 50vh;
-    }
-}
-
-@media all and (max-width: 250px) {
-    .description, .invertedDescription {
-        width: 90% !important;
-        font-size: 4vw;
-    }
-    .mapButton, .transButton {
-        font-size: 7vw !important;
-        height: 12vw !important;
-    }
-}

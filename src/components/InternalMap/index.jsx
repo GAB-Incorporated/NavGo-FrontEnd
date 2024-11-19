@@ -6,6 +6,8 @@ import 'leaflet.fullscreen/Control.FullScreen.css';
 import api from '../../api.js';
 import styles from './InternalMap.module.css'
 import { useNavigate } from "react-router-dom";
+import { FaMapMarkerAlt } from 'react-icons/fa';
+import ReactDOMServer from 'react-dom/server';
 
 const InternalMap = () => {
   const [locations, setLocations] = useState([]);
@@ -93,7 +95,7 @@ const InternalMap = () => {
     // Desenha uma linha para cada andar com os pontos agrupados
     Object.keys(floorPaths).forEach((floor) => {
       const points = floorPaths[floor];
-      const line = L.polyline(points, { color: 'blue', weight: 2 });
+      const line = L.polyline(points, { color: 'white', weight: 3.5 });
 
       if (!pathLayers[floor]) {
         pathLayers[floor] = L.layerGroup([line]);
@@ -140,15 +142,43 @@ const InternalMap = () => {
         }
       });
   
-      path.forEach((node) => {
-        const circle = L.circle([node.x, node.y], { radius: 0.5, color: 'blue' });
-  
-        if (!pathLayers[node.floor]) {
-          pathLayers[node.floor] = L.layerGroup([circle]);
+      path.forEach((node, index) => {
+        let element;
+      
+        if (index === 0) {
+          element = L.circle([node.x, node.y], { 
+            radius: 0.3, 
+            color: 'green', 
+            fillColor: 'green', 
+            fillOpacity: 1,
+          });
+        } else if (index === path.length - 1) {
+          const customIcon = L.divIcon({
+            className: '',
+            html: ReactDOMServer.renderToString(
+              <FaMapMarkerAlt color="#e02424" size="24px"/>
+            ),
+            iconSize: [24, 24],
+            iconAnchor: [12, 24]
+          });
+      
+          element = L.marker([node.x, node.y], { icon: customIcon });
         } else {
-          pathLayers[node.floor].addLayer(circle);
+          // Nós intermediários: círculos azuis
+          element = L.circle([node.x, node.y], { 
+            radius: 0, 
+            color: 'white' 
+          });
+        }
+      
+        if (!pathLayers[node.floor]) {
+          pathLayers[node.floor] = L.layerGroup([element]);
+        } else {
+          pathLayers[node.floor].addLayer(element);
         }
       });
+      
+      
   
       drawPathLines(path, pathLayers);
   

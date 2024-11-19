@@ -1,0 +1,45 @@
+.wrapper {
+    background-color: var(--c-blue);
+    color: black;
+    padding-left: 1vw;
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+}
+
+.iconWrapper {
+    margin: 0;
+    padding: 0;
+    margin-top: -10px;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.dbTitle {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    align-items: center;
+    margin: 0; /* Remove margens verticais */
+}
+
+.dbDivider {
+    background-color: #fff;
+    width: 0.20em;
+    height: 1.5em; /* Aumente ligeiramente para um alinhamento mais preciso */
+    margin: 0 10px;
+    border-radius: 2em;
+    margin-top: -5px;
+}
+
+.dbSubtitle {
+    font-size: 1em;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin: 0; /* Remove margens verticais */
+}
