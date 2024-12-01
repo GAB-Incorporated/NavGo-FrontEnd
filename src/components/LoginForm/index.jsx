@@ -12,13 +12,14 @@ const LoginForm = ({ choosedTool }) => {
   const navigate = useNavigate();
   const hasCheckedToken = useRef(false);
 
+  // Verifica se o token é valido E não expirou
   const isTokenExpired = (token) => {
     try {
       const decodedToken = jwtDecode(token);
       const currentTime = Date.now() / 1000;
       return decodedToken.exp < currentTime;
     } catch (error) {
-      console.error("Erro ao decodificar o token:", error);
+      console.error("Erro ao decodificar o token: ", error);
       return true;
     }
   };
@@ -28,7 +29,6 @@ const LoginForm = ({ choosedTool }) => {
     hasCheckedToken.current = true;
 
     const token = localStorage.getItem('token');
-
     if (token) {
       if (isTokenExpired(token)) {
         toast({
@@ -46,7 +46,7 @@ const LoginForm = ({ choosedTool }) => {
           description: 'Você já está logado.',
           status: 'info',
           duration: 3000,
-          isClosable: false,
+          isClosable: true,
           position: 'top-right',
         });
         choosedTool ? navigate("/" + choosedTool) : navigate("/subhome");
@@ -71,6 +71,7 @@ const LoginForm = ({ choosedTool }) => {
           duration: 5000,
           isClosable: true,
         });
+
         choosedTool ? navigate("/" + choosedTool) : navigate("/subhome");
       }
     } catch (error) {
@@ -111,18 +112,17 @@ const LoginForm = ({ choosedTool }) => {
             onChange={(e) => setPassword(e.target.value)}
             className={styles.input}
           />
-          <Text className={styles.formQuestion}> <b>Não possui login?</b>
-            {choosedTool ?
+          <Text className={styles.formQuestion}>
+            <b>Não possui login?</b>
+            {choosedTool ? (
               <Link to={"/register/" + choosedTool}>
-                <Text className={styles.formLink}>
-                  Se cadastre <b>Aqui!</b>
-                </Text>
-              </Link> :
-              <Link to={"/register"}>
-                <Text className={styles.formLink}>
-                  Se cadastre <b>Aqui!</b>
-                </Text>
-              </Link>}
+                <Text className={styles.formLink}>Se cadastre <b>Aqui!</b></Text>
+              </Link>
+            ) : (
+              <Link to="/register">
+                <Text className={styles.formLink}>Se cadastre <b>Aqui!</b></Text>
+              </Link>
+            )}
           </Text>
         </FormControl>
         <Button type="submit" className={styles.button}>
@@ -131,6 +131,6 @@ const LoginForm = ({ choosedTool }) => {
       </Box>
     </Box>
   );
-}
+};
 
 export default LoginForm;
