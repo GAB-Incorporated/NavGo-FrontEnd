@@ -253,13 +253,13 @@ const SummaryTab = () => {
                     </Flex>
                     <Box className={styles.boxBody}>
                         {courseIsSelected ? courseHasSubjects ? subjects.map((subject) => (
-                            <Flex key={subject.subject_name} className={styles.independentTabInfo}>
-                                <Box>
-                                    <Text>{subject.subject_name}</Text>
-                                    <Text className={styles.independent_small}>Módulo 1</Text>
-                                </Box>
-                                <Image className={styles.subjectIcon} src="images/locations.png"/>
-                            </Flex>
+                                <Flex key={subject.subject_name} className={styles.independentTabInfo}>
+                                        <Image className={styles.icons} src="images/materia.png"/>
+                                    <Box>
+                                        <Text>{subject.subject_name}</Text>
+                                        <Text className={styles.independent_small}>Módulo 1</Text>
+                                    </Box>                                
+                                </Flex>
                         )) : (
                             <Flex className={styles.warningWrapper}>
                                 <Text className={styles.message}>
@@ -288,13 +288,13 @@ const SummaryTab = () => {
                                 <Flex className={styles.boxHeader} w="82vw">
                                     <Text className={styles.headerTitle}>Alunos</Text>
                                 </Flex>
-                                <Flex className={styles.boxBody} justifyContent="space-between">
+                                <Flex className={styles.studentBody} justifyContent="flex-start">
                                     {courseIsSelected ? courseHasStudents ? (
                                         students.some((student) => student.module_number === 1) ? (
                                             students.map((student) => {
                                                 if (student.module_number === 1) {
                                                     return (
-                                                        <Flex key={student.first_name + "ModI"} className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
+                                                        <Flex key={student.first_name + "ModI"} className={styles.independentStudentTabInfo} padding="1vh 0" pl="1vh" w="32%">
                                                             <Image className={styles.icons} src="images/student.png" />
                                                             <Text>{student.first_name + " " + student.last_name}</Text>
                                                         </Flex>
@@ -319,65 +319,72 @@ const SummaryTab = () => {
                             </Box>
                         </TabPanel>
                         <TabPanel>
-                            <Box>                              
+                            <Box>
                                 <Flex className={styles.boxHeader} w="82vw">
                                     <Text className={styles.headerTitle}>Alunos</Text>
                                 </Flex>
-                                <Flex className={styles.boxBody} justifyContent="space-between">
-                                    {courseIsSelected ? courseHasStudents ? students.map((student, index) => (
-                                    <Flex key={student.student_id || index} className={styles.independentTabInfo}>
-                                        <Image className={styles.icons} src="images/student.png"/>
-                                        <Box>
-                                            <Text>{student.first_name} {student.last_name}</Text>
-                                            <Text className={styles.independent_small}>{student.email}</Text>
-                                        </Box>
-                                    </Flex>
-                                )) : (
-                                    <Flex className={styles.warningWrapper}>
-                                        <Text className={styles.message}>
-                                            Curso selecionado, não possui alunos vinculados.
-                                        </Text>
-                                    </Flex>) : (
-                                    <Flex className={styles.infoWrapper}>
-                                        <Text className={styles.message}>
-                                            Selecione um Curso para as informações aparecerem aqui.
-                                        </Text>
-                                    </Flex>)}
+                                <Flex className={styles.studentBody} justifyContent="flex-start">
+                                    {courseIsSelected ? courseHasStudents ? (
+                                        students.some((student) => student.module_number === 2) ? (
+                                            students.map((student) => {
+                                                if (student.module_number === 2) {
+                                                    return (
+                                                        <Flex key={student.first_name + "ModI"} className={styles.independentStudentTabInfo} padding="1vh 0" pl="1vh" w="32%">
+                                                            <Image className={styles.icons} src="images/student.png" />
+                                                            <Text>{student.first_name + " " + student.last_name}</Text>
+                                                        </Flex>
+                                                    );
+                                                }
+                                            })
+                                        ) : (
+                                            <Box p="1vw 0" w="100%">
+                                                <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
+                                            </Box>
+                                        )
+                                    ) : (
+                                        <Flex className={styles.warningWrapper} w="100%">
+                                            <Text className={styles.message}>Curso selecionado, não possui alunos vinculados.</Text>
+                                        </Flex>
+                                    ) : (
+                                        <Flex className={styles.infoWrapper} w="100%">
+                                            <Text className={styles.message}>Selecione um Curso para as informações aparecerem aqui.</Text>
+                                        </Flex>
+                                    )}
                                 </Flex>
                             </Box>
                         </TabPanel>
                         <TabPanel>
-                            <Box>                              
+                            <Box>
                                 <Flex className={styles.boxHeader} w="82vw">
                                     <Text className={styles.headerTitle}>Alunos</Text>
                                 </Flex>
-                                <Flex className={styles.boxBody} justifyContent="space-between">
-                                    {courseIsSelected ? courseHasStudents ? students.map((student) => {
-                                        if (student.module_number == 3) {
-                                            return (
-                                                <Flex key={student.first_name+"ModII"} className={styles.independentTabInfo} padding="1vh 0" pl="1vh" w="32%">
-                                                    <Image className={styles.icons} src="images/student.png"/>
-                                                    <Text>{student.first_name+" "+student.last_name}</Text>
-                                                </Flex>
-                                            )
-                                        } else {
-                                            return (
-                                                <Box key={student.first_name+"ModII Erro"} p="1vw 0" w="100%">
-                                                    <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
-                                                </Box>
-                                            )
-                                        }
-                                    }) : (
+                                <Flex className={styles.studentBody} justifyContent="flex-start">
+                                    {courseIsSelected ? courseHasStudents ? (
+                                        students.some((student) => student.module_number === 3) ? (
+                                            students.map((student) => {
+                                                if (student.module_number === 3) {
+                                                    return (
+                                                        <Flex key={student.first_name + "ModI"} className={styles.independentStudentTabInfo} padding="1vh 0" pl="1vh" w="32%">
+                                                            <Image className={styles.icons} src="images/student.png" />
+                                                            <Text>{student.first_name + " " + student.last_name}</Text>
+                                                        </Flex>
+                                                    );
+                                                }
+                                            })
+                                        ) : (
+                                            <Box p="1vw 0" w="100%">
+                                                <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
+                                            </Box>
+                                        )
+                                    ) : (
                                         <Flex className={styles.warningWrapper} w="100%">
-                                            <Text className={styles.message}>
-                                                Curso selecionado, não possui alunos vinculados.
-                                            </Text>
-                                        </Flex>) : (
+                                            <Text className={styles.message}>Curso selecionado, não possui alunos vinculados.</Text>
+                                        </Flex>
+                                    ) : (
                                         <Flex className={styles.infoWrapper} w="100%">
-                                            <Text className={styles.message}>
-                                                Selecione um Curso para as informações aparecerem aqui.
-                                            </Text>
-                                        </Flex>)}
+                                            <Text className={styles.message}>Selecione um Curso para as informações aparecerem aqui.</Text>
+                                        </Flex>
+                                    )}
                                 </Flex>
                             </Box>
                         </TabPanel>

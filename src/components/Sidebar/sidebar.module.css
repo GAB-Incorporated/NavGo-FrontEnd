@@ -30,8 +30,6 @@ a {
 .normalWrapper {
     justify-content: space-between;
     width: 100vw;
-    /* border-top-left-radius: 55px;
-    border-top-right-radius: 55px; */
     padding-top: 1vw;
     padding-bottom: 1vw;
     background-color: white;
@@ -57,7 +55,8 @@ a {
     background-color: white;
 }
 .mobileLogo {
-    width: 12vw;
+    width: 10vw;
+    margin: 10px;
 }
 
 @media (max-width: 900px) {
