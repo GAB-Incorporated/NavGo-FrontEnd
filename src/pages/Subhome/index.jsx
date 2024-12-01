@@ -58,6 +58,14 @@ const Subhome = () => {
                             </Button>
                         </Flex>
                     </Box>
+                    {innerWidth<600 && (
+                        <Button
+                            marginTop={"80%"}
+                            className={styles.subhomeBtn}
+                            onClick={() => window.open("https://github.com/orgs/GAB-Incorporated/repositories")}>
+                            Sobre
+                        </Button>
+                    )}
                 </Box>
             </Flex>
         </Box>
