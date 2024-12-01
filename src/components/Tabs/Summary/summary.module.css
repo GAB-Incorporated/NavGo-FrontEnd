@@ -35,7 +35,28 @@
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
+.studentBody {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: left;
+    gap: 1%;
+    text-align: center;
+    background-color: #E6E6E6 !important;
+    overflow: scroll;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
     
+.independentStudentTabInfo {
+    width: calc(98%/3) !important;
+    margin-top: 4px;
+    font-size: 1.3vw;
+    text-align: left;
+    background-color: white;
+    white-space: nowrap;
+}
+
 .separationText {
     display: flex;
     justify-content: center;
