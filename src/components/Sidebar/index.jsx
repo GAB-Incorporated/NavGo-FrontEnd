@@ -25,54 +25,62 @@ const Sidebar = () => {
 
     return (
         <>
-        {innerWidth>=601 ? (
-            <Box className={styles.sidebar}>
-                <Box className={styles.logoWrapper}>
-                    <Link to="/">
-                        <Image className={styles.navLogo} src='/images/navgo-logo.png'/>
-                    </Link>
+            {innerWidth>=601 ? (
+                <Box className={styles.sidebar}>
+                    <Box className={styles.logoWrapper}>
+                        <Link to="/">
+                            <Image className={styles.navLogo} src='/images/navgo-logo.png'/>
+                        </Link>
+                    </Box>
+                    <Box>
+                        <hr className={styles.sidebarDivider}/>
+                        <Flex flexDirection="column" gap="2vh">
+                            <DeskTool ToolIcon={MdHomeFilled} linkTo="/subhome"/>
+                        </Flex>
+                        <hr className={styles.sidebarDivider}/>
+                        <Flex flexDirection="column" gap="2vh">
+                            <DeskTool ToolIcon={TbFileExport} linkTo="/mural"/>
+                            <DeskTool ToolIcon={PiMapPinLineBold} linkTo="/map"/>
+                        </Flex>
+                    </Box>
+                    <Box mt={"auto"}>
+                        <hr className={styles.sidebarDivider}/>
+                        <Flex flexDirection="column" gap="2vh">
+                            <DeskTool ToolIcon={GoGear} linkTo="/dashboard"/>
+                            <DeskTool ToolIcon={CiCircleInfo} linkTo="/sobre"/>
+                        </Flex>
+                    </Box>
                 </Box>
-                <Box>
-                    <hr className={styles.sidebarDivider}/>
-                    <Flex flexDirection="column" gap="2vh">
-                        <DeskTool ToolIcon={MdHomeFilled} linkTo="/subhome"/>
-                    </Flex>
-                    <hr className={styles.sidebarDivider}/>
-                    <Flex flexDirection="column" gap="2vh">
-                        <DeskTool ToolIcon={TbFileExport} linkTo="/mural"/>
-                        <DeskTool ToolIcon={PiMapPinLineBold} linkTo="/map"/>
-                    </Flex>
-                </Box>
-                <Box mt={"auto"}>
-                    <hr className={styles.sidebarDivider}/>
-                    <Flex flexDirection="column" gap="2vh">
-                        <DeskTool ToolIcon={GoGear} linkTo="/dashboard"/>
-                        <DeskTool ToolIcon={CiCircleInfo} linkTo="/sobre"/>
-                    </Flex>
-                </Box>
-            </Box>
-        ) : (
-        <>
-        <ModalStructure
-                isOpen={isOpen}
-                onClose={onClose}
-                title={modalTitle}
-                contentBody={modalContent}
-            />
-        <Flex justifyContent="space-between">
-            <Flex className={styles.normalWrapper}>
-                <Flex className={styles.toolsBar}>
-                    <MobiTool ToolIcon={PiMapPinLineBold} toolSize={"8vw"} linkTo="/map"/>
-                    <MobiTool ToolIcon={MdHomeFilled} toolSize={"6vw"} linkTo="/subhome"/>
-                    <Link to="/">
-                        <Image className={styles.mobileLogo} src='/images/navgo-logo.png'/>
-                    </Link>
-                    <GoGear size={"6vw"} onClick={() => openModal(<DashboardAlert/>, "Acesso Barrado!")}/>
-                    <MobiTool ToolIcon={TbFileExport} toolSize={"8vw"} linkTo="/mural"/>
+            ) : (
+            <>
+                <ModalStructure
+                        isOpen={isOpen}
+                        onClose={onClose}
+                        title={modalTitle}
+                        contentBody={modalContent}
+                    />
+                <Flex justifyContent="space-between">
+                    <Flex className={styles.normalWrapper}>
+                        <Flex className={styles.toolsBar}>
+                            <Link to="/map">
+                                <Image className={styles.mobileLogo} src='/images/mapa-logo.png'/>
+                            </Link>
+                            <Link to="/subhome">
+                                <Image className={styles.mobileLogo} src='/images/subhome-logo.png'/>
+                            </Link>
+                            <Link to="/">
+                                <Image className={styles.mobileLogo} src='/images/navgo-logo.png'/>
+                            </Link>
+                            <Box onClick={() => openModal(<DashboardAlert/>, "Acesso Barrado!")}>
+                                <Image className={styles.mobileLogo} src='/images/dashboard-logo.png'/>
+                            </Box>
+                            <Link to="/mural">
+                                <Image className={styles.mobileLogo} src='/images/mural-logo.png'/>
+                            </Link>
+                        </Flex>
+                    </Flex>            
                 </Flex>
-            </Flex>            
-        </Flex>
-        </>
+            </>
         )}
         </>
     )
