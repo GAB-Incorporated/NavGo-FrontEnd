@@ -68,7 +68,7 @@ const Sidebar = () => {
                                 <Image className={styles.mobileLogo} src='/images/subhome-logo.png'/>
                             </Link>
                             <Link to="/">
-                                <Image className={styles.mobileLogo} src='/images/navgo-logo.png'/>
+                                <Image className={styles.mobileLogo} src='/images/navgo-icon.png'/>
                             </Link>
                             <Box onClick={() => openModal(<DashboardAlert/>, "Acesso Barrado!")}>
                                 <Image className={styles.mobileLogo} src='/images/dashboard-logo.png'/>
@@ -77,7 +77,7 @@ const Sidebar = () => {
                                 <Image className={styles.mobileLogo} src='/images/mural-logo.png'/>
                             </Link>
                         </Flex>
-                    </Flex>            
+                    </Flex>
                 </Flex>
             </>
         )}
