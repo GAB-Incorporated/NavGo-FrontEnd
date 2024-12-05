@@ -302,9 +302,9 @@ const SummaryTab = () => {
                                                 }
                                             })
                                         ) : (
-                                            <Box p="1vw 0" w="100%">
-                                                <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
-                                            </Box>
+                                            <Flex justifyContent="center" p="1vw 0" w="100%">
+                                                <Text fontSize="1.5vw" >Nenhum estudante nesse módulo</Text>
+                                            </Flex>
                                         )
                                     ) : (
                                         <Flex className={styles.warningWrapper} w="100%">
@@ -337,9 +337,9 @@ const SummaryTab = () => {
                                                 }
                                             })
                                         ) : (
-                                            <Box p="1vw 0" w="100%">
-                                                <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
-                                            </Box>
+                                            <Flex justifyContent="center" p="1vw 0" w="100%">
+                                                <Text fontSize="1.5vw" >Nenhum estudante nesse módulo</Text>
+                                            </Flex>
                                         )
                                     ) : (
                                         <Flex className={styles.warningWrapper} w="100%">
@@ -372,9 +372,9 @@ const SummaryTab = () => {
                                                 }
                                             })
                                         ) : (
-                                            <Box p="1vw 0" w="100%">
-                                                <Text fontSize="1.5vw" textAlign="center">Nenhum estudante nesse módulo</Text>
-                                            </Box>
+                                            <Flex justifyContent="center" p="1vw 0" w="100%">
+                                                <Text fontSize="1.5vw">Nenhum estudante nesse módulo</Text>
+                                            </Flex>
                                         )
                                     ) : (
                                         <Flex className={styles.warningWrapper} w="100%">
