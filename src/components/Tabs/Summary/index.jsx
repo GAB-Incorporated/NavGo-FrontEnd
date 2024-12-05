@@ -27,7 +27,7 @@ const SummaryTab = () => {
     const fetchCourses = async () => {
         try {
             let courseData = await api.get('/courses')
-            setCourses(courseData.data.message);
+            setCourses(courseData.data.message);            
         } catch (error) {
             toast({
                 title: 'Falha ao carregar os Cursos',
@@ -173,7 +173,7 @@ const SummaryTab = () => {
                                 <Text key={course.course_name}>{course.course_name}</Text>
                                 <Flex alignItems="center" padding="0.5vh 0" key={course.course_name+"Flex"}>
                                     <Image key={course.course_name+"Image"} className={styles.independent_icons} src="images/course_coordinator.png"/>
-                                    <Text key={course.course_name+"Text"} className={styles.independent_small}>{course.coordinator_id}</Text>
+                                    <Text key={course.course_name+"Text"} className={styles.independent_small}>{course.coordinator_first_name} {course.coordinator_last_name}</Text>
                                 </Flex>
                             </Box>
                         ))}
