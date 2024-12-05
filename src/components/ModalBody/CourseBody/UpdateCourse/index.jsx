@@ -4,33 +4,18 @@ import { useEffect, useState, useCallback } from "react"
 import api from "../../../../api.js";
 
 
-const UpdateCourse = () => {
-    const [courses, setCourses] = useState([])
+const UpdateCourse = ({coursePropId, coursePropName, coursePropCoordinator}) => {
     const [coordinators, setCoordinators] = useState([])
     const [courseId, setCourseId] = useState(0)
     const [courseName, setCourseName] = useState("")
     const [coordinatorId, setCoordinatorId] = useState(0)
     const toast = useToast()
-    
-    const getCourses = useCallback(async () => {
-        try {
-            const coursesData = await api.get("/courses")
-            setCourses(coursesData.data.message)
-        } catch (error) {
-            toast({
-                title: "Erro!",
-                description: error,
-                status: "error",
-                duration: 3000,
-                isClosable: false,
-                position: "top",
-            });
-        }
-    }, [toast])
 
     const getCoordinators = useCallback(async () => {
         try {
-            const coordinatorsData = await api.get("/user/coordinators")
+            const coordinatorsData = await api.get("/users/coordinators")
+            console.log(coordinatorsData)
+            // console.log(courseProps)
             setCoordinators(coordinatorsData.data);
         } catch (error) {
             toast({
@@ -69,10 +54,15 @@ const UpdateCourse = () => {
     }
 
     useEffect(() => {
-        getCourses()
-        getCoordinators()
-    }, [getCoordinators, getCourses])
+        getCoordinators()     
+    }, [getCoordinators])
 
+    useEffect(() => {
+        setCourseId(coursePropId)
+        setCourseName(coursePropName)
+        setCoordinatorId(coursePropCoordinator)
+    }, []);
+    
     return (
         <Box
             margin={"2vw"}
@@ -85,66 +75,51 @@ const UpdateCourse = () => {
                 <Text w={"100%"} textAlign={"center"}>
                     Atualize os cursos de sua instituição:
                 </Text>
-                <Box>
-                    <Text>
-                        Selecione um curso para ser atualizado:
-                    </Text>
-                    <Select
-                            onChange={(e) => setCourseId(e.target.value)}
+                        <Box>
+                            <Text className={styles.labelCourseName}>
+                                Nome do Curso:
+                            </Text>
+                            <Input 
+                                placeholder="Digite o nome do curso"
+                                value={courseName}
+                                onChange={(e) => setCourseName(e.target.value)}
+                            />
+                        </Box>
+                        <Box>
+                            <Text>
+                                Selecione um coordenador para o curso:
+                            </Text>
+                            <Select
+                                value={coordinatorId}
+                                onChange={(e) => setCoordinatorId(e.target.value)}
+                            >
+                            <option value={-1}>Selecione um Coordenador</option>
+                                {coordinators.length > 0 ? (
+                                    coordinators.map(coordinator => (
+                                    <option 
+                                        key={coordinator.first_name+coordinator.user_id} 
+                                        value={coordinator.user_id}
+                                    >{coordinator.first_name+" "+coordinator.last_name}
+                                    </option>
+                                ))) : <option>Nenhum Coordenador Disponivel</option>}
+                            </Select>
+                        </Box>
+                        <Flex
+                            justifyContent={"center"}
                         >
-                        <option value={-1}>Selecione um Curso</option>
-                            {courses.length > 0 ? (
-                                courses.map(course => (
-                                <option 
-                                    key={course.course_name+course.course_id} 
-                                    value={course.course_id}
-                                >{course.course_name}
-                                </option>
-                            ))) : <option>Nenhum Curso Disponivel</option>}
-                    </Select>
-                    <Text className={styles.labelCourseName}>
-                        Nome do Curso:
-                    </Text>
-                    <Input 
-                        placeholder="Digite o nome do curso"
-                        value={courseName}
-                        onChange={(e) => setCourseName(e.target.value)}
-                    />
-                </Box>
-                <Box>
-                    <Text>
-                        Selecione um coordenador para o curso:
-                    </Text>
-                    <Select
-                        onChange={(e) => setCoordinatorId(e.target.value)}
-                    >
-                    <option value={-1}>Selecione um Coordenador</option>
-                        {coordinators.length > 0 ? (
-                            coordinators.map(coordinator => (
-                            <option 
-                                key={coordinator.first_name+coordinator.user_id} 
-                                value={coordinator.user_id}
-                            >{coordinator.first_name+" "+coordinator.last_name}
-                            </option>
-                        ))) : <option>Nenhum Coordenador Disponivel</option>}
-                    </Select>
-                </Box>
-                <Flex
-                    justifyContent={"center"}
-                >
-                    <Button
-                        onClick={handleSubmit}
-                        color={'#fff'} 
-                        mb={3} 
-                        bg={'#2274A5'}
-                        _hover={{
-                            bg: '#1A5981',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        Atualizar Curso
-                    </Button>
-                </Flex>
+                            <Button
+                                onClick={handleSubmit}
+                                color={'#fff'} 
+                                mb={3} 
+                                bg={'#2274A5'}
+                                _hover={{
+                                    bg: '#1A5981',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Atualizar Curso
+                            </Button>
+                        </Flex>
             </FormControl>
         </Box>
     )
