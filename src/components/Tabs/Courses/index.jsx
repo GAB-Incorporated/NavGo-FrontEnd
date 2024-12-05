@@ -1,4 +1,4 @@
-import { Flex, Box, Text, IconButton, Image, useDisclosure, useToast, position} from '@chakra-ui/react' 
+import { Flex, Box, Text, IconButton, Image, useDisclosure, useToast} from '@chakra-ui/react' 
 import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { useEffect, useState } from 'react'
 import styles from './courses.module.css'
