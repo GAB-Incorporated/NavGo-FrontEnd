@@ -1,0 +1,69 @@
+.page {
+    width: 80vw;
+}
+
+.boxHeader {
+    display: grid !important;
+    grid-template-columns: 5% 45% 50%;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: var(--c-orange);
+    color: white;
+    height: 4vh;
+    gap: 1vh;
+}
+
+.headerTitle {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.addIcon {
+    margin-left: 30%;
+    color: var(--c-orange) !important;
+    background-color: white !important;
+}
+
+.boxBody {
+    max-height: 70vh;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    background-color: #E6E6E6 !important;
+    overflow: scroll;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: scroll;
+}
+
+.courseCard {
+    display: grid !important;
+    grid-template-columns: 5% 46% 39% 10%;
+    margin-top: 4px;
+    font-size: 1.3vw;
+    text-align: left;
+    padding-left: 0.8vw;
+    background-color: white;
+    white-space: nowrap;
+}
+
+.iconsWrapper {
+    gap: 0.5vw;
+    justify-content: end;
+    margin-right: 10%;
+}
+.actionIcon {
+    background-color: white !important;
+}
+
+img.icons {
+    align-self: center;
+    margin: 0.5vw 0;
+}
+
+p.courseCard {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}

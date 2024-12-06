@@ -1,3 +1,22 @@
+.modal {
+    height: 70vh;
+    margin: 1vw 0;
+    overflow: scroll;
+}
+
+.flexWrapper {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalTitle {
+    font-size: 1.5vw;
+    text-align: center;
+    font-weight: bold;
+}
+
 .info {
     color: black;
     font-weight: bold;
@@ -7,4 +26,29 @@
     color: black;
     opacity: 0.5;
     font-size: 1vw;
+    text-align: center;
+}
+
+.locationCard {
+    background-color: var(--c-lightBlue);
+    padding: 1vw;
+    margin: 1vw;
+    width: inherit;
+    border: var(--c-blue) solid 5px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.textLine {
+    gap: 0.5vw;
+    line-height: 1.5;
+    text-align: left;
+    text-justify: auto;
+}
+
+.errorMessage {
+    text-align: center;
+    color: crimson;
+    font-size: 1.4vw;
+    font-weight: bold;
 }
