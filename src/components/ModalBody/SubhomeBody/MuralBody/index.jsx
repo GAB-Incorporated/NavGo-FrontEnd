@@ -18,7 +18,7 @@ const MuralBody = () => {
                     Posteriormente, na barra lateral você poderá selecionar seu curso, 
                     a materia do mesmo e visualizar os materiais enviados pelo professor da matéria.
                 </Text>
-                <Image src="imagemManeira.jpg" aria-label="Imagem da barra lateral, mostrando os murais de cada materia."/>
+                <Image src="/images/mural-advice.jpeg" aria-label="Imagem da barra lateral, mostrando os murais de cada materia."/>
             </Box>
         </Box>
     )

@@ -23,7 +23,7 @@ const MapBody = () => {
                         Posteriormente você irá conseguir visualizar as informações 
                         das suas aulas e rotas selecionando na direita inferior do mapa.
                     </Text>
-                    <Image src="imagemManeira.jpg" aria-label="Imagem da página mapa, mostrando a parte para seleção de rotas e aulas"/>
+                    <Image src="images/rota-advice.jpeg" aria-label="Imagem da página mapa, mostrando a parte para seleção de rotas e aulas"/>
                 </AccordionPanel>
             </AccordionItem>
             <AccordionItem borderBottom={'hidden'}>
@@ -35,18 +35,18 @@ const MapBody = () => {
                     <AccordionIcon />
                 </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>
+                <AccordionPanel pb={4} display={'flex'} flexDirection={'column'}>
                     <Text>
                         Será necessário informar as suas informações de turma e módulo no 
                         modal do canto inferior esquerdo.
                     </Text>
-                    <Image src="imagemManeira.jpg" aria-label="Imagem da página mapa, mostrando a parte para seleção de turma e módulo"/>
+                    <Image src="images/rota-advice2.png" aria-label="Imagem da página mapa, mostrando a parte para seleção de dia da semana e aula"/>
                     <Text>
                         Após isso você poderá seguir para selecionar o dia da semana e a aula 
                         para visualização da localização onde ela irá ocorrer e a sua respectiva 
                         rota no canto inferior direito.
                     </Text>
-                    <Image src="imagemManeira.jpg" aria-label="Imagem da página mapa, mostrando a parte para seleção de dia da semana e aula"/>
+                    <Image src="images/rota-advice.jpeg" aria-label="Imagem da página mapa, mostrando a parte para seleção de dia da semana e aula"/>
                 </AccordionPanel>
             </AccordionItem>
         </Accordion>
