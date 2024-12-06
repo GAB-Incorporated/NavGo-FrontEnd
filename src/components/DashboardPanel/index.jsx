@@ -19,10 +19,10 @@ const DashboardPanel = () => {
                 <TabList m="0% 10%">
                     <Tab className={styles.tabText}>Resumo</Tab>
                     <Tab className={styles.tabText}>Cursos</Tab>
-                    <Tab className={styles.tabText}>Matérias</Tab>
+                    {/* <Tab className={styles.tabText}>Matérias</Tab>
                     <Tab className={styles.tabText}>Professores</Tab>
                     <Tab className={styles.tabText}>Alunos</Tab>
-                    <Tab className={styles.tabText}>Construções</Tab>
+                    <Tab className={styles.tabText}>Construções</Tab> */}
                 </TabList>
                 <TabIndicator mt='-0.8vh' height='2px' bg='black' borderRadius='1px' />
                 <TabPanels>
